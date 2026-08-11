@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { projects, categories, getCategoryColor } from '../data/projects';
+import { devushkaVideoSrc } from '../assets/devushkaVideo';
 
 const featuredProjects = projects.filter((p) => p.featured);
 const directions = categories.filter((c) => c.slug !== 'all');
@@ -150,9 +151,13 @@ export default function Home() {
             <div className="lg:col-span-5">
               <Reveal>
                 <div className="aspect-video bg-card border border-border overflow-hidden rounded-2xl">
-                  <img
-                    src="https://storage.yandexcloud.net/lork/public/services/svc_web_25adfda25fa8887d2788755c/assets/att_188a9b6b111ec45f442cd516e354c851/devushka.gif"
-                    alt="Фомина Анастасия"
+                  <video
+                    src={devushkaVideoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-label="Фомина Анастасия"
                     className="w-full h-full object-cover"
                   />
                 </div>
