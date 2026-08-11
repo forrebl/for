@@ -1,0 +1,1 @@
+Animated portrait asset is stored as base64 text chunks and assembled at runtime to avoid external Lork hosting.
