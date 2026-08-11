@@ -30,19 +30,19 @@ export default function About() {
     <main className="pt-24 lg:pt-32 pb-20 lg:pb-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mb-20 lg:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mb-20 lg:mb-32 items-start">
           <div className="lg:col-span-5">
             <Reveal>
-              <div className="aspect-video bg-card border border-border overflow-hidden rounded-2xl">
+              <div className="w-full max-w-[360px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 aspect-[3/4] bg-card border border-border overflow-hidden rounded-2xl">
                 <img
                   src="/about-photo.jpg"
                   alt="Фомина Анастасия"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             </Reveal>
           </div>
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          <div className="lg:col-span-7 flex flex-col justify-center lg:min-h-[560px]">
             <Reveal>
               <p className="text-xs uppercase tracking-[0.2em] text-accent mb-4 font-medium">
                 Обо мне
