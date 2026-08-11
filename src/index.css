@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Consolas', 'Monaco', monospace;
+  --font-display: 'Consolas', 'Monaco', monospace;
+  --font-mono: 'Consolas', 'Monaco', monospace;
+  
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-card: #f8f8f8;
+  --color-card-foreground: #0a0a0a;
+  --color-muted: #f0f0f0;
+  --color-muted-foreground: #666666;
+  --color-accent: #2a3fc7;
+  --color-accent-foreground: #ffffff;
+  --color-border: #d4d4d4;
+  --color-ring: #2a3fc7;
+  --color-primary: #2a3fc7;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #0a0a0a;
+  
+  --radius: 9999px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-left {
+  transform: translateX(-20px);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+/* Accent underline hover */
+.accent-underline {
+  position: relative;
+  display: inline-block;
+}
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+.accent-underline:hover::after {
+  width: 100%;
+}
+
+/* Accent border card */
+.accent-card {
+  border: 1px solid var(--color-border);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.accent-card:hover {
+  border-color: var(--color-accent);
+  background-color: rgba(42, 63, 199, 0.04);
+}
