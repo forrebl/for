@@ -35,7 +35,7 @@ export default function About() {
             <Reveal>
               <div className="aspect-video bg-card border border-border overflow-hidden rounded-2xl">
                 <img
-                  src="https://storage.yandexcloud.net/lork/public/services/svc_web_25adfda25fa8887d2788755c/assets/att_188a9b6b111ec45f442cd516e354c851/devushka.gif"
+                  src="/about-photo.jpg"
                   alt="Фомина Анастасия"
                   className="w-full h-full object-cover"
                 />
