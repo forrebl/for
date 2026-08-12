@@ -122,96 +122,96 @@ export default function Game() {
   };
 
   return (
-    <main className="pt-24 lg:pt-28 pb-16 lg:pb-20 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6 lg:px-12">
-        <Link to="/games" className="inline-flex items-center gap-2 text-sm text-foreground/45 hover:text-accent transition-colors mb-7">
+    <main className="pt-20 sm:pt-24 lg:pt-28 pb-4 sm:pb-10 lg:pb-20 min-h-[100dvh]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
+        <Link to="/games" className="inline-flex items-center gap-2 text-xs sm:text-sm text-foreground/45 hover:text-accent transition-colors mb-3 sm:mb-7">
           ← Все игры
         </Link>
 
-        <div className="mb-8 lg:mb-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3 font-medium">Мини-игра</p>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <div>
-              <h1 className="text-3xl lg:text-5xl font-[family-name:var(--font-display)] font-medium leading-tight mb-3">
+        <div className="mb-4 sm:mb-8 lg:mb-10">
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-accent mb-1.5 sm:mb-3 font-medium">Мини-игра</p>
+          <div className="flex items-end justify-between gap-3">
+            <div className="min-w-0">
+              <h1 className="text-3xl lg:text-5xl font-[family-name:var(--font-display)] font-medium leading-tight mb-1 sm:mb-3">
                 CMYK-конструктор
               </h1>
-              <p className="text-foreground/50 max-w-2xl leading-relaxed">
+              <p className="hidden sm:block text-foreground/50 max-w-2xl leading-relaxed">
                 Повтори цвет с помощью четырёх каналов. 10 уровней — каждый следующий требует большей точности.
               </p>
             </div>
-            <span className="text-sm text-foreground/40 whitespace-nowrap">Уровень {levelIndex + 1} / {levels.length}</span>
+            <span className="text-[11px] sm:text-sm text-foreground/40 whitespace-nowrap pb-1">{levelIndex + 1} / {levels.length}</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-10 gap-1.5 mb-8" aria-label={`Прогресс: уровень ${levelIndex + 1} из ${levels.length}`}>
+        <div className="grid grid-cols-10 gap-1 mb-3 sm:mb-8" aria-label={`Прогресс: уровень ${levelIndex + 1} из ${levels.length}`}>
           {levels.map((_, index) => (
             <div
               key={index}
-              className={`h-1.5 rounded-full transition-colors ${index <= levelIndex ? 'bg-accent' : 'bg-foreground/10'}`}
+              className={`h-1 sm:h-1.5 rounded-full transition-colors ${index <= levelIndex ? 'bg-accent' : 'bg-foreground/10'}`}
             />
           ))}
         </div>
 
         {finished ? (
-          <section className="border border-border bg-card rounded-3xl p-8 sm:p-12 lg:p-16 text-center">
-            <div className="mx-auto mb-8 grid grid-cols-4 w-32 h-32 rounded-full overflow-hidden border border-border shadow-sm">
+          <section className="border border-border bg-card rounded-2xl sm:rounded-3xl p-6 sm:p-12 lg:p-16 text-center">
+            <div className="mx-auto mb-5 sm:mb-8 grid grid-cols-4 w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border border-border shadow-sm">
               <div className="bg-[#00b8d9]" />
               <div className="bg-[#e6007e]" />
               <div className="bg-[#f2d500]" />
               <div className="bg-[#171717]" />
             </div>
-            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-4">10 / 10</p>
-            <h2 className="text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-4">CMYK покорён</h2>
-            <p className="text-foreground/50 mb-8">Теперь можно официально спорить с монитором о цветопередаче.</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3 sm:mb-4">10 / 10</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-3 sm:mb-4">CMYK покорён</h2>
+            <p className="text-sm sm:text-base text-foreground/50 mb-5 sm:mb-8">Теперь можно официально спорить с монитором о цветопередаче.</p>
             <button
               type="button"
               onClick={restart}
-              className="px-7 py-3.5 rounded-full bg-accent text-background text-sm font-medium hover:bg-accent/85 transition-colors"
+              className="px-7 py-3 rounded-full bg-accent text-background text-sm font-medium hover:bg-accent/85 transition-colors"
             >
               Пройти ещё раз
             </button>
           </section>
         ) : (
-          <section className="border border-border bg-card rounded-3xl p-5 sm:p-7 lg:p-9">
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.85fr)] gap-8 lg:gap-12">
+          <section className="border border-border bg-card rounded-2xl sm:rounded-3xl p-3 sm:p-7 lg:p-9">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.85fr)] gap-4 sm:gap-8 lg:gap-12">
               <div>
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-3 sm:mb-6">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.16em] text-foreground/40 mb-2">Образец</p>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-[0.16em] text-foreground/40 mb-1 sm:mb-2">Образец</p>
                     <div
-                      className="aspect-square sm:aspect-[4/3] rounded-2xl border border-border shadow-sm"
+                      className="h-20 sm:h-auto sm:aspect-[4/3] rounded-xl sm:rounded-2xl border border-border shadow-sm"
                       style={{ backgroundColor: cmykToRgb(level.target) }}
                     />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-[0.16em] text-foreground/40 mb-2">Твой цвет</p>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-[0.16em] text-foreground/40 mb-1 sm:mb-2">Твой цвет</p>
                     <div
-                      className="aspect-square sm:aspect-[4/3] rounded-2xl border border-border shadow-sm transition-colors duration-150"
+                      className="h-20 sm:h-auto sm:aspect-[4/3] rounded-xl sm:rounded-2xl border border-border shadow-sm transition-colors duration-150"
                       style={{ backgroundColor: cmykToRgb(current) }}
                     />
                   </div>
                 </div>
 
-                <div className="min-h-14 text-sm text-foreground/55 leading-relaxed border-t border-border pt-4">
+                <div className="min-h-10 sm:min-h-14 text-xs sm:text-sm text-foreground/55 leading-snug sm:leading-relaxed border-t border-border pt-2 sm:pt-4">
                   {message}
                 </div>
               </div>
 
               <div className="flex flex-col justify-center">
-                <div className="space-y-5">
+                <div className="space-y-2.5 sm:space-y-5">
                   {channelMeta.map((channel) => (
                     <label key={channel.key} className="block">
-                      <div className="flex items-center justify-between gap-4 mb-2">
-                        <div className="flex items-center gap-2.5">
+                      <div className="flex items-center justify-between gap-3 sm:gap-4 mb-1 sm:mb-2">
+                        <div className="flex items-center gap-2 sm:gap-2.5">
                           <span
-                            className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-medium border border-black/10"
+                            className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[10px] sm:text-[11px] font-medium border border-black/10"
                             style={{ backgroundColor: channel.color, color: channel.key === 'y' ? '#171717' : '#ffffff' }}
                           >
                             {channel.label}
                           </span>
-                          <span className="text-sm text-foreground/60">{channel.name}</span>
+                          <span className="text-xs sm:text-sm text-foreground/60">{channel.name}</span>
                         </div>
-                        <span className="text-sm tabular-nums min-w-12 text-right">{current[channel.key]}%</span>
+                        <span className="text-xs sm:text-sm tabular-nums min-w-10 sm:min-w-12 text-right">{current[channel.key]}%</span>
                       </div>
                       <input
                         type="range"
@@ -220,7 +220,7 @@ export default function Game() {
                         step="1"
                         value={current[channel.key]}
                         onChange={(event) => updateChannel(channel.key, Number(event.target.value))}
-                        className="w-full cursor-pointer"
+                        className="w-full cursor-pointer block"
                         style={{ accentColor: channel.color }}
                         aria-label={`${channel.name}: ${current[channel.key]} процентов`}
                       />
@@ -228,11 +228,11 @@ export default function Game() {
                   ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 mt-8">
+                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3 mt-3 sm:mt-8">
                   <button
                     type="button"
                     onClick={checkColor}
-                    className="flex-1 px-6 py-3.5 rounded-full border border-foreground/20 text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+                    className="sm:flex-1 px-3 sm:px-6 py-2.5 sm:py-3.5 rounded-full border border-foreground/20 text-xs sm:text-sm font-medium hover:border-accent hover:text-accent transition-colors"
                   >
                     Проверить
                   </button>
@@ -240,17 +240,24 @@ export default function Game() {
                     type="button"
                     onClick={nextLevel}
                     disabled={!passed}
-                    className={`flex-1 px-6 py-3.5 rounded-full text-sm font-medium transition-all ${
+                    className={`sm:flex-1 px-3 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
                       passed
                         ? 'bg-accent text-background hover:bg-accent/85'
                         : 'bg-foreground/5 text-foreground/20 cursor-not-allowed'
                     }`}
                   >
-                    {levelIndex === levels.length - 1 ? 'Завершить' : 'Следующий уровень →'}
+                    {levelIndex === levels.length - 1 ? (
+                      'Завершить'
+                    ) : (
+                      <>
+                        <span className="sm:hidden">Следующий →</span>
+                        <span className="hidden sm:inline">Следующий уровень →</span>
+                      </>
+                    )}
                   </button>
                 </div>
 
-                <p className="text-xs text-foreground/30 mt-5 leading-relaxed">
+                <p className="hidden sm:block text-xs text-foreground/30 mt-5 leading-relaxed">
                   Экран передаёт CMYK приблизительно — в игре используется лёгкая RGB-симуляция без дополнительных библиотек.
                 </p>
               </div>
