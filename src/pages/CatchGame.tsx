@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { Link } from 'react-router-dom';
 
-type ItemType = 'idea' | 'revision';
+type ItemType = 'idea' | 'revision' | 'neutral';
 
 type FallingItem = {
   id: number;
   type: ItemType;
+  label: string;
   x: number;
   y: number;
   speed: number;
@@ -18,6 +19,7 @@ type GameStatus = 'idle' | 'playing' | 'won' | 'lost';
 const GOAL = 12;
 const MAX_LIVES = 3;
 const BASKET_HALF_WIDTH = 11;
+const neutralWords = ['Бриф', 'Референс', 'Сетка', 'Мокап', 'Дедлайн', 'Шрифт'];
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
@@ -100,19 +102,34 @@ export default function CatchGame() {
       lastTimeRef.current = time;
 
       const difficulty = scoreRef.current;
-      const spawnEvery = Math.max(430, 1080 - difficulty * 48);
+      const spawnEvery = Math.max(400, 980 - difficulty * 45);
       spawnTimerRef.current += deltaMs;
 
       const nextItems = [...itemsRef.current];
 
       if (spawnTimerRef.current >= spawnEvery) {
         spawnTimerRef.current = 0;
-        const type: ItemType = Math.random() < 0.72 ? 'idea' : 'revision';
+        const roll = Math.random();
+        let type: ItemType;
+        let label: string;
+
+        if (roll < 0.5) {
+          type = 'idea';
+          label = 'Идея';
+        } else if (roll < 0.68) {
+          type = 'revision';
+          label = 'Правка';
+        } else {
+          type = 'neutral';
+          label = neutralWords[Math.floor(Math.random() * neutralWords.length)];
+        }
+
         const baseSpeed = 20 + difficulty * 1.35;
 
         nextItems.push({
           id: nextIdRef.current++,
           type,
+          label,
           x: 10 + Math.random() * 80,
           y: -8,
           speed: baseSpeed * (0.88 + Math.random() * 0.25),
@@ -137,7 +154,7 @@ export default function CatchGame() {
               terminalStatus = 'won';
               break;
             }
-          } else {
+          } else if (moved.type === 'revision') {
             nextLives -= 1;
             if (nextLives <= 0) {
               terminalStatus = 'lost';
@@ -148,7 +165,18 @@ export default function CatchGame() {
           continue;
         }
 
-        if (moved.y <= 106) kept.push(moved);
+        if (moved.y > 106) {
+          if (moved.type === 'idea') {
+            nextLives -= 1;
+            if (nextLives <= 0) {
+              terminalStatus = 'lost';
+              break;
+            }
+          }
+          continue;
+        }
+
+        kept.push(moved);
       }
 
       if (nextScore !== scoreRef.current) {
@@ -202,7 +230,7 @@ export default function CatchGame() {
               Поймай идею
             </h1>
             <p className="text-foreground/50 max-w-2xl leading-relaxed">
-              Поймай 12 «Идей» и не лови «Правки». У вас три жизни, а темп становится быстрее с каждой пойманной идеей.
+              Поймай 12 «Идей» и не лови «Правки». Пропущенная «Идея» тоже отнимает жизнь, а остальные дизайн-слова просто отвлекают.
             </p>
           </div>
         </div>
@@ -244,10 +272,12 @@ export default function CatchGame() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-black/5 ${
+                className={`absolute -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-sm font-medium shadow-sm border ${
                   item.type === 'idea'
-                    ? 'bg-[#00b8d9] text-white'
-                    : 'bg-[#e6007e] text-white'
+                    ? 'bg-[#00b8d9] text-white border-black/5'
+                    : item.type === 'revision'
+                      ? 'bg-[#e6007e] text-white border-black/5'
+                      : 'bg-background text-foreground/55 border-border'
                 }`}
                 style={{
                   left: `${item.x}%`,
@@ -255,7 +285,7 @@ export default function CatchGame() {
                   transform: `translate(-50%, -50%) rotate(${item.rotation}deg)`,
                 }}
               >
-                {item.type === 'idea' ? 'Идея' : 'Правка'}
+                {item.label}
               </div>
             ))}
 
@@ -276,7 +306,7 @@ export default function CatchGame() {
                       <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Задача</p>
                       <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] font-medium mb-3">12 идей. 3 жизни.</h2>
                       <p className="text-foreground/50 leading-relaxed mb-6">
-                        Ловите «Идеи» корзиной и пропускайте «Правки». Каждая пойманная идея немного ускоряет игру.
+                        Ловите «Идеи», избегайте «Правок» и не пропускайте нужные слова. «Бриф», «Референс», «Сетка», «Мокап», «Дедлайн» и «Шрифт» — нейтральные помехи.
                       </p>
                     </>
                   )}
@@ -285,13 +315,13 @@ export default function CatchGame() {
                     <>
                       <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">12 / 12</p>
                       <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] font-medium mb-3">Идея поймана</h2>
-                      <p className="text-foreground/50 leading-relaxed mb-6">Вы пережили поток правок и собрали все 12 идей.</p>
+                      <p className="text-foreground/50 leading-relaxed mb-6">Вы пережили поток правок и собрали все 12 идей.</p>
                     </>
                   )}
 
                   {status === 'lost' && (
                     <>
-                      <p className="text-xs uppercase tracking-[0.2em] text-[#e6007e] mb-3">Правок многовато</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-[#e6007e] mb-3">Идеи ускользнули</p>
                       <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] font-medium mb-3">Три жизни закончились</h2>
                       <p className="text-foreground/50 leading-relaxed mb-6">Вы успели поймать {score} из 12 идей. Попробуем ещё раз?</p>
                     </>
@@ -310,7 +340,7 @@ export default function CatchGame() {
           </div>
 
           <p className="text-xs text-foreground/30 mt-4 leading-relaxed">
-            Пропущенная «Идея» не отнимает жизнь. Жизнь теряется только если поймать «Правку».
+            Минус жизнь за пойманную «Правку» или пропущенную «Идею». Остальные слова можно ловить или пропускать без последствий.
           </p>
         </section>
       </div>
