@@ -134,13 +134,13 @@ export default function About() {
 
   return (
     <main
-      className="pt-24 lg:pt-28 pb-16 lg:pb-20"
+      className="pt-24 lg:pt-28 pb-16 lg:pb-20 overflow-x-hidden"
       onClick={() => setActiveTool(null)}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl w-full mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 lg:mb-20 items-start">
-          <div className="lg:col-span-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 lg:mb-20 items-start min-w-0">
+          <div className="lg:col-span-5 min-w-0">
             <Reveal>
               <div className="w-full max-w-[360px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 aspect-[3/4] bg-card border border-border overflow-hidden rounded-2xl">
                 <img
@@ -151,7 +151,7 @@ export default function About() {
               </div>
             </Reveal>
           </div>
-          <div className="lg:col-span-7 flex flex-col justify-start">
+          <div className="lg:col-span-7 flex flex-col justify-start min-w-0">
             <Reveal>
               <p className="text-xs uppercase tracking-[0.2em] text-accent mb-4 font-medium">
                 Обо мне
@@ -180,7 +180,7 @@ export default function About() {
         </div>
 
         {/* Skills */}
-        <section className="mb-14 lg:mb-20">
+        <section className="mb-14 lg:mb-20 min-w-0">
           <Reveal>
             <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-8 lg:mb-10">
               Специализация и навыки
@@ -207,7 +207,7 @@ export default function About() {
         </section>
 
         {/* Tools — «разрозненные плашки» */}
-        <section className="mb-14 lg:mb-20">
+        <section className="mb-14 lg:mb-20 min-w-0">
           <Reveal>
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-5 lg:mb-6">
               <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium">
@@ -220,7 +220,7 @@ export default function About() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <div className="flex flex-wrap gap-3 items-center pt-1 pb-4 md:pt-5 md:pb-14">
+            <div className="flex flex-wrap gap-3 items-center pt-1 pb-4 md:pt-5 md:pb-14 min-w-0 max-w-full">
               {tools.map((tool, i) => {
                 const capabilities = toolCapabilities[tool];
                 const hasCapabilities = Boolean(capabilities?.length);
@@ -229,7 +229,7 @@ export default function About() {
                 return (
                   <div
                     key={tool}
-                    className={`relative inline-flex group ${hasCapabilities ? 'z-20 hover:z-30 focus-within:z-30' : ''}`}
+                    className={`relative inline-flex group max-w-full ${hasCapabilities ? 'z-20 hover:z-30 focus-within:z-30' : ''}`}
                   >
                     <button
                       type="button"
@@ -243,7 +243,7 @@ export default function About() {
                       style={{
                         transform: `rotate(${toolRotations[i % toolRotations.length]}deg)`,
                       }}
-                      className={`px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg select-none shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 transition-all duration-300 ${hasCapabilities ? 'cursor-pointer' : 'cursor-default'}`}
+                      className={`max-w-full px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg select-none shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 transition-all duration-300 ${hasCapabilities ? 'cursor-pointer' : 'cursor-default'}`}
                     >
                       {tool}
                     </button>
@@ -272,7 +272,7 @@ export default function About() {
                         </div>
 
                         <div
-                          className={`md:hidden pointer-events-none absolute z-30 left-0 top-full mt-3 w-[min(280px,calc(100vw-3rem))] p-3 border border-border bg-background rounded-2xl shadow-lg transition-all duration-200 ${
+                          className={`md:hidden pointer-events-none absolute z-30 left-0 top-full mt-3 w-[min(280px,calc(100vw-3rem))] max-w-[calc(100vw-3rem)] p-3 border border-border bg-background rounded-2xl shadow-lg transition-all duration-200 ${
                             activeTool === tool
                               ? 'opacity-100 visible translate-y-0'
                               : 'opacity-0 invisible -translate-y-2'
@@ -299,7 +299,7 @@ export default function About() {
         </section>
 
         {/* CTA */}
-        <section className="py-14 lg:py-20 bg-accent text-background text-center rounded-3xl">
+        <section className="py-14 lg:py-20 bg-accent text-background text-center rounded-3xl min-w-0">
           <Reveal>
             <p className="text-sm uppercase tracking-[0.2em] text-background/60 mb-4">
               Хороший проект?
