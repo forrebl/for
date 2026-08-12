@@ -158,23 +158,24 @@ export default function About() {
               </p>
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-6 lg:mb-7 leading-[1.08]">
-                <span className="block leading-[1.08]">Графический и бренд-дизайнер</span>
-                <span className="block mt-4 lg:mt-5 text-xl sm:text-2xl lg:text-3xl leading-[1.08] text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
+              <h1 className="!text-2xl lg:!text-3xl font-[family-name:var(--font-display)] font-medium mb-6 !leading-snug">
+                Графический и бренд-дизайнер
+                <br />
+                <span className="text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
               </h1>
             </Reveal>
             <Reveal delay={200}>
-              <div className="space-y-4 text-foreground/60 leading-relaxed">
-                <p>
-                  Веду проекты от брифа и поиска визуального направления до презентации концепции,
-                  подготовки макетов и передачи материалов в производство. Работала с коммерческими
-                  брендами, образовательными проектами, командами игровой разработки и галереями современного искусства.
-                </p>
-                <p>
-                  Имею профильное высшее образование в области графики компьютерных игр, а также
-                  опыт преподавания.
-                </p>
-              </div>
+              <p className="text-foreground/50 leading-relaxed mb-6">
+                Веду проекты от брифа и поиска визуального направления до презентации концепции,
+                подготовки макетов и передачи материалов в производство. Работала с коммерческими
+                брендами, образовательными проектами, командами игровой разработки и галереями современного искусства.
+              </p>
+            </Reveal>
+            <Reveal delay={300}>
+              <p className="text-foreground/50 leading-relaxed">
+                Имею профильное высшее образование в области графики компьютерных игр, а также
+                опыт преподавания.
+              </p>
             </Reveal>
           </div>
         </div>
