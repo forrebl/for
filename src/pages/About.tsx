@@ -49,10 +49,10 @@ export default function About() {
               </p>
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="text-3xl lg:text-5xl font-[family-name:var(--font-display)] font-medium mb-8 leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-8 leading-tight">
                 Графический и бренд-дизайнер
                 <br />
-                <span className="text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
+                <span className="text-xl sm:text-2xl lg:text-3xl text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
               </h1>
             </Reveal>
             <Reveal delay={200}>
