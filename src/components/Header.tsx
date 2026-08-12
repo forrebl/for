@@ -6,7 +6,7 @@ const navLinks = [
   { path: '/projects', label: 'Проекты' },
   { path: '/about', label: 'Обо мне' },
   { path: '/contact', label: 'Контакты' },
-  { path: '/game', label: 'Игра' },
+  { path: '/game', label: 'Игры', featured: true },
 ];
 
 export default function Header() {
@@ -50,17 +50,24 @@ export default function Header() {
         <ul className="hidden md:flex items-center gap-7 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
+            const isFeatured = Boolean(link.featured);
 
             return (
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`text-sm tracking-wide transition-colors duration-200 hover:text-accent ${
-                    isActive
-                      ? 'text-accent'
-                      : isDarkPage
-                        ? 'text-white/60 hover:text-white'
-                        : 'text-foreground/40'
+                  className={`text-sm tracking-wide transition-all duration-200 ${
+                    isFeatured
+                      ? isActive
+                        ? 'px-3.5 py-1.5 rounded-full bg-accent text-background border border-accent shadow-sm'
+                        : 'px-3.5 py-1.5 rounded-full border border-accent/35 bg-accent/10 text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5'
+                      : `hover:text-accent ${
+                          isActive
+                            ? 'text-accent'
+                            : isDarkPage
+                              ? 'text-white/60 hover:text-white'
+                              : 'text-foreground/40'
+                        }`
                   }`}
                 >
                   {link.label}
@@ -98,6 +105,7 @@ export default function Header() {
         <ul className="flex flex-col items-center justify-center h-full gap-8 sm:gap-10">
           {navLinks.map((link, i) => {
             const isActive = location.pathname === link.path;
+            const isFeatured = Boolean(link.featured);
 
             return (
               <li
@@ -109,12 +117,16 @@ export default function Header() {
               >
                 <Link
                   to={link.path}
-                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight ${
-                    isActive
-                      ? 'text-accent'
-                      : isDarkPage
-                        ? 'text-white/55'
-                        : 'text-foreground/30'
+                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight transition-all duration-200 ${
+                    isFeatured
+                      ? isActive
+                        ? 'px-5 py-2.5 rounded-full bg-accent text-background'
+                        : 'px-5 py-2.5 rounded-full border border-accent/35 bg-accent/10 text-accent'
+                      : isActive
+                        ? 'text-accent'
+                        : isDarkPage
+                          ? 'text-white/55'
+                          : 'text-foreground/30'
                   }`}
                 >
                   {link.label}
