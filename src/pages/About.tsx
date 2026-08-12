@@ -18,6 +18,7 @@ const tools = [
   'Autodesk Maya',
   'Adobe Substance 3D Painter',
   'Marmoset Toolbag',
+  'Нейронки',
 ];
 
 /* разрозненные углы наклона для эффекта «гаек в куче» */
