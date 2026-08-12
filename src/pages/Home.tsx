@@ -54,7 +54,7 @@ export default function Home() {
             </h1>
           </Reveal>
           <Reveal delay={100}>
-            <p className="text-foreground/50 text-base lg:text-lg max-w-lg mb-10 leading-relaxed">
+            <p className="text-foreground/50 text-base lg:text-lg max-w-lg sm:max-w-xl mb-10 leading-relaxed">
               Дизайн и графика для брендов, digital-проектов и игр
             </p>
           </Reveal>
