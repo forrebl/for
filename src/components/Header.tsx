@@ -5,8 +5,8 @@ const navLinks = [
   { path: '/', label: 'Главная' },
   { path: '/projects', label: 'Проекты' },
   { path: '/about', label: 'Обо мне' },
-  { path: '/game', label: 'Игра' },
   { path: '/contact', label: 'Контакты' },
+  { path: '/game', label: 'Игра' },
 ];
 
 export default function Header() {
