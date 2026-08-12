@@ -5,6 +5,7 @@ const navLinks = [
   { path: '/', label: 'Главная' },
   { path: '/projects', label: 'Проекты' },
   { path: '/about', label: 'Обо мне' },
+  { path: '/game', label: 'Игра' },
   { path: '/contact', label: 'Контакты' },
 ];
 
@@ -46,7 +47,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-7 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
 
@@ -94,7 +95,7 @@ export default function Header() {
           isDarkPage ? 'bg-[#0a0a0a]' : 'bg-background'
         } ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
       >
-        <ul className="flex flex-col items-center justify-center h-full gap-10">
+        <ul className="flex flex-col items-center justify-center h-full gap-8 sm:gap-10">
           {navLinks.map((link, i) => {
             const isActive = location.pathname === link.path;
 
@@ -104,11 +105,11 @@ export default function Header() {
                 className={`transition-all duration-500 ${
                   isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
-                style={{ transitionDelay: isOpen ? `${i * 80}ms` : '0ms' }}
+                style={{ transitionDelay: isOpen ? `${i * 70}ms` : '0ms' }}
               >
                 <Link
                   to={link.path}
-                  className={`text-3xl font-[family-name:var(--font-display)] tracking-tight ${
+                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight ${
                     isActive
                       ? 'text-accent'
                       : isDarkPage
