@@ -65,7 +65,7 @@ export default function Header() {
                   className={`text-sm tracking-wide transition-all duration-200 ${
                     isFeatured
                       ? isGamesSection
-                        ? 'px-3.5 py-1.5 rounded-none bg-accent text-white border-2 border-accent shadow-[4px_4px_0_#e6007e]'
+                        ? 'px-3.5 py-1.5 rounded-none bg-accent text-white border-2 border-accent'
                         : 'px-3.5 py-1.5 rounded-full border border-accent/35 bg-accent/10 text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5'
                       : `hover:text-accent ${
                           isActive
@@ -124,7 +124,7 @@ export default function Header() {
                   className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight transition-all duration-200 ${
                     isFeatured
                       ? isGamesSection
-                        ? 'px-5 py-2.5 rounded-none bg-accent text-white border-2 border-accent shadow-[5px_5px_0_#e6007e]'
+                        ? 'px-5 py-2.5 rounded-none bg-accent text-white border-2 border-accent'
                         : 'px-5 py-2.5 rounded-full border border-accent/35 bg-accent/10 text-accent'
                       : isActive
                         ? 'text-accent'
