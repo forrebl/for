@@ -1,1 +1,0 @@
-HD animation asset is bundled through Vite.
