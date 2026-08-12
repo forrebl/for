@@ -210,9 +210,15 @@ export default function About() {
         {/* Tools — «разрозненные плашки» */}
         <section className="mb-14 lg:mb-20">
           <Reveal>
-            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-5 lg:mb-6">
-              Инструменты
-            </h2>
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-5 lg:mb-6">
+              <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium">
+                Инструменты
+              </h2>
+              <p className="text-xs sm:text-sm text-foreground/35">
+                <span className="hidden md:inline">Наведи — покажу, что умею</span>
+                <span className="md:hidden">Нажми — покажу, что умею</span>
+              </p>
+            </div>
           </Reveal>
           <Reveal delay={100}>
             <div className="flex flex-wrap gap-3 items-center pt-1 pb-4 md:pt-5 md:pb-14">
@@ -238,7 +244,7 @@ export default function About() {
                       style={{
                         transform: `rotate(${toolRotations[i % toolRotations.length]}deg)`,
                       }}
-                      className={`px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg select-none shadow-sm hover:shadow-md hover:border-accent hover:text-accent transition-all duration-300 ${hasCapabilities ? 'cursor-pointer' : 'cursor-default'}`}
+                      className={`px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg select-none shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 transition-all duration-300 ${hasCapabilities ? 'cursor-pointer' : 'cursor-default'}`}
                     >
                       {tool}
                     </button>
