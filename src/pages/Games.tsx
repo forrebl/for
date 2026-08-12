@@ -32,14 +32,14 @@ export default function Games() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7 items-stretch">
           {games.map((game, index) => (
-            <Reveal key={game.path} delay={index * 100}>
+            <Reveal key={game.path} delay={index * 100} className="h-full">
               <Link
                 to={game.path}
-                className="group block border border-border bg-card rounded-3xl overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
+                className="group h-full flex flex-col border border-border bg-card rounded-3xl overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="relative w-full aspect-[16/9] overflow-hidden bg-muted border-b border-border">
+                <div className="relative w-full aspect-[16/9] shrink-0 overflow-hidden bg-muted border-b border-border">
                   {game.preview === 'cmyk' ? (
                     <div className="absolute inset-0 grid grid-cols-4">
                       <div className="bg-[#00b8d9] transition-transform duration-500 group-hover:-translate-y-2" />
@@ -62,12 +62,12 @@ export default function Games() {
                   </div>
                 </div>
 
-                <div className="p-6 sm:p-7 lg:p-8">
+                <div className="p-6 sm:p-7 lg:p-8 flex flex-1 flex-col">
                   <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-3 group-hover:text-accent transition-colors">
                     {game.title}
                   </h2>
-                  <p className="text-foreground/50 leading-relaxed mb-6">{game.description}</p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium">
+                  <p className="text-foreground/50 leading-relaxed mb-6 flex-1">{game.description}</p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium mt-auto">
                     Играть
                     <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </span>
