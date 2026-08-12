@@ -23,9 +23,9 @@ export default function Games() {
     <main className="pt-24 lg:pt-28 pb-16 lg:pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3 font-medium">Игровая пауза</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3 font-medium">игры</p>
           <h1 className="text-3xl lg:text-5xl font-[family-name:var(--font-display)] font-medium leading-tight mb-4">
-            Игры
+            сделай паузу
           </h1>
           <p className="text-foreground/50 max-w-2xl leading-relaxed mb-10 lg:mb-14">
             Небольшие дизайнерские игры между проектами. Можно проверить глазомер, реакцию и терпимость к правкам.
