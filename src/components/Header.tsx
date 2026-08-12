@@ -15,7 +15,7 @@ export default function Header() {
   const location = useLocation();
   const isGamesSection = location.pathname.startsWith('/games');
   const isGamesLanding = location.pathname === '/games';
-  const isDarkPage = location.pathname === '/projects' || location.pathname.startsWith('/project/') || isGamesLanding;
+  const isDarkPage = location.pathname === '/projects' || isGamesLanding;
 
   useEffect(() => {
     setIsOpen(false);
