@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Reveal from '../components/Reveal';
 import { Link } from 'react-router-dom';
 
@@ -21,14 +22,43 @@ const tools = [
   'Нейронки',
 ];
 
+const toolCapabilities: Record<string, string[]> = {
+  'Adobe Photoshop': [
+    'Ретушь',
+    'Цветокор',
+    'Коллажи',
+    'Обтравка',
+    'Иллюстрация',
+    'Концепт-арт',
+    'Композитинг',
+    'Мокапы',
+  ],
+};
+
+const photoshopCapabilityPositions = [
+  { x: -105, y: -68 },
+  { x: 0, y: -92 },
+  { x: 105, y: -68 },
+  { x: 145, y: 0 },
+  { x: 105, y: 68 },
+  { x: 0, y: 92 },
+  { x: -105, y: 68 },
+  { x: -145, y: 0 },
+];
+
 /* разрозненные углы наклона для эффекта «гаек в куче» */
 const toolRotations = [
   -2.5, 1.8, -0.7, 3.1, -1.4, 0.9, -3.0, 2.2, -0.3, 1.5,
 ];
 
 export default function About() {
+  const [activeTool, setActiveTool] = useState<string | null>(null);
+
   return (
-    <main className="pt-24 lg:pt-32 pb-20 lg:pb-32">
+    <main
+      className="pt-24 lg:pt-32 pb-20 lg:pb-32"
+      onClick={() => setActiveTool(null)}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mb-20 lg:mb-32 items-start">
@@ -107,18 +137,79 @@ export default function About() {
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <div className="flex flex-wrap gap-3 items-center">
-              {tools.map((tool, i) => (
-                <span
-                  key={tool}
-                  style={{
-                    transform: `rotate(${toolRotations[i % toolRotations.length]}deg)`,
-                  }}
-                  className="px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg cursor-default select-none shadow-sm hover:shadow-md hover:border-accent hover:text-accent transition-all duration-300"
-                >
-                  {tool}
-                </span>
-              ))}
+            <div className="flex flex-wrap gap-3 items-center py-4 md:py-20">
+              {tools.map((tool, i) => {
+                const capabilities = toolCapabilities[tool];
+                const hasCapabilities = Boolean(capabilities?.length);
+
+                return (
+                  <div
+                    key={tool}
+                    className={`relative inline-flex group ${hasCapabilities ? 'z-20' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (hasCapabilities) {
+                          setActiveTool(activeTool === tool ? null : tool);
+                        }
+                      }}
+                      aria-expanded={hasCapabilities ? activeTool === tool : undefined}
+                      style={{
+                        transform: `rotate(${toolRotations[i % toolRotations.length]}deg)`,
+                      }}
+                      className={`px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg select-none shadow-sm hover:shadow-md hover:border-accent hover:text-accent transition-all duration-300 ${hasCapabilities ? 'cursor-pointer' : 'cursor-default'}`}
+                    >
+                      {tool}
+                    </button>
+
+                    {hasCapabilities && capabilities && (
+                      <>
+                        <div className="hidden md:block pointer-events-none">
+                          {capabilities.map((capability, capabilityIndex) => {
+                            const position = photoshopCapabilityPositions[capabilityIndex];
+
+                            return (
+                              <span
+                                key={capability}
+                                style={{
+                                  left: '50%',
+                                  top: '50%',
+                                  transform: `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`,
+                                  transitionDelay: `${capabilityIndex * 25}ms`,
+                                }}
+                                className="absolute whitespace-nowrap px-3 py-1.5 text-xs border border-accent/30 bg-background text-foreground/70 rounded-full shadow-sm opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200"
+                              >
+                                {capability}
+                              </span>
+                            );
+                          })}
+                        </div>
+
+                        <div
+                          className={`md:hidden pointer-events-none absolute left-0 top-full mt-3 w-[min(280px,calc(100vw-3rem))] p-3 border border-border bg-background rounded-2xl shadow-lg transition-all duration-200 ${
+                            activeTool === tool
+                              ? 'opacity-100 visible translate-y-0'
+                              : 'opacity-0 invisible -translate-y-2'
+                          }`}
+                        >
+                          <div className="flex flex-wrap gap-2">
+                            {capabilities.map((capability) => (
+                              <span
+                                key={capability}
+                                className="px-3 py-1.5 text-xs border border-accent/30 bg-card text-foreground/70 rounded-full"
+                              >
+                                {capability}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </section>
