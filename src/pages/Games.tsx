@@ -30,14 +30,7 @@ export default function Games() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <Reveal>
-          <div className="inline-flex items-center gap-2 mb-4">
-            <span className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-[#00b8d9]" />
-              <span className="w-2 h-2 bg-[#e6007e]" />
-              <span className="w-2 h-2 bg-[#f2d500]" />
-            </span>
-            <p className="ml-2 text-xs uppercase tracking-[0.22em] text-[#00b8d9] font-medium">игры</p>
-          </div>
+          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#00b8d9] font-medium">игры</p>
           <h1 className="font-[family-name:var(--font-display)] font-medium mb-4 text-white">
             Сделай паузу
           </h1>
