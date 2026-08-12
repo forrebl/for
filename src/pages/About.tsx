@@ -210,12 +210,12 @@ export default function About() {
         {/* Tools — «разрозненные плашки» */}
         <section className="mb-20 lg:mb-32">
           <Reveal>
-            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-12 lg:mb-16">
+            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-6 lg:mb-8">
               Инструменты
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <div className="flex flex-wrap gap-3 items-center py-4 md:py-24">
+            <div className="flex flex-wrap gap-3 items-center pt-2 pb-4 md:pt-8 md:pb-20">
               {tools.map((tool, i) => {
                 const capabilities = toolCapabilities[tool];
                 const hasCapabilities = Boolean(capabilities?.length);
