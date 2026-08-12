@@ -13,7 +13,8 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isDarkPage = location.pathname === '/projects' || location.pathname.startsWith('/project/');
+  const isGamesLanding = location.pathname === '/games';
+  const isDarkPage = location.pathname === '/projects' || location.pathname.startsWith('/project/') || isGamesLanding;
 
   useEffect(() => {
     setIsOpen(false);
@@ -51,7 +52,6 @@ export default function Header() {
           Фомина Анастасия
         </Link>
 
-        {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-7 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = isLinkActive(link.path);
@@ -61,11 +61,11 @@ export default function Header() {
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`text-sm tracking-wide transition-all duration-200 ${
+                  className={`text-sm tracking-wide transition-all duration-150 ${
                     isFeatured
                       ? isActive
-                        ? 'px-3.5 py-1.5 rounded-full bg-accent text-background border border-accent shadow-sm'
-                        : 'px-3.5 py-1.5 rounded-full border border-accent/35 bg-accent/10 text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5'
+                        ? 'px-3.5 py-1.5 rounded-none bg-accent text-white border-2 border-accent shadow-[4px_4px_0_#e6007e]'
+                        : `px-3.5 py-1.5 rounded-none border-2 border-accent shadow-[4px_4px_0_#00b8d9] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#e6007e] ${isDarkPage ? 'bg-[#111] text-white' : 'bg-background text-accent'}`
                       : `hover:text-accent ${
                           isActive
                             ? 'text-accent'
@@ -82,7 +82,6 @@ export default function Header() {
           })}
         </ul>
 
-        {/* Mobile burger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden relative w-6 h-6 flex flex-col justify-center items-center gap-1.5"
@@ -101,7 +100,6 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
       <div
         className={`md:hidden fixed inset-0 top-16 transition-all duration-500 ease-out ${
           isDarkPage ? 'bg-[#0a0a0a]' : 'bg-background'
@@ -122,11 +120,11 @@ export default function Header() {
               >
                 <Link
                   to={link.path}
-                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight transition-all duration-200 ${
+                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight transition-all duration-150 ${
                     isFeatured
                       ? isActive
-                        ? 'px-5 py-2.5 rounded-full bg-accent text-background'
-                        : 'px-5 py-2.5 rounded-full border border-accent/35 bg-accent/10 text-accent'
+                        ? 'px-5 py-2.5 rounded-none bg-accent text-white border-2 border-accent shadow-[5px_5px_0_#e6007e]'
+                        : `px-5 py-2.5 rounded-none border-2 border-accent shadow-[5px_5px_0_#00b8d9] ${isDarkPage ? 'bg-[#111] text-white' : 'bg-background text-accent'}`
                       : isActive
                         ? 'text-accent'
                         : isDarkPage
