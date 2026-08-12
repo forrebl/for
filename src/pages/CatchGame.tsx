@@ -18,7 +18,7 @@ type GameStatus = 'idle' | 'playing' | 'won' | 'lost';
 
 const GOAL = 12;
 const MAX_LIVES = 3;
-const BASKET_HALF_WIDTH = 11;
+const LAPTOP_HALF_WIDTH = 14;
 const neutralWords = ['Бриф', 'Референс', 'Сетка', 'Мокап', 'Дедлайн', 'Шрифт'];
 
 function clamp(value: number, min: number, max: number) {
@@ -34,37 +34,37 @@ export default function CatchGame() {
   const scoreRef = useRef(0);
   const livesRef = useRef(MAX_LIVES);
   const statusRef = useRef<GameStatus>('idle');
-  const basketXRef = useRef(50);
+  const laptopXRef = useRef(50);
   const itemsRef = useRef<FallingItem[]>([]);
 
   const [items, setItems] = useState<FallingItem[]>([]);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(MAX_LIVES);
   const [status, setStatus] = useState<GameStatus>('idle');
-  const [basketX, setBasketX] = useState(50);
+  const [laptopX, setLaptopX] = useState(50);
 
   const setGameStatus = (next: GameStatus) => {
     statusRef.current = next;
     setStatus(next);
   };
 
-  const setBasket = (next: number) => {
+  const setLaptop = (next: number) => {
     const value = clamp(next, 10, 90);
-    basketXRef.current = value;
-    setBasketX(value);
+    laptopXRef.current = value;
+    setLaptopX(value);
   };
 
   const startGame = () => {
     scoreRef.current = 0;
     livesRef.current = MAX_LIVES;
-    basketXRef.current = 50;
+    laptopXRef.current = 50;
     itemsRef.current = [];
     lastTimeRef.current = null;
     spawnTimerRef.current = 0;
     nextIdRef.current = 1;
     setScore(0);
     setLives(MAX_LIVES);
-    setBasketX(50);
+    setLaptopX(50);
     setItems([]);
     setGameStatus('playing');
   };
@@ -75,12 +75,12 @@ export default function CatchGame() {
 
       if (event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a') {
         event.preventDefault();
-        setBasket(basketXRef.current - 6);
+        setLaptop(laptopXRef.current - 6);
       }
 
       if (event.key === 'ArrowRight' || event.key.toLowerCase() === 'd') {
         event.preventDefault();
-        setBasket(basketXRef.current + 6);
+        setLaptop(laptopXRef.current + 6);
       }
     };
 
@@ -144,8 +144,8 @@ export default function CatchGame() {
 
       for (const item of nextItems) {
         const moved = { ...item, y: item.y + item.speed * deltaSeconds };
-        const isAtBasket = moved.y >= 82 && moved.y <= 94;
-        const isCaught = isAtBasket && Math.abs(moved.x - basketXRef.current) <= BASKET_HALF_WIDTH;
+        const isAtLaptop = moved.y >= 81 && moved.y <= 94;
+        const isCaught = isAtLaptop && Math.abs(moved.x - laptopXRef.current) <= LAPTOP_HALF_WIDTH;
 
         if (isCaught) {
           if (moved.type === 'idea') {
@@ -213,7 +213,7 @@ export default function CatchGame() {
     if (status !== 'playing' || !fieldRef.current) return;
     const rect = fieldRef.current.getBoundingClientRect();
     const relativeX = ((event.clientX - rect.left) / rect.width) * 100;
-    setBasket(relativeX);
+    setLaptop(relativeX);
   };
 
   return (
@@ -267,12 +267,17 @@ export default function CatchGame() {
             style={{ touchAction: 'none' }}
           >
             <div className="absolute inset-x-0 top-0 h-px bg-foreground/5" />
-            <div className="absolute inset-x-0 bottom-[12%] border-t border-dashed border-foreground/10" />
+
+            {/* Стол */}
+            <div className="absolute inset-x-0 bottom-0 h-[18%] bg-[#e8e3db] border-t border-[#d6d0c7]">
+              <div className="absolute inset-x-0 top-2 h-px bg-white/50" />
+              <div className="absolute inset-x-0 top-[46%] h-px bg-black/[0.035]" />
+            </div>
 
             {items.map((item) => (
               <div
                 key={item.id}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-sm font-medium shadow-sm border ${
+                className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-sm font-medium shadow-sm border ${
                   item.type === 'idea'
                     ? 'bg-[#00b8d9] text-white border-black/5'
                     : item.type === 'revision'
@@ -289,13 +294,32 @@ export default function CatchGame() {
               </div>
             ))}
 
+            {/* Ноутбук */}
             <div
-              className="absolute bottom-[4%] w-28 sm:w-32 h-12 sm:h-14 transition-[left] duration-75 ease-linear"
-              style={{ left: `${basketX}%`, transform: 'translateX(-50%)' }}
-              aria-label="Корзина"
+              className="absolute z-10 bottom-[3.5%] w-32 h-16 sm:w-36 sm:h-[4.5rem] transition-[left] duration-75 ease-linear pointer-events-none"
+              style={{ left: `${laptopX}%`, transform: 'translateX(-50%)' }}
+              aria-label="Ноутбук"
             >
-              <div className="absolute inset-0 border-[3px] border-foreground/75 border-t-0 rounded-b-2xl bg-background/90 shadow-sm" />
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-[115%] h-[3px] rounded-full bg-foreground/75" />
+              <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[92%] h-2 rounded-full bg-black/10 blur-[2px]" />
+
+              <div className="absolute left-1/2 bottom-[14px] sm:bottom-4 -translate-x-1/2 w-[72%] h-[70%] rounded-t-[9px] rounded-b-[5px] border-[3px] border-[#2f3033] bg-[#252629] shadow-md overflow-hidden">
+                <div className="absolute inset-[5px] rounded-[4px] bg-[#eef7f8] overflow-hidden">
+                  <div className="absolute inset-x-0 top-0 h-[18%] bg-[#00b8d9]/15 border-b border-black/10" />
+                  <div className="absolute left-[9%] top-[31%] w-[45%] h-[9%] rounded-full bg-[#e6007e]/18" />
+                  <div className="absolute left-[9%] top-[49%] w-[64%] h-[9%] rounded-full bg-[#00b8d9]/18" />
+                  <div className="absolute left-[9%] top-[67%] w-[52%] h-[9%] rounded-full bg-[#f2d500]/40" />
+                  <div className="absolute right-[8%] bottom-[8%] flex gap-[2px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00b8d9]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#e6007e]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f2d500]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#171717]" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute left-1/2 bottom-[3px] -translate-x-1/2 w-full h-[15px] rounded-[3px_3px_10px_10px] border-[2px] border-[#2f3033] bg-[#d8d9db] shadow-sm">
+                <div className="absolute left-1/2 top-[3px] -translate-x-1/2 w-[22%] h-[4px] rounded-full border border-black/10 bg-white/35" />
+              </div>
             </div>
 
             {status !== 'playing' && (
@@ -306,7 +330,7 @@ export default function CatchGame() {
                       <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">Задача</p>
                       <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] font-medium mb-3">12 идей. 3 жизни.</h2>
                       <p className="text-foreground/50 leading-relaxed mb-6">
-                        Ловите «Идеи», избегайте «Правок» и не пропускайте нужные слова. «Бриф», «Референс», «Сетка», «Мокап», «Дедлайн» и «Шрифт» — нейтральные помехи.
+                        Ловите «Идеи» ноутбуком, избегайте «Правок» и не пропускайте нужные слова. «Бриф», «Референс», «Сетка», «Мокап», «Дедлайн» и «Шрифт» — нейтральные помехи.
                       </p>
                     </>
                   )}
@@ -340,7 +364,7 @@ export default function CatchGame() {
           </div>
 
           <p className="text-xs text-foreground/30 mt-4 leading-relaxed">
-            Минус жизнь за пойманную «Правку» или пропущенную «Идею». Остальные слова можно ловить или пропускать без последствий.
+            Управляйте ноутбуком по столу. Минус жизнь за пойманную «Правку» или пропущенную «Идею». Остальные слова можно ловить или пропускать без последствий.
           </p>
         </section>
       </div>
