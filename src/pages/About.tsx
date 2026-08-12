@@ -33,18 +33,96 @@ const toolCapabilities: Record<string, string[]> = {
     'Композитинг',
     'Мокапы',
   ],
+  'Adobe Illustrator': [
+    'Векторная графика',
+    'Логотипы',
+    'Макеты',
+    'Вёрстка',
+    'Инфографика',
+    'Иллюстрация',
+    'Допечатная подготовка',
+  ],
+  'Adobe After Effects': [
+    '2D-анимация',
+    'Моушн-дизайн',
+    'Изинг',
+    'Анимация персонажей',
+    'Анимация текста',
+  ],
+  'Adobe InDesign': [
+    'Многостраничная верстка',
+    'Презентации',
+    'Полиграфия',
+    'Макеты',
+    'Допечатная подготовка',
+  ],
+  'MS PowerPoint': [
+    'Презентации',
+    'Инфографика',
+    'Шаблоны',
+    'Анимация',
+    'Верстка слайдов',
+  ],
+  Figma: [
+    'Прототипирование',
+    'WEB-дизайн',
+    'Адаптации',
+    'Компоненты',
+    'Графика',
+    'Дизайн-системы',
+  ],
+  Procreate: [
+    'Иллюстрация',
+    'Концепт-арт',
+    'Скетчинг',
+    'Персонажи',
+    'Фоны',
+    'Пропсы',
+    'Покадровая анимация',
+  ],
+  'Autodesk Maya': [
+    '3D-моделирование',
+    'UV-развёртка',
+    'Low poly',
+    'High poly',
+    'Освещение',
+    'Рендеринг',
+  ],
+  'Adobe Substance 3D Painter': [
+    'Текстурирование',
+    'PBR-материалы',
+    'Запекание карт',
+  ],
+  'Marmoset Toolbag': [
+    'Рендеринг',
+    'Запекание карт',
+    'Материалы',
+    'Освещение',
+    'Презентация моделей',
+  ],
+  'Нейронки': [
+    'Генерация изображений',
+    'Поиск концепций',
+    'Стайлинг',
+    'Ретушь',
+    'Апскейл',
+    'Мокапы',
+  ],
 };
 
-const photoshopCapabilityPositions = [
-  { x: -105, y: -68 },
-  { x: 0, y: -92 },
-  { x: 105, y: -68 },
-  { x: 145, y: 0 },
-  { x: 105, y: 68 },
-  { x: 0, y: 92 },
-  { x: -105, y: 68 },
-  { x: -145, y: 0 },
-];
+function getCapabilityPositions(count: number) {
+  const radiusX = count <= 3 ? 125 : count <= 5 ? 135 : 150;
+  const radiusY = count <= 3 ? 72 : count <= 5 ? 84 : 98;
+
+  return Array.from({ length: count }, (_, index) => {
+    const angle = -Math.PI / 2 + (index * Math.PI * 2) / count;
+
+    return {
+      x: Math.cos(angle) * radiusX,
+      y: Math.sin(angle) * radiusY,
+    };
+  });
+}
 
 /* разрозненные углы наклона для эффекта «гаек в куче» */
 const toolRotations = [
@@ -137,15 +215,16 @@ export default function About() {
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <div className="flex flex-wrap gap-3 items-center py-4 md:py-20">
+            <div className="flex flex-wrap gap-3 items-center py-4 md:py-24">
               {tools.map((tool, i) => {
                 const capabilities = toolCapabilities[tool];
                 const hasCapabilities = Boolean(capabilities?.length);
+                const positions = capabilities ? getCapabilityPositions(capabilities.length) : [];
 
                 return (
                   <div
                     key={tool}
-                    className={`relative inline-flex group ${hasCapabilities ? 'z-20' : ''}`}
+                    className={`relative inline-flex group ${hasCapabilities ? 'z-20 hover:z-30 focus-within:z-30' : ''}`}
                   >
                     <button
                       type="button"
@@ -168,7 +247,7 @@ export default function About() {
                       <>
                         <div className="hidden md:block pointer-events-none">
                           {capabilities.map((capability, capabilityIndex) => {
-                            const position = photoshopCapabilityPositions[capabilityIndex];
+                            const position = positions[capabilityIndex];
 
                             return (
                               <span
@@ -188,7 +267,7 @@ export default function About() {
                         </div>
 
                         <div
-                          className={`md:hidden pointer-events-none absolute left-0 top-full mt-3 w-[min(280px,calc(100vw-3rem))] p-3 border border-border bg-background rounded-2xl shadow-lg transition-all duration-200 ${
+                          className={`md:hidden pointer-events-none absolute z-30 left-0 top-full mt-3 w-[min(280px,calc(100vw-3rem))] p-3 border border-border bg-background rounded-2xl shadow-lg transition-all duration-200 ${
                             activeTool === tool
                               ? 'opacity-100 visible translate-y-0'
                               : 'opacity-0 invisible -translate-y-2'
