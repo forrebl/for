@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="min-h-[85vh] flex items-end pb-16 lg:pb-24 pt-32">
+      <section className="min-h-[72vh] lg:min-h-[74vh] flex items-end pb-12 lg:pb-16 pt-28 lg:pt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <Reveal>
             <h1 className="text-4xl lg:text-6xl font-[family-name:var(--font-display)] font-medium mb-4 leading-tight">
@@ -87,10 +87,10 @@ export default function Home() {
       </section>
 
       {/* Gallery */}
-      <section className="py-20 lg:py-32">
+      <section className="py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <Reveal>
-            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-10 lg:mb-14">
+            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-8 lg:mb-10">
               Галерея
             </h2>
           </Reveal>
@@ -117,10 +117,10 @@ export default function Home() {
       </section>
 
       {/* Directions — цветные номера CMYK */}
-      <section className="py-20 lg:py-32 bg-muted">
+      <section className="py-14 lg:py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <Reveal>
-            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-12 lg:mb-16">
+            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-8 lg:mb-10">
               Направления работы
             </h2>
           </Reveal>
@@ -152,9 +152,9 @@ export default function Home() {
       </section>
 
       {/* About preview */}
-      <section className="py-20 lg:py-32">
+      <section className="py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             <div className="lg:col-span-5">
               <Reveal>
                 <div className="aspect-video bg-card border border-border overflow-hidden rounded-2xl">
@@ -185,7 +185,7 @@ export default function Home() {
                 </h2>
               </Reveal>
               <Reveal delay={200}>
-                <p className="text-foreground/50 leading-relaxed mb-8">
+                <p className="text-foreground/50 leading-relaxed mb-6">
                   Веду проекты от брифа и поиска визуального направления до презентации концепции,
                   подготовки макетов и передачи материалов в производство. Работала с коммерческими
                   брендами, галереями современного искусства, образовательными проектами и командами
@@ -193,7 +193,7 @@ export default function Home() {
                 </p>
               </Reveal>
               <Reveal delay={300}>
-                <p className="text-foreground/50 leading-relaxed mb-8">
+                <p className="text-foreground/50 leading-relaxed mb-6">
                   Имею профильное высшее образование в области графики компьютерных игр, а также
                   опыт преподавания.
                 </p>
@@ -215,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-32 bg-accent text-background">
+      <section className="py-16 lg:py-24 bg-accent text-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
           <Reveal>
             <p className="text-sm uppercase tracking-[0.2em] text-background/60 mb-4">
