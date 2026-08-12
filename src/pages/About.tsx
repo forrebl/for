@@ -134,12 +134,12 @@ export default function About() {
 
   return (
     <main
-      className="pt-24 lg:pt-32 pb-20 lg:pb-32"
+      className="pt-24 lg:pt-28 pb-16 lg:pb-20"
       onClick={() => setActiveTool(null)}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mb-20 lg:mb-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 lg:mb-20 items-start">
           <div className="lg:col-span-5">
             <Reveal>
               <div className="w-full max-w-[360px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 aspect-[3/4] bg-card border border-border overflow-hidden rounded-2xl">
@@ -181,13 +181,13 @@ export default function About() {
         </div>
 
         {/* Skills */}
-        <section className="mb-20 lg:mb-32">
+        <section className="mb-14 lg:mb-20">
           <Reveal>
-            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-12 lg:mb-16">
+            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-8 lg:mb-10">
               Специализация и навыки
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {skills.map((group, gi) => (
               <Reveal key={group.category} delay={gi * 100}>
                 <div className="border border-border p-6 lg:p-8 bg-card rounded-2xl">
@@ -208,14 +208,14 @@ export default function About() {
         </section>
 
         {/* Tools — «разрозненные плашки» */}
-        <section className="mb-20 lg:mb-32">
+        <section className="mb-14 lg:mb-20">
           <Reveal>
-            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-6 lg:mb-8">
+            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-5 lg:mb-6">
               Инструменты
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <div className="flex flex-wrap gap-3 items-center pt-2 pb-4 md:pt-8 md:pb-20">
+            <div className="flex flex-wrap gap-3 items-center pt-1 pb-4 md:pt-5 md:pb-14">
               {tools.map((tool, i) => {
                 const capabilities = toolCapabilities[tool];
                 const hasCapabilities = Boolean(capabilities?.length);
@@ -294,7 +294,7 @@ export default function About() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 lg:py-24 bg-accent text-background text-center rounded-3xl">
+        <section className="py-14 lg:py-20 bg-accent text-background text-center rounded-3xl">
           <Reveal>
             <p className="text-sm uppercase tracking-[0.2em] text-background/60 mb-4">
               Хороший проект?
