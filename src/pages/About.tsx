@@ -159,7 +159,7 @@ export default function About() {
             </Reveal>
             <Reveal delay={100}>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-8 leading-tight">
-                Графический и бренд-дизайнер
+                Графический и бренд-дизайнер
                 <br />
                 <span className="text-xl sm:text-2xl lg:text-3xl text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
               </h1>
@@ -167,12 +167,12 @@ export default function About() {
             <Reveal delay={200}>
               <div className="space-y-4 text-foreground/60 leading-relaxed">
                 <p>
-                  Веду проекты от брифа и поиска визуального направления до презентации концепции,
-                  подготовки макетов и передачи материалов в производство. Работала с коммерческими
-                  брендами, образовательными проектами, командами игровой разработки и галереями современного искусства.
+                  Веду проекты от брифа и поиска визуального направления до презентации концепции,
+                  подготовки макетов и передачи материалов в производство. Работала с коммерческими
+                  брендами, образовательными проектами, командами игровой разработки и галереями современного искусства.
                 </p>
                 <p>
-                  Имею профильное высшее образование в области графики компьютерных игр, а также
+                  Имею профильное высшее образование в области графики компьютерных игр, а также
                   опыт преподавания.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function About() {
         <section className="mb-20 lg:mb-32">
           <Reveal>
             <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-12 lg:mb-16">
-              Специализация и навыки
+              Специализация и навыки
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -302,8 +302,8 @@ export default function About() {
           </Reveal>
           <Reveal delay={100}>
             <h2 className="text-2xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-6">
-              Всегда открыта для
-              <br />новых идей и сотрудничества
+              Всегда открыта для новых идей
+              <br />и сотрудничества
             </h2>
           </Reveal>
           <Reveal delay={200}>
