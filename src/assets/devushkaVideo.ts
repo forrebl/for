@@ -1,1 +1,1 @@
-export const devushkaVideoSrc = '/devushka-hd.mp4';
+export const devushkaVideoSrc = new URL('./devushka-hd.mp4', import.meta.url).href;
