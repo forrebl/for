@@ -146,7 +146,7 @@ export default function About() {
                 <img
                   src="/images/about.jpg"
                   alt="Фомина Анастасия"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center scale-[1.24] -translate-y-3"
                 />
               </div>
             </Reveal>
