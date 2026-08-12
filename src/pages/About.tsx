@@ -1,6 +1,5 @@
 import Reveal from '../components/Reveal';
 import { Link } from 'react-router-dom';
-import { aboutPhotoSrc } from '../assets/aboutPhoto';
 
 const skills = [
   { category: 'Бренд-дизайн', items: ['Айдентика', 'Фирменный стиль', 'Дизайн-концепции', 'Рекламные кампании'] },
@@ -36,7 +35,7 @@ export default function About() {
             <Reveal>
               <div className="w-full max-w-[360px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 aspect-[3/4] bg-card border border-border overflow-hidden rounded-2xl">
                 <img
-                  src={aboutPhotoSrc}
+                  src="/images/about.jpg"
                   alt="Фомина Анастасия"
                   className="w-full h-full object-cover object-center"
                 />
