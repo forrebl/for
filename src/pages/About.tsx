@@ -42,7 +42,7 @@ export default function About() {
               </div>
             </Reveal>
           </div>
-          <div className="lg:col-span-7 flex flex-col justify-center lg:min-h-[560px]">
+          <div className="lg:col-span-7 flex flex-col justify-start">
             <Reveal>
               <p className="text-xs uppercase tracking-[0.2em] text-accent mb-4 font-medium">
                 Обо мне
