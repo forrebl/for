@@ -1,11 +1,48 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
-import { projects, categories, getCategoryColor } from '../data/projects';
+import { projects, categories } from '../data/projects';
 
-const featuredProjects = projects.filter((p) => p.featured);
 const directions = categories.filter((c) => c.slug !== 'all');
 
+const galleryItems = projects.slice(0, 7).map((project) => ({
+  id: project.id,
+  image: project.cover,
+  title: project.title,
+  description: project.description,
+}));
+
+if (projects[0]?.resultImages[0]) {
+  galleryItems.push({
+    id: `${projects[0].id}-detail`,
+    image: projects[0].resultImages[0],
+    title: `${projects[0].title} — деталь`,
+    description: projects[0].description,
+  });
+}
+
+type GalleryItem = (typeof galleryItems)[number];
+
 export default function Home() {
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedItem(null);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedItem]);
+
   return (
     <main>
       {/* Hero */}
@@ -49,62 +86,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects — ЧБ превью */}
+      {/* Gallery */}
       <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <Reveal>
-            <div className="flex items-baseline justify-between mb-12 lg:mb-16">
-              <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium">
-                Избранные проекты
-              </h2>
-              <Link
-                to="/projects"
-                className="text-sm text-foreground/40 hover:text-accent transition-colors hidden sm:block"
-              >
-                Все проекты →
-              </Link>
-            </div>
+            <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-10 lg:mb-14">
+              Галерея
+            </h2>
           </Reveal>
 
-          <div className="space-y-6 lg:space-y-8">
-            {featuredProjects.map((project, i) => (
-              <Reveal key={project.id} delay={i * 100}>
-                <Link
-                  to={`/project/${project.id}`}
-                  className="group block relative overflow-hidden bg-card aspect-[16/7] lg:aspect-[21/9]"
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
+            {galleryItems.map((item, index) => (
+              <Reveal key={item.id} delay={(index % 4) * 60}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedItem(item)}
+                  className="group block w-full aspect-[4/3] overflow-hidden bg-card border border-border rounded-xl lg:rounded-2xl text-left cursor-zoom-in"
+                  aria-label={`Открыть: ${item.title}`}
                 >
                   <img
-                    src={project.cover}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
-                    <span
-                      className="text-xs uppercase tracking-[0.15em] mb-2 block font-medium"
-                      style={{ color: getCategoryColor(project.categorySlug) }}
-                    >
-                      {project.category}
-                    </span>
-                    <h3 className="text-xl lg:text-3xl font-[family-name:var(--font-display)] text-white font-medium">
-                      {project.title}
-                    </h3>
-                  </div>
-                </Link>
+                </button>
               </Reveal>
             ))}
           </div>
-
-          <Reveal delay={200}>
-            <div className="mt-8 sm:hidden text-center">
-              <Link
-                to="/projects"
-                className="text-sm text-foreground/40 hover:text-accent transition-colors"
-              >
-                Все проекты →
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -232,6 +240,51 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {selectedItem && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm p-3 sm:p-6 lg:p-10 flex items-center justify-center"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedItem.title}
+          onMouseDown={() => setSelectedItem(null)}
+        >
+          <div
+            className="relative w-full max-w-6xl max-h-[92vh] overflow-y-auto bg-background rounded-2xl lg:rounded-3xl shadow-2xl"
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedItem(null)}
+              className="absolute z-10 top-3 right-3 lg:top-5 lg:right-5 w-10 h-10 flex items-center justify-center rounded-full bg-background/90 border border-border hover:border-foreground transition-colors"
+              aria-label="Закрыть"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.65fr)_minmax(300px,0.75fr)] min-h-0 lg:min-h-[620px]">
+              <div className="bg-muted min-h-[280px] sm:min-h-[420px] lg:min-h-[620px] flex items-center justify-center overflow-hidden rounded-t-2xl lg:rounded-l-3xl lg:rounded-tr-none">
+                <img
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  className="w-full h-full max-h-[58vh] lg:max-h-[82vh] object-contain"
+                />
+              </div>
+
+              <div className="p-6 pt-8 sm:p-8 lg:p-10 lg:pt-20 flex flex-col justify-start">
+                <h3 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium leading-tight mb-5 pr-10">
+                  {selectedItem.title}
+                </h3>
+                <p className="text-foreground/55 leading-relaxed">
+                  {selectedItem.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
