@@ -11,7 +11,7 @@ const games = [
   },
   {
     title: 'Поймай идею',
-    description: 'Лови «Идеи», уворачивайся от «Правок» и постарайся сохранить все три жизни, пока игра ускоряется.',
+    description: 'Лови «Идеи», не пропускай их, избегай «Правок» и не отвлекайся на остальные дизайн-слова, пока игра ускоряется.',
     path: '/games/catch',
     tag: 'Реакция',
     preview: 'catch',
@@ -51,7 +51,8 @@ export default function Games() {
                     <div className="absolute inset-0 bg-[#f5f5f3]">
                       <span className="absolute top-7 left-[12%] px-4 py-2 rounded-full bg-[#00b8d9] text-white text-sm font-medium rotate-[-5deg]">Идея</span>
                       <span className="absolute top-20 right-[15%] px-4 py-2 rounded-full bg-[#e6007e] text-white text-sm font-medium rotate-[6deg]">Правка</span>
-                      <span className="absolute top-[48%] left-[45%] px-4 py-2 rounded-full bg-[#00b8d9] text-white text-sm font-medium rotate-[3deg]">Идея</span>
+                      <span className="absolute top-[46%] left-[42%] px-4 py-2 rounded-full bg-background border border-border text-foreground/55 text-sm font-medium rotate-[3deg]">Мокап</span>
+                      <span className="absolute bottom-[29%] right-[12%] px-4 py-2 rounded-full bg-background border border-border text-foreground/55 text-sm font-medium rotate-[-4deg]">Шрифт</span>
                       <span className="absolute bottom-12 left-1/2 -translate-x-1/2 w-28 h-12 border-[3px] border-foreground/70 border-t-0 rounded-b-2xl bg-background/80" />
                     </div>
                   )}
