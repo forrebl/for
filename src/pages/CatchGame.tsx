@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import type { PointerEvent as ReactPointerEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 type ItemType = 'idea' | 'revision';
@@ -32,6 +33,7 @@ export default function CatchGame() {
   const livesRef = useRef(MAX_LIVES);
   const statusRef = useRef<GameStatus>('idle');
   const basketXRef = useRef(50);
+  const itemsRef = useRef<FallingItem[]>([]);
 
   const [items, setItems] = useState<FallingItem[]>([]);
   const [score, setScore] = useState(0);
@@ -54,6 +56,7 @@ export default function CatchGame() {
     scoreRef.current = 0;
     livesRef.current = MAX_LIVES;
     basketXRef.current = 50;
+    itemsRef.current = [];
     lastTimeRef.current = null;
     spawnTimerRef.current = 0;
     nextIdRef.current = 1;
@@ -100,62 +103,70 @@ export default function CatchGame() {
       const spawnEvery = Math.max(430, 1080 - difficulty * 48);
       spawnTimerRef.current += deltaMs;
 
-      setItems((previous) => {
-        const next = [...previous];
+      const nextItems = [...itemsRef.current];
 
-        if (spawnTimerRef.current >= spawnEvery) {
-          spawnTimerRef.current = 0;
-          const type: ItemType = Math.random() < 0.72 ? 'idea' : 'revision';
-          const baseSpeed = 20 + difficulty * 1.35;
+      if (spawnTimerRef.current >= spawnEvery) {
+        spawnTimerRef.current = 0;
+        const type: ItemType = Math.random() < 0.72 ? 'idea' : 'revision';
+        const baseSpeed = 20 + difficulty * 1.35;
 
-          next.push({
-            id: nextIdRef.current++,
-            type,
-            x: 10 + Math.random() * 80,
-            y: -8,
-            speed: baseSpeed * (0.88 + Math.random() * 0.25),
-            rotation: -9 + Math.random() * 18,
-          });
-        }
+        nextItems.push({
+          id: nextIdRef.current++,
+          type,
+          x: 10 + Math.random() * 80,
+          y: -8,
+          speed: baseSpeed * (0.88 + Math.random() * 0.25),
+          rotation: -9 + Math.random() * 18,
+        });
+      }
 
-        let nextScore = scoreRef.current;
-        let nextLives = livesRef.current;
-        const kept: FallingItem[] = [];
+      let nextScore = scoreRef.current;
+      let nextLives = livesRef.current;
+      let terminalStatus: GameStatus | null = null;
+      const kept: FallingItem[] = [];
 
-        for (const item of next) {
-          const moved = { ...item, y: item.y + item.speed * deltaSeconds };
-          const isAtBasket = moved.y >= 82 && moved.y <= 94;
-          const isCaught = isAtBasket && Math.abs(moved.x - basketXRef.current) <= BASKET_HALF_WIDTH;
+      for (const item of nextItems) {
+        const moved = { ...item, y: item.y + item.speed * deltaSeconds };
+        const isAtBasket = moved.y >= 82 && moved.y <= 94;
+        const isCaught = isAtBasket && Math.abs(moved.x - basketXRef.current) <= BASKET_HALF_WIDTH;
 
-          if (isCaught) {
-            if (moved.type === 'idea') {
-              nextScore += 1;
-              scoreRef.current = nextScore;
-              setScore(nextScore);
-
-              if (nextScore >= GOAL) {
-                setGameStatus('won');
-                break;
-              }
-            } else {
-              nextLives -= 1;
-              livesRef.current = nextLives;
-              setLives(nextLives);
-
-              if (nextLives <= 0) {
-                setGameStatus('lost');
-                break;
-              }
+        if (isCaught) {
+          if (moved.type === 'idea') {
+            nextScore += 1;
+            if (nextScore >= GOAL) {
+              terminalStatus = 'won';
+              break;
             }
-
-            continue;
+          } else {
+            nextLives -= 1;
+            if (nextLives <= 0) {
+              terminalStatus = 'lost';
+              break;
+            }
           }
 
-          if (moved.y <= 106) kept.push(moved);
+          continue;
         }
 
-        return kept;
-      });
+        if (moved.y <= 106) kept.push(moved);
+      }
+
+      if (nextScore !== scoreRef.current) {
+        scoreRef.current = nextScore;
+        setScore(nextScore);
+      }
+
+      if (nextLives !== livesRef.current) {
+        livesRef.current = nextLives;
+        setLives(nextLives);
+      }
+
+      itemsRef.current = terminalStatus ? [] : kept;
+      setItems(itemsRef.current);
+
+      if (terminalStatus) {
+        setGameStatus(terminalStatus);
+      }
 
       if (statusRef.current === 'playing') {
         animationRef.current = requestAnimationFrame(tick);
@@ -170,7 +181,7 @@ export default function CatchGame() {
     };
   }, [status]);
 
-  const handlePointer = (event: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointer = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (status !== 'playing' || !fieldRef.current) return;
     const rect = fieldRef.current.getBoundingClientRect();
     const relativeX = ((event.clientX - rect.left) / rect.width) * 100;
