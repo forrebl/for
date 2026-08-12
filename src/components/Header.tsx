@@ -6,7 +6,7 @@ const navLinks = [
   { path: '/projects', label: 'Проекты' },
   { path: '/about', label: 'Обо мне' },
   { path: '/contact', label: 'Контакты' },
-  { path: '/game', label: 'Игры', featured: true },
+  { path: '/games', label: 'Игры', featured: true },
 ];
 
 export default function Header() {
@@ -25,6 +25,11 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const isLinkActive = (path: string) => {
+    if (path === '/games') return location.pathname.startsWith('/games');
+    return location.pathname === path;
+  };
 
   return (
     <header
@@ -49,7 +54,7 @@ export default function Header() {
         {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-7 lg:gap-8">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.path;
+            const isActive = isLinkActive(link.path);
             const isFeatured = Boolean(link.featured);
 
             return (
@@ -104,7 +109,7 @@ export default function Header() {
       >
         <ul className="flex flex-col items-center justify-center h-full gap-8 sm:gap-10">
           {navLinks.map((link, i) => {
-            const isActive = location.pathname === link.path;
+            const isActive = isLinkActive(link.path);
             const isFeatured = Boolean(link.featured);
 
             return (
