@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type CMYK = {
   c: number;
@@ -123,6 +124,10 @@ export default function Game() {
   return (
     <main className="pt-24 lg:pt-28 pb-16 lg:pb-20 min-h-screen">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
+        <Link to="/games" className="inline-flex items-center gap-2 text-sm text-foreground/45 hover:text-accent transition-colors mb-7">
+          ← Все игры
+        </Link>
+
         <div className="mb-8 lg:mb-10">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3 font-medium">Мини-игра</p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
