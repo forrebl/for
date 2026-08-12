@@ -13,6 +13,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isGamesSection = location.pathname.startsWith('/games');
   const isGamesLanding = location.pathname === '/games';
   const isDarkPage = location.pathname === '/projects' || location.pathname.startsWith('/project/') || isGamesLanding;
 
@@ -28,7 +29,7 @@ export default function Header() {
   }, []);
 
   const isLinkActive = (path: string) => {
-    if (path === '/games') return location.pathname.startsWith('/games');
+    if (path === '/games') return isGamesSection;
     return location.pathname === path;
   };
 
@@ -61,11 +62,11 @@ export default function Header() {
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`text-sm tracking-wide transition-all duration-150 ${
+                  className={`text-sm tracking-wide transition-all duration-200 ${
                     isFeatured
-                      ? isActive
+                      ? isGamesSection
                         ? 'px-3.5 py-1.5 rounded-none bg-accent text-white border-2 border-accent shadow-[4px_4px_0_#e6007e]'
-                        : `px-3.5 py-1.5 rounded-none border-2 border-accent shadow-[4px_4px_0_#00b8d9] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#e6007e] ${isDarkPage ? 'bg-[#111] text-white' : 'bg-background text-accent'}`
+                        : 'px-3.5 py-1.5 rounded-full border border-accent/35 bg-accent/10 text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5'
                       : `hover:text-accent ${
                           isActive
                             ? 'text-accent'
@@ -120,11 +121,11 @@ export default function Header() {
               >
                 <Link
                   to={link.path}
-                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight transition-all duration-150 ${
+                  className={`text-2xl sm:text-3xl font-[family-name:var(--font-display)] tracking-tight transition-all duration-200 ${
                     isFeatured
-                      ? isActive
+                      ? isGamesSection
                         ? 'px-5 py-2.5 rounded-none bg-accent text-white border-2 border-accent shadow-[5px_5px_0_#e6007e]'
-                        : `px-5 py-2.5 rounded-none border-2 border-accent shadow-[5px_5px_0_#00b8d9] ${isDarkPage ? 'bg-[#111] text-white' : 'bg-background text-accent'}`
+                        : 'px-5 py-2.5 rounded-full border border-accent/35 bg-accent/10 text-accent'
                       : isActive
                         ? 'text-accent'
                         : isDarkPage
