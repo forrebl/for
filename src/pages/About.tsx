@@ -158,9 +158,9 @@ export default function About() {
               </p>
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-8 leading-tight">
-                <span className="block">Графический и бренд-дизайнер</span>
-                <span className="block mt-3 sm:mt-4 lg:mt-5 text-xl sm:text-2xl lg:text-3xl leading-[1.08] text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-6 lg:mb-7 leading-[1.08]">
+                <span className="block leading-[1.08]">Графический и бренд-дизайнер</span>
+                <span className="block mt-4 lg:mt-5 text-xl sm:text-2xl lg:text-3xl leading-[1.08] text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
               </h1>
             </Reveal>
             <Reveal delay={200}>
