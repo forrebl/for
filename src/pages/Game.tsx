@@ -90,7 +90,7 @@ export default function Game() {
   const checkColor = () => {
     if (error <= level.tolerance) {
       setPassed(true);
-      setMessage(levelIndex === levels.length - 1 ? 'Идеально. Ты прошла все 10 уровней.' : 'Есть попадание. Можно дальше.');
+      setMessage(levelIndex === levels.length - 1 ? 'Идеально. Вы прошли все 10 уровней.' : 'Есть попадание. Можно дальше.');
       return;
     }
 
