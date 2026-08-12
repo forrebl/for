@@ -18,7 +18,6 @@ type GameStatus = 'idle' | 'playing' | 'won' | 'lost';
 
 const GOAL = 12;
 const MAX_LIVES = 3;
-const LAPTOP_HALF_WIDTH = 14;
 const neutralWords = ['Бриф', 'Референс', 'Сетка', 'Мокап', 'Дедлайн', 'Шрифт'];
 
 function clamp(value: number, min: number, max: number) {
@@ -43,13 +42,20 @@ export default function CatchGame() {
   const [status, setStatus] = useState<GameStatus>('idle');
   const [laptopX, setLaptopX] = useState(50);
 
+  const getLaptopHalfWidthPercent = () => {
+    const fieldWidth = fieldRef.current?.getBoundingClientRect().width ?? 320;
+    const laptopWidth = fieldWidth >= 640 ? 144 : 128;
+    return clamp((laptopWidth / fieldWidth) * 50, 10, 24);
+  };
+
   const setGameStatus = (next: GameStatus) => {
     statusRef.current = next;
     setStatus(next);
   };
 
   const setLaptop = (next: number) => {
-    const value = clamp(next, 10, 90);
+    const edge = getLaptopHalfWidthPercent() + 1.5;
+    const value = clamp(next, edge, 100 - edge);
     laptopXRef.current = value;
     setLaptopX(value);
   };
@@ -130,7 +136,7 @@ export default function CatchGame() {
           id: nextIdRef.current++,
           type,
           label,
-          x: 10 + Math.random() * 80,
+          x: 18 + Math.random() * 64,
           y: -8,
           speed: baseSpeed * (0.88 + Math.random() * 0.25),
           rotation: -9 + Math.random() * 18,
@@ -141,11 +147,12 @@ export default function CatchGame() {
       let nextLives = livesRef.current;
       let terminalStatus: GameStatus | null = null;
       const kept: FallingItem[] = [];
+      const laptopHalfWidth = getLaptopHalfWidthPercent() + 3;
 
       for (const item of nextItems) {
         const moved = { ...item, y: item.y + item.speed * deltaSeconds };
-        const isAtLaptop = moved.y >= 81 && moved.y <= 94;
-        const isCaught = isAtLaptop && Math.abs(moved.x - laptopXRef.current) <= LAPTOP_HALF_WIDTH;
+        const isAtLaptop = moved.y >= 78 && moved.y <= 96;
+        const isCaught = isAtLaptop && Math.abs(moved.x - laptopXRef.current) <= laptopHalfWidth;
 
         if (isCaught) {
           if (moved.type === 'idea') {
@@ -268,7 +275,6 @@ export default function CatchGame() {
           >
             <div className="absolute inset-x-0 top-0 h-px bg-foreground/5" />
 
-            {/* Стол */}
             <div className="absolute inset-x-0 bottom-0 h-[18%] bg-[#e8e3db] border-t border-[#d6d0c7]">
               <div className="absolute inset-x-0 top-2 h-px bg-white/50" />
               <div className="absolute inset-x-0 top-[46%] h-px bg-black/[0.035]" />
@@ -277,7 +283,7 @@ export default function CatchGame() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 px-4 py-2 rounded-full text-sm font-medium shadow-sm border ${
+                className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium shadow-sm border whitespace-nowrap ${
                   item.type === 'idea'
                     ? 'bg-[#00b8d9] text-white border-black/5'
                     : item.type === 'revision'
@@ -294,7 +300,6 @@ export default function CatchGame() {
               </div>
             ))}
 
-            {/* Ноутбук */}
             <div
               className="absolute z-10 bottom-[3.5%] w-32 h-16 sm:w-36 sm:h-[4.5rem] transition-[left] duration-75 ease-linear pointer-events-none"
               style={{ left: `${laptopX}%`, transform: 'translateX(-50%)' }}
