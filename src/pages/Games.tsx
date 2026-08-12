@@ -39,7 +39,7 @@ export default function Games() {
                 to={game.path}
                 className="group block border border-border bg-card rounded-3xl overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="relative h-60 sm:h-72 overflow-hidden bg-muted border-b border-border">
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-muted border-b border-border">
                   {game.preview === 'cmyk' ? (
                     <div className="absolute inset-0 grid grid-cols-4">
                       <div className="bg-[#00b8d9] transition-transform duration-500 group-hover:-translate-y-2" />
