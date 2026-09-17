@@ -15,6 +15,7 @@ export default function Header() {
   const location = useLocation();
   const isGamesSection = location.pathname.startsWith('/games');
   const isGamesLanding = location.pathname === '/games';
+  const isProjectDetail = location.pathname.startsWith('/project/');
   const isDarkPage = location.pathname === '/projects' || isGamesLanding;
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Header() {
 
   const isLinkActive = (path: string) => {
     if (path === '/games') return isGamesSection;
+    if (path === '/projects') return location.pathname === '/projects' || isProjectDetail;
     return location.pathname === path;
   };
 
@@ -47,7 +49,7 @@ export default function Header() {
         <Link
           to="/"
           className={`text-sm lg:text-base font-medium tracking-wide uppercase font-[family-name:var(--font-display)] transition-colors duration-200 ${
-            isDarkPage ? 'text-white' : 'text-foreground'
+            isDarkPage ? 'text-white' : isProjectDetail ? 'text-[#0a0a0a]' : 'text-foreground'
           }`}
         >
           Фомина Анастасия
@@ -72,7 +74,9 @@ export default function Header() {
                             ? 'text-accent'
                             : isDarkPage
                               ? 'text-white/60 hover:text-white'
-                              : 'text-foreground/40'
+                              : isProjectDetail
+                                ? 'text-[#0a0a0a]/45 hover:text-accent'
+                                : 'text-foreground/40'
                         }`
                   }`}
                 >
@@ -90,12 +94,12 @@ export default function Header() {
         >
           <span
             className={`block w-5 h-px transition-all duration-300 ${
-              isDarkPage ? 'bg-white' : 'bg-foreground'
+              isDarkPage ? 'bg-white' : isProjectDetail ? 'bg-[#0a0a0a]' : 'bg-foreground'
             } ${isOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`}
           />
           <span
             className={`block w-5 h-px transition-all duration-300 ${
-              isDarkPage ? 'bg-white' : 'bg-foreground'
+              isDarkPage ? 'bg-white' : isProjectDetail ? 'bg-[#0a0a0a]' : 'bg-foreground'
             } ${isOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`}
           />
         </button>
@@ -130,7 +134,9 @@ export default function Header() {
                         ? 'text-accent'
                         : isDarkPage
                           ? 'text-white/55'
-                          : 'text-foreground/30'
+                          : isProjectDetail
+                            ? 'text-[#0a0a0a]/45'
+                            : 'text-foreground/30'
                   }`}
                 >
                   {link.label}
