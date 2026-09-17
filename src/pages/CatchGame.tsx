@@ -42,8 +42,10 @@ export default function CatchGame() {
   const [status, setStatus] = useState<GameStatus>('idle');
   const [laptopX, setLaptopX] = useState(50);
 
+  const getFieldWidth = () => fieldRef.current?.getBoundingClientRect().width ?? 320;
+
   const getLaptopHalfWidthPercent = () => {
-    const fieldWidth = fieldRef.current?.getBoundingClientRect().width ?? 320;
+    const fieldWidth = getFieldWidth();
     const laptopWidth = fieldWidth >= 640 ? 144 : 128;
     return clamp((laptopWidth / fieldWidth) * 50, 10, 24);
   };
@@ -131,12 +133,14 @@ export default function CatchGame() {
         }
 
         const baseSpeed = 20 + difficulty * 1.35;
+        const fieldWidth = getFieldWidth();
+        const spawnPadding = fieldWidth < 480 ? 27 : 18;
 
         nextItems.push({
           id: nextIdRef.current++,
           type,
           label,
-          x: 18 + Math.random() * 64,
+          x: spawnPadding + Math.random() * (100 - spawnPadding * 2),
           y: -8,
           speed: baseSpeed * (0.88 + Math.random() * 0.25),
           rotation: -9 + Math.random() * 18,
@@ -147,11 +151,13 @@ export default function CatchGame() {
       let nextLives = livesRef.current;
       let terminalStatus: GameStatus | null = null;
       const kept: FallingItem[] = [];
-      const laptopHalfWidth = getLaptopHalfWidthPercent() + 3;
+      const fieldWidth = getFieldWidth();
+      const mobileHitPadding = fieldWidth < 480 ? 7 : 3;
+      const laptopHalfWidth = getLaptopHalfWidthPercent() + mobileHitPadding;
 
       for (const item of nextItems) {
         const moved = { ...item, y: item.y + item.speed * deltaSeconds };
-        const isAtLaptop = moved.y >= 78 && moved.y <= 96;
+        const isAtLaptop = moved.y >= (fieldWidth < 480 ? 76 : 78) && moved.y <= 98;
         const isCaught = isAtLaptop && Math.abs(moved.x - laptopXRef.current) <= laptopHalfWidth;
 
         if (isCaught) {
@@ -223,6 +229,12 @@ export default function CatchGame() {
     setLaptop(relativeX);
   };
 
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (status !== 'playing') return;
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    handlePointer(event);
+  };
+
   return (
     <main className="pt-24 lg:pt-28 pb-16 lg:pb-20 min-h-screen">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
@@ -269,7 +281,7 @@ export default function CatchGame() {
           <div
             ref={fieldRef}
             onPointerMove={handlePointer}
-            onPointerDown={handlePointer}
+            onPointerDown={handlePointerDown}
             className="relative h-[420px] sm:h-[500px] overflow-hidden rounded-2xl border border-border bg-[#f5f5f3] select-none cursor-crosshair"
             style={{ touchAction: 'none' }}
           >
@@ -283,7 +295,7 @@ export default function CatchGame() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium shadow-sm border whitespace-nowrap ${
+                className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 max-w-[calc(100%-1rem)] px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium shadow-sm border whitespace-nowrap ${
                   item.type === 'idea'
                     ? 'bg-[#00b8d9] text-white border-black/5'
                     : item.type === 'revision'
@@ -301,7 +313,7 @@ export default function CatchGame() {
             ))}
 
             <div
-              className="absolute z-10 bottom-[3.5%] w-32 h-16 sm:w-36 sm:h-[4.5rem] transition-[left] duration-75 ease-linear pointer-events-none"
+              className="absolute z-10 bottom-[3.5%] w-32 h-16 sm:w-36 sm:h-[4.5rem] sm:transition-[left] sm:duration-75 sm:ease-linear pointer-events-none"
               style={{ left: `${laptopX}%`, transform: 'translateX(-50%)' }}
               aria-label="Ноутбук"
             >
