@@ -34,10 +34,10 @@ export default function ProjectDetail() {
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                backgroundImage: "url('/images/chaika-bg.jpg')",
-                backgroundRepeat: 'repeat-y',
-                backgroundSize: '100% auto',
-                backgroundPosition: 'top center',
+                backgroundImage: "url('/images/chaika-header-bg.jpg')",
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 transform: 'scaleY(-1)',
               }}
               aria-hidden="true"
