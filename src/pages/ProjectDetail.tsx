@@ -76,73 +76,71 @@ export default function ProjectDetail() {
               </h1>
             </Reveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start mb-14 sm:mb-16 lg:mb-20">
-              <div className="space-y-8 sm:space-y-10">
-                <Reveal delay={100}>
-                  <div>
-                    <h2
-                      className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#9a4317] leading-none mb-3"
-                      style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-                    >
-                      Сеттинг:
-                    </h2>
-                    <p className="text-[#6e321c] text-base sm:text-lg leading-relaxed">
-                      атомикпанк, ретрофутуризм, альтернативный СССР 1970–1980-х
-                    </p>
-                  </div>
-                </Reveal>
+            <Reveal delay={100}>
+              <div className="mb-14 sm:mb-16 lg:mb-20 overflow-hidden rounded-[12px] border-[3px] border-[#3f2b1f] bg-[#f6d982]/82 shadow-[inset_0_0_0_2px_rgba(255,240,180,0.72)] outline outline-1 outline-[#3f2b1f] outline-offset-[4px]">
+                <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] items-stretch">
+                  <div className="px-5 py-6 sm:px-8 sm:py-8 lg:px-9 lg:py-9">
+                    <div className="space-y-6 sm:space-y-7">
+                      <div>
+                        <h2
+                          className="text-xl sm:text-2xl lg:text-3xl uppercase text-[#9a4317] leading-none mb-2.5"
+                          style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                        >
+                          Сеттинг:
+                        </h2>
+                        <p className="text-[#6e321c] text-sm sm:text-base leading-relaxed">
+                          атомикпанк, ретрофутуризм, альтернативный СССР 1970–1980-х
+                        </p>
+                      </div>
 
-                <Reveal delay={140}>
-                  <div>
-                    <h2
-                      className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#806600] leading-none mb-3"
-                      style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-                    >
-                      Жанр:
-                    </h2>
-                    <p className="text-[#70551a] text-base sm:text-lg leading-relaxed">
-                      приключение, point-and-click, детектив
-                    </p>
-                  </div>
-                </Reveal>
+                      <div>
+                        <h2
+                          className="text-xl sm:text-2xl lg:text-3xl uppercase text-[#806600] leading-none mb-2.5"
+                          style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                        >
+                          Жанр:
+                        </h2>
+                        <p className="text-[#70551a] text-sm sm:text-base leading-relaxed">
+                          приключение, point-and-click, детектив
+                        </p>
+                      </div>
 
-                <Reveal delay={180}>
-                  <div>
-                    <h2
-                      className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#244f80] leading-none mb-3"
-                      style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-                    >
-                      ЦА:
-                    </h2>
-                    <div className="space-y-2.5 text-[#244f80] text-sm sm:text-base leading-relaxed">
-                      <p>пользователи от&nbsp;14 лет</p>
-                      <p>любители инди-игр, приключенческих игр и&nbsp;point-and-click квестов</p>
-                      <p>игроки, интересующиеся ретрофутуризмом и&nbsp;атомикпанком</p>
-                      <p>поклонники игр вроде «Machinarium», «Papers, Please», «Atomic Heart», «Зайчик»</p>
-                      <p>люди, выросшие в&nbsp;странах СНГ и&nbsp;испытывающие интерес к&nbsp;советской культуре</p>
-                      <p>художники, дизайнеры и&nbsp;любители авторских визуальных проектов</p>
+                      <div>
+                        <h2
+                          className="text-xl sm:text-2xl lg:text-3xl uppercase text-[#244f80] leading-none mb-2.5"
+                          style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                        >
+                          ЦА:
+                        </h2>
+                        <div className="space-y-2 text-[#244f80] text-sm sm:text-base leading-relaxed">
+                          <p>пользователи от&nbsp;14 лет</p>
+                          <p>любители инди-игр, приключенческих игр и&nbsp;point-and-click квестов</p>
+                          <p>игроки, интересующиеся ретрофутуризмом и&nbsp;атомикпанком</p>
+                          <p>поклонники игр вроде «Machinarium», «Papers, Please», «Atomic Heart», «Зайчик»</p>
+                          <p>люди, выросшие в&nbsp;странах СНГ и&nbsp;испытывающие интерес к&nbsp;советской культуре</p>
+                          <p>художники, дизайнеры и&nbsp;любители авторских визуальных проектов</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </Reveal>
-              </div>
 
-              <Reveal delay={120}>
-                <div className="relative rounded-[10px] border-[3px] border-[#3f2b1f] bg-[#f6d982]/85 px-5 py-5 sm:px-8 sm:py-7 lg:px-9 lg:py-8 text-[#8a431e] shadow-[inset_0_0_0_2px_rgba(255,240,180,0.75)] outline outline-1 outline-[#3f2b1f] outline-offset-[4px]">
-                  <p className="text-sm sm:text-base lg:text-[1.05rem] leading-[1.55]">
-                    Сюжет игры сосредоточен вокруг автослесаря, подрабатывающего таксистом.
-                    Отправной точкой становится загадочное исчезновение его автомобиля: он
-                    самопроизвольно заводится и&nbsp;уезжает в&nbsp;неизвестном направлении.
-                    Герой начинает собственное расследование. Он постепенно выявляет, что
-                    в&nbsp;городе происходит серия аналогичных краж. В&nbsp;ходе развития
-                    сюжета становится известно, что группа бандитов-угонщиков собирает
-                    из&nbsp;похищенных автомобилей космический корабль с&nbsp;целью покинуть
-                    Землю и&nbsp;отправиться на&nbsp;Луну. Кульминацией становится проникновение
-                    героя в&nbsp;их убежище, возвращение любимого автомобиля и&nbsp;неудачный
-                    запуск ракеты.
-                  </p>
+                  <div className="border-t border-[#3f2b1f]/35 lg:border-t-0 lg:border-l px-5 py-6 sm:px-8 sm:py-8 lg:px-9 lg:py-9 flex items-start">
+                    <p className="text-[#8a431e] text-sm sm:text-base lg:text-[1.05rem] leading-[1.58]">
+                      Сюжет игры сосредоточен вокруг автослесаря, подрабатывающего таксистом.
+                      Отправной точкой становится загадочное исчезновение его автомобиля: он
+                      самопроизвольно заводится и&nbsp;уезжает в&nbsp;неизвестном направлении.
+                      Герой начинает собственное расследование. Он постепенно выявляет, что
+                      в&nbsp;городе происходит серия аналогичных краж. В&nbsp;ходе развития
+                      сюжета становится известно, что группа бандитов-угонщиков собирает
+                      из&nbsp;похищенных автомобилей космический корабль с&nbsp;целью покинуть
+                      Землю и&nbsp;отправиться на&nbsp;Луну. Кульминацией становится проникновение
+                      героя в&nbsp;их убежище, возвращение любимого автомобиля и&nbsp;неудачный
+                      запуск ракеты.
+                    </p>
+                  </div>
                 </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
 
             <Reveal delay={220}>
               <div className="max-w-5xl mx-auto mt-14 sm:mt-16 lg:mt-20">
