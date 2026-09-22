@@ -37,7 +37,7 @@ export default function ProjectDetail() {
                 backgroundImage: "url('/images/chaika-header-bg.jpg')",
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'center top',
               }}
               aria-hidden="true"
             />
