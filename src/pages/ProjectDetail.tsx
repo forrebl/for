@@ -29,11 +29,20 @@ export default function ProjectDetail() {
     return (
       <main className="pt-16 lg:pt-20 min-h-screen">
         <Reveal>
-          <div className="w-full aspect-video overflow-hidden border-b border-black/10 bg-[#d9d4b8]">
+          <div
+            className="w-full aspect-video overflow-hidden border-b border-black/10 bg-[#ddd5ba] flex items-center justify-center px-5 sm:px-8 lg:px-12"
+            style={{
+              backgroundImage: "url('/images/chaika-bg.jpg')",
+              backgroundRepeat: 'repeat-y',
+              backgroundSize: '100% auto',
+              backgroundPosition: 'top center',
+            }}
+          >
             <img
-              src={project.cover}
-              alt={project.title}
-              className="w-full h-full object-cover"
+              src="/images/chaika-header-object.png"
+              alt="Чайка"
+              className="chaika-header-object w-[84%] sm:w-[70%] lg:w-[62%] max-w-[980px] h-auto select-none"
+              draggable={false}
             />
           </div>
         </Reveal>
