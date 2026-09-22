@@ -159,6 +159,64 @@ export default function ProjectDetail() {
               </div>
             </Reveal>
 
+            <Reveal delay={235}>
+              <div className="mt-10 sm:mt-12 lg:mt-14">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                  <button
+                    type="button"
+                    className="chaika-category-card chaika-category-card--characters"
+                  >
+                    <span className="chaika-category-card__label">Персонажи</span>
+                    <img
+                      src="/images/chaika-nav-characters.png"
+                      alt=""
+                      className="chaika-category-card__art chaika-category-card__art--characters"
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="chaika-category-card chaika-category-card--props"
+                  >
+                    <span className="chaika-category-card__label">Пропсы</span>
+                    <img
+                      src="/images/chaika-nav-props.png"
+                      alt=""
+                      className="chaika-category-card__art chaika-category-card__art--props"
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="chaika-category-card chaika-category-card--locations"
+                  >
+                    <span className="chaika-category-card__label">Локации</span>
+                    <img
+                      src="/images/chaika-nav-locations.png"
+                      alt=""
+                      className="chaika-category-card__art chaika-category-card__art--locations"
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="chaika-category-card chaika-category-card--interface"
+                  >
+                    <span className="chaika-category-card__label">Интерфейс</span>
+                    <img
+                      src="/images/chaika-nav-interface.png"
+                      alt=""
+                      className="chaika-category-card__art chaika-category-card__art--interface"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
+              </div>
+            </Reveal>
+
             <Reveal delay={240}>
               <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#5b4b31]/20">
                 <Link
