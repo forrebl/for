@@ -29,19 +29,22 @@ export default function ProjectDetail() {
     return (
       <main className="pt-16 lg:pt-20 min-h-screen">
         <Reveal>
-          <div
-            className="w-full aspect-[32/9] overflow-hidden border-b border-black/10 bg-[#ddd5ba] flex items-center justify-center px-5 sm:px-8 lg:px-12"
-            style={{
-              backgroundImage: "url('/images/chaika-bg.jpg')",
-              backgroundRepeat: 'repeat-y',
-              backgroundSize: '100% auto',
-              backgroundPosition: 'top center',
-            }}
-          >
+          <div className="relative w-full aspect-[32/9] overflow-hidden border-b border-black/10 bg-[#ddd5ba] flex items-center justify-center px-5 sm:px-8 lg:px-12">
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage: "url('/images/chaika-bg.jpg')",
+                backgroundRepeat: 'repeat-y',
+                backgroundSize: '100% auto',
+                backgroundPosition: 'top center',
+                transform: 'scaleY(-1)',
+              }}
+              aria-hidden="true"
+            />
             <img
               src="/images/chaika-header-object.png"
               alt="Чайка"
-              className="chaika-header-object w-[84%] sm:w-[70%] lg:w-[62%] max-w-[980px] h-auto select-none"
+              className="chaika-header-object relative z-10 w-[84%] sm:w-[70%] lg:w-[62%] max-w-[980px] h-auto select-none"
               draggable={false}
             />
           </div>
