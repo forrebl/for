@@ -370,3 +370,133 @@
   }
 }
 
+
+
+/* Chaika expandable info cards */
+.chaika-info-card {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid rgba(63, 43, 31, 0.62);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 241, 188, 0.78), rgba(242, 207, 112, 0.60));
+  box-shadow:
+    0 10px 22px rgba(72, 45, 20, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.54);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.chaika-info-card:hover,
+.chaika-info-card:focus-within,
+.chaika-info-card.is-open {
+  border-color: rgba(63, 43, 31, 0.88);
+  box-shadow:
+    0 16px 30px rgba(72, 45, 20, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68);
+  transform: translateY(-3px);
+}
+
+.chaika-info-card__summary {
+  width: 100%;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1.15rem 1.15rem 1.05rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chaika-info-card__title {
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chaika-info-card__chevron {
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: rgba(63, 43, 31, 0.58);
+  transform: translateY(-2px) rotate(0deg);
+  transition: transform 260ms ease;
+}
+
+.chaika-info-card__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 340ms cubic-bezier(.2,.78,.2,1),
+    opacity 220ms ease;
+}
+
+.chaika-info-card__body-inner {
+  overflow: hidden;
+  padding: 0 1.15rem;
+  font-size: 0.9rem;
+  line-height: 1.52;
+  transition: padding-bottom 340ms cubic-bezier(.2,.78,.2,1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chaika-info-card:hover .chaika-info-card__body {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .chaika-info-card:hover .chaika-info-card__body-inner {
+    padding-bottom: 1.15rem;
+  }
+
+  .chaika-info-card:hover .chaika-info-card__chevron {
+    transform: translateY(2px) rotate(180deg);
+  }
+}
+
+.chaika-info-card.is-open .chaika-info-card__body,
+.chaika-info-card:focus-within .chaika-info-card__body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.chaika-info-card.is-open .chaika-info-card__body-inner,
+.chaika-info-card:focus-within .chaika-info-card__body-inner {
+  padding-bottom: 1.15rem;
+}
+
+.chaika-info-card.is-open .chaika-info-card__chevron,
+.chaika-info-card:focus-within .chaika-info-card__chevron {
+  transform: translateY(2px) rotate(180deg);
+}
+
+@media (max-width: 639px) {
+  .chaika-info-card {
+    border-radius: 16px;
+  }
+
+  .chaika-info-card__summary {
+    min-height: 78px;
+    padding: 1rem;
+  }
+
+  .chaika-info-card__title {
+    font-size: 1.35rem;
+  }
+
+  .chaika-info-card__body-inner {
+    padding-inline: 1rem;
+    font-size: 0.86rem;
+  }
+
+  .chaika-info-card.is-open .chaika-info-card__body-inner,
+  .chaika-info-card:focus-within .chaika-info-card__body-inner {
+    padding-bottom: 1rem;
+  }
+}
