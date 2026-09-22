@@ -28,9 +28,18 @@ export default function ProjectDetail() {
 
   if (project.id === 'project-1') {
     return (
-      <main className="pt-16 lg:pt-20 min-h-screen">
+      <main
+        className="pt-16 lg:pt-20 min-h-screen"
+        style={{
+          backgroundColor: '#ddd5ba',
+          backgroundImage: "url('/images/chaika-bg.jpg')",
+          backgroundRepeat: 'repeat-y',
+          backgroundSize: '100% auto',
+          backgroundPosition: 'top center',
+        }}
+      >
         <Reveal>
-          <div className="relative w-full aspect-[32/9] overflow-hidden border-b border-black/10 bg-[#ddd5ba] flex items-center justify-center px-5 sm:px-8 lg:px-12">
+          <div className="relative w-full aspect-[32/9] overflow-hidden flex items-center justify-center px-5 sm:px-8 lg:px-12">
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
@@ -38,6 +47,8 @@ export default function ProjectDetail() {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center top',
+                WebkitMaskImage: 'linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,0.92) 68%, rgba(0,0,0,0.45) 84%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,0.92) 68%, rgba(0,0,0,0.45) 84%, transparent 100%)',
               }}
               aria-hidden="true"
             />
@@ -50,16 +61,7 @@ export default function ProjectDetail() {
           </div>
         </Reveal>
 
-        <section
-          className="chaika-project-section relative overflow-hidden"
-          style={{
-            backgroundColor: '#ddd5ba',
-            backgroundImage: "url('/images/chaika-bg.jpg')",
-            backgroundRepeat: 'repeat-y',
-            backgroundSize: '100% auto',
-            backgroundPosition: 'top center',
-          }}
-        >
+        <section className="chaika-project-section relative overflow-hidden">
           <div className="chaika-content-shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
             <Reveal>
               <div className="chaika-project-heading">
