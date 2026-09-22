@@ -132,6 +132,40 @@ export default function ProjectDetail() {
               </Reveal>
             </div>
 
+            <Reveal delay={220}>
+              <div className="max-w-5xl mx-auto mt-14 sm:mt-16 lg:mt-20">
+                <div className="aspect-video overflow-hidden border border-[#5b4b31]/20 bg-black">
+                  <video
+                    src="/media/chaika-video.mp4"
+                    className="w-full h-full object-cover cursor-pointer"
+                    preload="metadata"
+                    playsInline
+                    tabIndex={0}
+                    aria-label="Видео проекта «Чайка». Нажмите, чтобы запустить или поставить на паузу."
+                    onClick={(event) => {
+                      const video = event.currentTarget;
+                      if (video.paused) {
+                        void video.play();
+                      } else {
+                        video.pause();
+                      }
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        const video = event.currentTarget;
+                        if (video.paused) {
+                          void video.play();
+                        } else {
+                          video.pause();
+                        }
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+            </Reveal>
+
             <Reveal delay={240}>
               <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#5b4b31]/20">
                 <Link
