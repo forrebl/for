@@ -220,7 +220,7 @@
 
 .chaika-category-card__label {
   position: relative;
-  z-index: 4;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -251,7 +251,7 @@
 
 .chaika-category-card__art {
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   pointer-events: none;
   user-select: none;
   max-width: none;
@@ -283,14 +283,15 @@
 
 .chaika-category-card__art--props {
   width: 44%;
-  left: -44%;
+  right: -44%;
+  left: auto;
   bottom: 1%;
-  transform: translateX(-8%) rotate(-2deg);
+  transform: translateX(8%) rotate(2deg);
 }
 
 .chaika-category-card:hover .chaika-category-card__art--props,
 .chaika-category-card:focus-visible .chaika-category-card__art--props {
-  transform: translateX(126%) rotate(1deg);
+  transform: translateX(-126%) rotate(-1deg);
 }
 
 .chaika-category-card__art--locations {
@@ -367,7 +368,7 @@
   }
 
   .chaika-category-card--props:active .chaika-category-card__art--props {
-    transform: translateX(126%) rotate(1deg);
+    transform: translateX(-126%) rotate(-1deg);
   }
 
   .chaika-category-card--locations:active .chaika-category-card__art--locations {
