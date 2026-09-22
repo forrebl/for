@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Natasha';
+  src: local('Natasha'), url('https://en.bestfonts.pro/fonts_files/5c44f774d9130e04f6d59b31/files/Natasha.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @import "tailwindcss";
 
 @theme {
@@ -122,4 +130,10 @@
 .accent-card:hover {
   border-color: var(--color-accent);
   background-color: rgba(42, 63, 199, 0.04);
+}
+
+
+.font-natasha {
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-weight: 400;
 }
