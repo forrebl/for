@@ -52,13 +52,13 @@ export default function ProjectDetail() {
             <Reveal>
               <p
                 className="text-xs uppercase tracking-[0.22em] mb-3 text-[#244f80]"
-                style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif" }}
+                style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif" }}
               >
                 CGI
               </p>
               <h1
                 className="font-bold uppercase text-[#7a2f12] mb-8 sm:mb-10"
-                style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
               >
                 Концепт игры «Чайка»
               </h1>
@@ -88,7 +88,7 @@ export default function ProjectDetail() {
                 <div className="grid grid-cols-1 sm:grid-cols-[210px_minmax(0,1fr)] gap-2 sm:gap-8 items-start">
                   <h2
                     className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#9a4317] leading-none"
-                    style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                    style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
                   >
                     Сеттинг:
                   </h2>
@@ -102,7 +102,7 @@ export default function ProjectDetail() {
                 <div className="grid grid-cols-1 sm:grid-cols-[210px_minmax(0,1fr)] gap-2 sm:gap-8 items-start">
                   <h2
                     className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#806600] leading-none"
-                    style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                    style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
                   >
                     Жанр:
                   </h2>
@@ -116,7 +116,7 @@ export default function ProjectDetail() {
                 <div className="grid grid-cols-1 sm:grid-cols-[210px_minmax(0,1fr)] gap-3 sm:gap-8 items-start">
                   <h2
                     className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#244f80] leading-none"
-                    style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                    style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
                   >
                     ЦА:
                   </h2>
