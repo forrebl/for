@@ -225,10 +225,6 @@
   align-items: center;
   justify-content: center;
   min-height: 2.25em;
-  padding: 0.38em 0.62em 0.32em;
-  border-radius: 9999px;
-  background: rgba(247, 219, 132, 0.78);
-  box-shadow: 0 2px 8px rgba(72, 45, 20, 0.12);
   font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
   font-size: clamp(1.15rem, 2.1vw, 1.75rem);
   line-height: 1;
@@ -236,16 +232,11 @@
   letter-spacing: 0.02em;
   white-space: nowrap;
   pointer-events: none;
-  transition:
-    background-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+  transition: transform 180ms ease;
 }
 
 .chaika-category-card:hover .chaika-category-card__label,
 .chaika-category-card:focus-visible .chaika-category-card__label {
-  background: rgba(249, 225, 147, 0.92);
-  box-shadow: 0 4px 12px rgba(72, 45, 20, 0.16);
   transform: scale(1.02);
 }
 
@@ -327,7 +318,6 @@
 
   .chaika-category-card__label {
     font-size: 1.05rem;
-    padding-inline: 0.52em;
   }
 
   .chaika-category-card__art--characters {
