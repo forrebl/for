@@ -205,9 +205,10 @@ export default function ProjectDetail() {
             <Reveal delay={235}>
               <div className="mt-10 sm:mt-12 lg:mt-14">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                  <button
-                    type="button"
+                  <Link
+                    to="/project/project-1/characters"
                     className="chaika-category-card chaika-category-card--characters"
+                    aria-label="Открыть раздел «Персонажи»"
                   >
                     <span className="chaika-category-card__label">Персонажи</span>
                     <img
@@ -216,7 +217,7 @@ export default function ProjectDetail() {
                       className="chaika-category-card__art chaika-category-card__art--characters"
                       aria-hidden="true"
                     />
-                  </button>
+                  </Link>
 
                   <button
                     type="button"
