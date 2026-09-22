@@ -38,7 +38,6 @@ export default function ProjectDetail() {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                transform: 'scaleY(-1)',
               }}
               aria-hidden="true"
             />
