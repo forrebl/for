@@ -137,3 +137,35 @@
   font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
   font-weight: 400;
 }
+
+
+/* Chaika interactive header */
+.chaika-header-object {
+  transform-origin: 50% 55%;
+  will-change: transform;
+}
+
+@keyframes chaika-header-wobble {
+  0%,
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  20% {
+    transform: rotate(-1.2deg) translate3d(-2px, -1px, 0);
+  }
+  40% {
+    transform: rotate(1deg) translate3d(2px, 1px, 0);
+  }
+  60% {
+    transform: rotate(-0.7deg) translate3d(-1px, 1px, 0);
+  }
+  80% {
+    transform: rotate(0.8deg) translate3d(1px, -1px, 0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chaika-header-object:hover {
+    animation: chaika-header-wobble 1.25s ease-in-out infinite;
+  }
+}
