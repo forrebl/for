@@ -1,25 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { projects } from '../data/projects';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
   const nextProject = project ? projects.find((p) => p.id === project.nextProjectId) : null;
-  const chaikaVideoRef = useRef<HTMLVideoElement | null>(null);
-  const [chaikaVideoPlaying, setChaikaVideoPlaying] = useState(false);
-
-  const toggleChaikaVideo = () => {
-    const video = chaikaVideoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      void video.play();
-    } else {
-      video.pause();
-    }
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -147,61 +134,15 @@ export default function ProjectDetail() {
 
             <Reveal delay={220}>
               <div className="max-w-5xl mx-auto mt-14 sm:mt-16 lg:mt-20">
-                <div className="group relative aspect-video overflow-hidden border border-[#5b4b31]/20 bg-black">
+                <div className="aspect-video overflow-hidden border border-[#5b4b31]/20 bg-black">
                   <video
-                    ref={chaikaVideoRef}
                     src="/media/chaika-video.mp4"
                     className="w-full h-full object-cover"
                     preload="metadata"
                     playsInline
-                    onPlay={() => setChaikaVideoPlaying(true)}
-                    onPause={() => setChaikaVideoPlaying(false)}
-                    onEnded={() => setChaikaVideoPlaying(false)}
+                    controls
+                    aria-label="Видео проекта «Чайка»"
                   />
-
-                  <button
-                    type="button"
-                    onClick={toggleChaikaVideo}
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                    aria-label={chaikaVideoPlaying ? 'Поставить видео на паузу' : 'Запустить видео'}
-                  >
-                    <span
-                      className={`absolute inset-0 transition-colors duration-200 ${
-                        chaikaVideoPlaying
-                          ? 'bg-black/0 group-hover:bg-black/10'
-                          : 'bg-black/10 group-hover:bg-black/15'
-                      }`}
-                    />
-                    <span
-                      className={`relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full border border-white/35 bg-black/40 backdrop-blur-[2px] text-white transition-all duration-200 group-hover:scale-105 group-hover:bg-black/50 ${
-                        chaikaVideoPlaying ? 'opacity-70 group-hover:opacity-100' : 'opacity-100'
-                      }`}
-                    >
-                      {chaikaVideoPlaying ? (
-                        <svg
-                          width="28"
-                          height="28"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          aria-hidden="true"
-                        >
-                          <rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" />
-                          <rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" />
-                        </svg>
-                      ) : (
-                        <svg
-                          width="28"
-                          height="28"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="translate-x-[1px]"
-                          aria-hidden="true"
-                        >
-                          <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor" />
-                        </svg>
-                      )}
-                    </span>
-                  </button>
                 </div>
               </div>
             </Reveal>
