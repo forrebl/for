@@ -52,7 +52,7 @@ export default function ProjectDetail() {
         </Reveal>
 
         <section
-          className="relative overflow-hidden"
+          className="chaika-project-section relative overflow-hidden"
           style={{
             backgroundColor: '#ddd5ba',
             backgroundImage: "url('/images/chaika-bg.jpg')",
@@ -61,25 +61,34 @@ export default function ProjectDetail() {
             backgroundPosition: 'top center',
           }}
         >
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+          <div className="chaika-content-shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
             <Reveal>
-              <p
-                className="text-xs uppercase tracking-[0.22em] mb-3 text-[#244f80]"
-                style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif" }}
-              >
-                CGI
-              </p>
-              <h1
-                className="font-bold uppercase text-[#7a2f12] mb-8 sm:mb-10"
-                style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-              >
-                Концепт игры «Чайка»
-              </h1>
+              <div className="chaika-project-heading">
+                <div className="chaika-project-heading__top">
+                  <span className="chaika-project-heading__kicker">CGI</span>
+                  <span className="chaika-project-heading__status" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                </div>
+                <h1
+                  className="chaika-project-heading__title font-bold uppercase"
+                  style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                >
+                  Концепт игры «Чайка»
+                </h1>
+                <div className="chaika-project-tags" aria-label="Жанр и стилистика проекта">
+                  <span>атомикпанк</span>
+                  <span>point-and-click</span>
+                  <span>детектив</span>
+                </div>
+              </div>
             </Reveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-start mb-14 sm:mb-16 lg:mb-20">
               <Reveal delay={80}>
-                <article className={`chaika-info-card ${openChaikaInfoCard === 'setting' ? 'is-open' : ''}`}>
+                <article className={`chaika-info-card chaika-info-card--setting ${openChaikaInfoCard === 'setting' ? 'is-open' : ''}`}>
                   <button
                     type="button"
                     className="chaika-info-card__summary"
@@ -98,7 +107,7 @@ export default function ProjectDetail() {
               </Reveal>
 
               <Reveal delay={130}>
-                <article className={`chaika-info-card ${openChaikaInfoCard === 'genre' ? 'is-open' : ''}`}>
+                <article className={`chaika-info-card chaika-info-card--genre ${openChaikaInfoCard === 'genre' ? 'is-open' : ''}`}>
                   <button
                     type="button"
                     className="chaika-info-card__summary"
@@ -117,7 +126,7 @@ export default function ProjectDetail() {
               </Reveal>
 
               <Reveal delay={180}>
-                <article className={`chaika-info-card ${openChaikaInfoCard === 'audience' ? 'is-open' : ''}`}>
+                <article className={`chaika-info-card chaika-info-card--audience ${openChaikaInfoCard === 'audience' ? 'is-open' : ''}`}>
                   <button
                     type="button"
                     className="chaika-info-card__summary"
@@ -141,7 +150,7 @@ export default function ProjectDetail() {
               </Reveal>
 
               <Reveal delay={230}>
-                <article className={`chaika-info-card ${openChaikaInfoCard === 'plot' ? 'is-open' : ''}`}>
+                <article className={`chaika-info-card chaika-info-card--plot ${openChaikaInfoCard === 'plot' ? 'is-open' : ''}`}>
                   <button
                     type="button"
                     className="chaika-info-card__summary"
@@ -170,8 +179,16 @@ export default function ProjectDetail() {
             </div>
 
             <Reveal delay={220}>
-              <div className="max-w-5xl mx-auto mt-14 sm:mt-16 lg:mt-20">
-                <div className="aspect-video overflow-hidden border border-[#5b4b31]/20 bg-black">
+              <div className="chaika-video-frame max-w-5xl mx-auto mt-14 sm:mt-16 lg:mt-20">
+                <div className="chaika-video-frame__bar">
+                  <span className="chaika-video-frame__label">Видео</span>
+                  <span className="chaika-video-frame__lights" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                </div>
+                <div className="chaika-video-frame__viewport">
                   <video
                     src="/media/chaika-video.mp4"
                     className="w-full h-full object-cover"
@@ -246,9 +263,9 @@ export default function ProjectDetail() {
               <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#5b4b31]/20">
                 <Link
                   to="/projects?filter=cgi"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#6e321c] hover:text-[#244f80] transition-colors"
+                  className="chaika-back-link"
                 >
-                  ← Вернуться к&nbsp;CGI-проектам
+                  В&nbsp;CGI-проекты
                 </Link>
               </div>
             </Reveal>
