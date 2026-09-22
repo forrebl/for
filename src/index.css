@@ -936,3 +936,351 @@
     font-size: 0.9rem;
   }
 }
+
+
+/* Lightweight Chaika page headings */
+.chaika-project-heading {
+  margin-bottom: 2.15rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.chaika-project-heading__top {
+  justify-content: flex-start;
+  margin-bottom: 0.55rem;
+}
+
+.chaika-project-heading__kicker {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #526b49;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+}
+
+.chaika-project-heading__status {
+  display: none;
+}
+
+.chaika-project-heading__title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #8f260e;
+  text-shadow: none;
+}
+
+.chaika-project-tags {
+  margin-top: 0.85rem;
+}
+
+.chaika-project-tags span {
+  min-height: 0;
+  padding: 0.18rem 0.5rem 0.14rem;
+  border: 1px solid rgba(46, 38, 25, 0.38);
+  border-radius: 999px;
+  background: rgba(246, 223, 157, 0.38);
+  color: #5d4b2b;
+  font-size: 0.66rem;
+  box-shadow: none;
+}
+
+/* Chaika character showcase */
+.chaika-character-feature {
+  margin-top: 0.6rem;
+}
+
+.chaika-character-feature__topline {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.chaika-character-feature__index {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2e2619;
+  border-radius: 50%;
+  background: #d94a13;
+  color: #f2bb33;
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.chaika-character-feature__eyebrow {
+  margin: 0 0 0.25rem;
+  color: #526b49;
+  font-size: 0.7rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+}
+
+.chaika-character-feature__name {
+  margin: 0;
+  color: #8f260e;
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(1.45rem, 2.7vw, 2.25rem);
+  line-height: 0.98;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chaika-character-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.chaika-character-panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.7rem;
+  border: 2px solid rgba(46, 38, 25, 0.78);
+  border-radius: 10px;
+  background: rgba(240, 207, 116, 0.72);
+  box-shadow: 0 10px 24px rgba(53, 38, 18, 0.1);
+}
+
+.chaika-character-panel--turnaround {
+  background: rgba(217, 74, 19, 0.16);
+}
+
+.chaika-character-panel--emotions {
+  background: rgba(88, 118, 96, 0.18);
+}
+
+.chaika-character-panel__label {
+  align-self: flex-start;
+  margin: 0 0 0.55rem;
+  color: #5b4020;
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.chaika-character-panel__media,
+.chaika-hero-turnaround {
+  position: relative;
+  flex: 1;
+  min-height: 430px;
+  overflow: hidden;
+  border: 1px solid rgba(46, 38, 25, 0.3);
+  border-radius: 7px;
+  background: rgba(249, 235, 189, 0.44);
+}
+
+.chaika-character-panel__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chaika-character-panel__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chaika-character-panel__image--gif {
+  padding: 0.3rem;
+}
+
+.chaika-character-panel__image--emotions {
+  padding: 0.25rem;
+}
+
+.chaika-hero-turnaround {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.chaika-hero-turnaround__view {
+  position: absolute;
+  inset: 0.45rem;
+  background-image: url('/images/chaika/characters/main-hero/hero-turnaround.png');
+  background-repeat: no-repeat;
+  background-size: 200% auto;
+  background-position-y: center;
+  transition: opacity 320ms ease, transform 360ms ease;
+}
+
+.chaika-hero-turnaround__view--front {
+  background-position-x: left;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.chaika-hero-turnaround__view--back {
+  background-position-x: right;
+  opacity: 0;
+  transform: scale(0.985);
+}
+
+.chaika-hero-turnaround.is-back .chaika-hero-turnaround__view--front {
+  opacity: 0;
+  transform: scale(0.985);
+}
+
+.chaika-hero-turnaround.is-back .chaika-hero-turnaround__view--back {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.chaika-hero-turnaround__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.7rem;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 0.3rem 0.55rem 0.24rem;
+  border-radius: 999px;
+  background: rgba(46, 38, 25, 0.82);
+  color: #f7e3a7;
+  font-size: 0.66rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transition: opacity 180ms ease;
+}
+
+.chaika-hero-turnaround__hint-mobile {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chaika-hero-turnaround:hover .chaika-hero-turnaround__view--front {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  .chaika-hero-turnaround:hover .chaika-hero-turnaround__view--back {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .chaika-hero-turnaround:hover .chaika-hero-turnaround__hint {
+    opacity: 0;
+  }
+}
+
+.chaika-character-description {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: start;
+  max-width: 900px;
+  margin-top: 1.35rem;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid #d94a13;
+  background: rgba(246, 223, 157, 0.3);
+}
+
+.chaika-character-description__marker {
+  color: #d94a13;
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.chaika-character-description p {
+  margin: 0;
+  color: #5a4127;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 899px) {
+  .chaika-character-showcase {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chaika-character-panel--emotions {
+    grid-column: 1 / -1;
+  }
+
+  .chaika-character-panel__media,
+  .chaika-hero-turnaround {
+    min-height: 390px;
+  }
+
+  .chaika-character-panel--emotions .chaika-character-panel__media {
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 639px) {
+  .chaika-project-heading {
+    margin-bottom: 1.65rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .chaika-project-heading__title {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .chaika-character-feature__topline {
+    align-items: flex-start;
+  }
+
+  .chaika-character-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .chaika-character-panel--emotions {
+    grid-column: auto;
+  }
+
+  .chaika-character-panel__media,
+  .chaika-hero-turnaround {
+    min-height: 360px;
+  }
+
+  .chaika-character-panel--emotions .chaika-character-panel__media {
+    min-height: 320px;
+  }
+
+  .chaika-hero-turnaround__hint-desktop {
+    display: none;
+  }
+
+  .chaika-hero-turnaround__hint-mobile {
+    display: inline;
+  }
+
+  .chaika-character-description {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.9rem 0.95rem;
+  }
+}
