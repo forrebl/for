@@ -65,25 +65,12 @@ export default function ProjectDetail() {
           <div className="chaika-content-shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
             <Reveal>
               <div className="chaika-project-heading">
-                <div className="chaika-project-heading__top">
-                  <span className="chaika-project-heading__kicker">CGI</span>
-                  <span className="chaika-project-heading__status" aria-hidden="true">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                </div>
                 <h1
                   className="chaika-project-heading__title font-bold uppercase"
                   style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
                 >
                   Концепт игры «Чайка»
                 </h1>
-                <div className="chaika-project-tags" aria-label="Жанр и стилистика проекта">
-                  <span>атомикпанк</span>
-                  <span>point-and-click</span>
-                  <span>детектив</span>
-                </div>
               </div>
             </Reveal>
 
