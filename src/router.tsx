@@ -3,6 +3,7 @@ import App from './App';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import ChaikaCharacters from './pages/ChaikaCharacters';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Game from './pages/Game';
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'projects', element: <Projects /> },
       { path: 'project/:id', element: <ProjectDetail /> },
+      { path: 'project/project-1/characters', element: <ChaikaCharacters /> },
       { path: 'about', element: <About /> },
       { path: 'games', element: <Games /> },
       { path: 'games/cmyk', element: <Game /> },
