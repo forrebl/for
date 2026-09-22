@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import Reveal from '../components/Reveal';
 
 export default function ChaikaCharacters() {
+  const [showHeroBack, setShowHeroBack] = useState(false);
+
   return (
     <main
       className="pt-16 lg:pt-20 min-h-screen"
@@ -46,7 +49,75 @@ export default function ChaikaCharacters() {
             </div>
           </Reveal>
 
-          <div className="min-h-[48vh] sm:min-h-[54vh]" aria-hidden="true" />
+          <Reveal delay={140}>
+            <section className="chaika-character-feature">
+              <div className="chaika-character-feature__topline">
+                <span className="chaika-character-feature__index">01</span>
+                <div>
+                  <p className="chaika-character-feature__eyebrow">Главный герой</p>
+                  <h2 className="chaika-character-feature__name">Автомеханик «ГАЗ»</h2>
+                </div>
+              </div>
+
+              <div className="chaika-character-showcase">
+                <figure className="chaika-character-panel chaika-character-panel--gif">
+                  <figcaption className="chaika-character-panel__label">Анимация</figcaption>
+                  <div className="chaika-character-panel__media">
+                    <img
+                      src="/images/chaika/characters/main-hero/hero.gif"
+                      alt="Анимация главного героя"
+                      className="chaika-character-panel__image chaika-character-panel__image--gif"
+                    />
+                  </div>
+                </figure>
+
+                <figure className="chaika-character-panel chaika-character-panel--turnaround">
+                  <figcaption className="chaika-character-panel__label">
+                    {showHeroBack ? 'Вид сзади' : 'Вид спереди'}
+                  </figcaption>
+                  <button
+                    type="button"
+                    className={`chaika-hero-turnaround ${showHeroBack ? 'is-back' : ''}`}
+                    onClick={() => setShowHeroBack((value) => !value)}
+                    aria-label={showHeroBack ? 'Показать героя спереди' : 'Показать героя сзади'}
+                    aria-pressed={showHeroBack}
+                  >
+                    <span className="chaika-hero-turnaround__view chaika-hero-turnaround__view--front" aria-hidden="true" />
+                    <span className="chaika-hero-turnaround__view chaika-hero-turnaround__view--back" aria-hidden="true" />
+                    <span className="chaika-hero-turnaround__hint">
+                      <span className="chaika-hero-turnaround__hint-desktop">наведи</span>
+                      <span className="chaika-hero-turnaround__hint-mobile">нажми</span>
+                      <span aria-hidden="true"> ↻</span>
+                    </span>
+                  </button>
+                </figure>
+
+                <figure className="chaika-character-panel chaika-character-panel--emotions">
+                  <figcaption className="chaika-character-panel__label">Эмоции</figcaption>
+                  <div className="chaika-character-panel__media">
+                    <img
+                      src="/images/chaika/characters/main-hero/hero-emotions.png"
+                      alt="Эмоции главного героя"
+                      className="chaika-character-panel__image chaika-character-panel__image--emotions"
+                    />
+                  </div>
+                </figure>
+              </div>
+
+              <div className="chaika-character-description">
+                <span className="chaika-character-description__marker" aria-hidden="true">+</span>
+                <p>
+                  Главный герой – миролюбивый автомеханик «ГАЗ», подрабатывающий таксистом
+                  на&nbsp;своей Волге 2110, которую по&nbsp;сюжету угоняет банда. Ему 30 лет,
+                  средний рост, непримечательная внешность и&nbsp;обычное телосложение. Лицо
+                  вытянутое, волосы пострижены в&nbsp;модный маллет, под носом красуются
+                  роскошные усы. Одежда простого работяги: клетчатая рубашка, комбинезон
+                  с&nbsp;карманами, кеды «два мяча». Его облик сделан удобным
+                  для&nbsp;анимации и&nbsp;активной мимики.
+                </p>
+              </div>
+            </section>
+          </Reveal>
         </div>
       </section>
     </main>
