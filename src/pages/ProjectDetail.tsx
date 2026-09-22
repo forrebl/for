@@ -42,7 +42,7 @@ export default function ProjectDetail() {
           className="relative overflow-hidden"
           style={{
             backgroundColor: '#ddd5ba',
-            backgroundImage: "url('/images/chaika-bg.webp')",
+            backgroundImage: "url('/images/chaika-bg.jpg')",
             backgroundRepeat: 'repeat-y',
             backgroundSize: '100% auto',
             backgroundPosition: 'top center',
