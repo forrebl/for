@@ -263,9 +263,9 @@ export default function ProjectDetail() {
               <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#5b4b31]/20">
                 <Link
                   to="/projects?filter=cgi"
-                  className="chaika-back-link"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#6e321c] hover:text-[#244f80] transition-colors"
                 >
-                  В&nbsp;CGI-проекты
+                  ← Вернуться к&nbsp;CGI-проектам
                 </Link>
               </div>
             </Reveal>
