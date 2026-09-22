@@ -30,7 +30,7 @@ export default function ProjectDetail() {
       <main className="pt-16 lg:pt-20 min-h-screen">
         <Reveal>
           <div
-            className="w-full aspect-video overflow-hidden border-b border-black/10 bg-[#ddd5ba] flex items-center justify-center px-5 sm:px-8 lg:px-12"
+            className="w-full aspect-[32/9] overflow-hidden border-b border-black/10 bg-[#ddd5ba] flex items-center justify-center px-5 sm:px-8 lg:px-12"
             style={{
               backgroundImage: "url('/images/chaika-bg.jpg')",
               backgroundRepeat: 'repeat-y',
