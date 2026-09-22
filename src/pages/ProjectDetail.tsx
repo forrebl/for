@@ -25,6 +25,129 @@ export default function ProjectDetail() {
     );
   }
 
+  if (project.id === 'project-1') {
+    return (
+      <main className="pt-16 lg:pt-20 min-h-screen">
+        <Reveal>
+          <div className="w-full aspect-video overflow-hidden border-b border-black/10 bg-[#d9d4b8]">
+            <img
+              src={project.cover}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </Reveal>
+
+        <section
+          className="relative overflow-hidden"
+          style={{
+            backgroundColor: '#ddd5ba',
+            backgroundImage: "url('/images/chaika-bg.webp')",
+            backgroundRepeat: 'repeat-y',
+            backgroundSize: '100% auto',
+            backgroundPosition: 'top center',
+          }}
+        >
+          <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20">
+            <Reveal>
+              <p
+                className="text-xs uppercase tracking-[0.22em] mb-3 text-[#244f80]"
+                style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif" }}
+              >
+                CGI
+              </p>
+              <h1
+                className="font-bold uppercase text-[#7a2f12] mb-8 sm:mb-10"
+                style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+              >
+                Концепт игры «Чайка»
+              </h1>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="max-w-4xl mx-auto mb-14 sm:mb-16 lg:mb-20">
+                <div className="relative rounded-[10px] border-[3px] border-[#3f2b1f] bg-[#f6d982]/85 px-5 py-5 sm:px-8 sm:py-7 lg:px-10 lg:py-8 text-[#8a431e] shadow-[inset_0_0_0_2px_rgba(255,240,180,0.75)] outline outline-1 outline-[#3f2b1f] outline-offset-[4px]">
+                  <p className="text-sm sm:text-base lg:text-lg leading-[1.52]">
+                    Сюжет игры сосредоточен вокруг автослесаря, подрабатывающего таксистом.
+                    Отправной точкой становится загадочное исчезновение его автомобиля: он
+                    самопроизвольно заводится и&nbsp;уезжает в&nbsp;неизвестном направлении.
+                    Герой начинает собственное расследование. Он постепенно выявляет, что
+                    в&nbsp;городе происходит серия аналогичных краж. В&nbsp;ходе развития
+                    сюжета становится известно, что группа бандитов-угонщиков собирает
+                    из&nbsp;похищенных автомобилей космический корабль с&nbsp;целью покинуть
+                    Землю и&nbsp;отправиться на&nbsp;Луну. Кульминацией становится проникновение
+                    героя в&nbsp;их убежище, возвращение любимого автомобиля и&nbsp;неудачный
+                    запуск ракеты.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="space-y-8 sm:space-y-10 lg:space-y-12 max-w-5xl">
+              <Reveal delay={120}>
+                <div className="grid grid-cols-1 sm:grid-cols-[210px_minmax(0,1fr)] gap-2 sm:gap-8 items-start">
+                  <h2
+                    className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#9a4317] leading-none"
+                    style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                  >
+                    Сеттинг:
+                  </h2>
+                  <p className="text-[#6e321c] text-base sm:text-lg leading-relaxed pt-0.5">
+                    атомикпанк, ретрофутуризм, альтернативный СССР 1970–1980-х
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={160}>
+                <div className="grid grid-cols-1 sm:grid-cols-[210px_minmax(0,1fr)] gap-2 sm:gap-8 items-start">
+                  <h2
+                    className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#806600] leading-none"
+                    style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                  >
+                    Жанр:
+                  </h2>
+                  <p className="text-[#70551a] text-base sm:text-lg leading-relaxed pt-0.5">
+                    приключение, point-and-click, детектив
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={200}>
+                <div className="grid grid-cols-1 sm:grid-cols-[210px_minmax(0,1fr)] gap-3 sm:gap-8 items-start">
+                  <h2
+                    className="text-2xl sm:text-3xl lg:text-4xl uppercase text-[#244f80] leading-none"
+                    style={{ fontFamily: "Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
+                  >
+                    ЦА:
+                  </h2>
+                  <div className="space-y-3 text-[#244f80] text-base sm:text-lg leading-relaxed">
+                    <p>пользователи от&nbsp;14 лет</p>
+                    <p>любители инди-игр, приключенческих игр и&nbsp;point-and-click квестов</p>
+                    <p>игроки, интересующиеся ретрофутуризмом и&nbsp;атомикпанком</p>
+                    <p>поклонники игр вроде «Machinarium», «Papers, Please», «Atomic Heart», «Зайчик»</p>
+                    <p>люди, выросшие в&nbsp;странах СНГ и&nbsp;испытывающие интерес к&nbsp;советской культуре</p>
+                    <p>художники, дизайнеры и&nbsp;любители авторских визуальных проектов</p>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={240}>
+              <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#5b4b31]/20">
+                <Link
+                  to="/projects?filter=cgi"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#6e321c] hover:text-[#244f80] transition-colors"
+                >
+                  ← Вернуться к&nbsp;CGI-проектам
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className="pt-20 lg:pt-24 pb-20 lg:pb-32">
       {/* Cover */}
