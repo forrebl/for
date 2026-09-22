@@ -1,12 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { projects } from '../data/projects';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
   const nextProject = project ? projects.find((p) => p.id === project.nextProjectId) : null;
+  const [openChaikaInfoCard, setOpenChaikaInfoCard] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,69 +77,95 @@ export default function ProjectDetail() {
               </h1>
             </Reveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-8 items-stretch mb-14 sm:mb-16 lg:mb-20">
-              <Reveal delay={100}>
-                <div className="h-full rounded-[12px] border-[2px] border-[#3f2b1f]/70 bg-[#f3cf72]/58 px-5 py-6 sm:px-8 sm:py-8 lg:px-9 lg:py-9 shadow-[0_10px_24px_rgba(72,45,20,0.10)]">
-                  <div className="space-y-6 sm:space-y-7">
-                    <div>
-                      <h2
-                        className="text-xl sm:text-2xl lg:text-3xl uppercase text-[#9a4317] leading-none mb-2.5"
-                        style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-                      >
-                        Сеттинг:
-                      </h2>
-                      <p className="text-[#6e321c] text-sm sm:text-base leading-relaxed">
-                        атомикпанк, ретрофутуризм, альтернативный СССР 1970–1980-х
-                      </p>
-                    </div>
-
-                    <div>
-                      <h2
-                        className="text-xl sm:text-2xl lg:text-3xl uppercase text-[#806600] leading-none mb-2.5"
-                        style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-                      >
-                        Жанр:
-                      </h2>
-                      <p className="text-[#70551a] text-sm sm:text-base leading-relaxed">
-                        приключение, point-and-click, детектив
-                      </p>
-                    </div>
-
-                    <div>
-                      <h2
-                        className="text-xl sm:text-2xl lg:text-3xl uppercase text-[#244f80] leading-none mb-2.5"
-                        style={{ fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif", letterSpacing: '0.025em' }}
-                      >
-                        ЦА:
-                      </h2>
-                      <div className="space-y-2 text-[#244f80] text-sm sm:text-base leading-relaxed">
-                        <p>пользователи от&nbsp;14 лет</p>
-                        <p>любители инди-игр, приключенческих игр и&nbsp;point-and-click квестов</p>
-                        <p>игроки, интересующиеся ретрофутуризмом и&nbsp;атомикпанком</p>
-                        <p>поклонники игр вроде «Machinarium», «Papers, Please», «Atomic Heart», «Зайчик»</p>
-                        <p>люди, выросшие в&nbsp;странах СНГ и&nbsp;испытывающие интерес к&nbsp;советской культуре</p>
-                        <p>художники, дизайнеры и&nbsp;любители авторских визуальных проектов</p>
-                      </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-start mb-14 sm:mb-16 lg:mb-20">
+              <Reveal delay={80}>
+                <article className={`chaika-info-card ${openChaikaInfoCard === 'setting' ? 'is-open' : ''}`}>
+                  <button
+                    type="button"
+                    className="chaika-info-card__summary"
+                    onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'setting' ? null : 'setting')}
+                    aria-expanded={openChaikaInfoCard === 'setting'}
+                  >
+                    <span className="chaika-info-card__title text-[#9a4317]">Сеттинг</span>
+                    <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
+                  </button>
+                  <div className="chaika-info-card__body">
+                    <div className="chaika-info-card__body-inner text-[#6e321c]">
+                      атомикпанк, ретрофутуризм, альтернативный СССР 1970–1980-х
                     </div>
                   </div>
-                </div>
+                </article>
               </Reveal>
 
-              <Reveal delay={190}>
-                <div className="h-full relative rounded-[12px] border-[3px] border-[#3f2b1f] bg-[#f6d982]/85 px-5 py-6 sm:px-8 sm:py-8 lg:px-9 lg:py-9 text-[#8a431e] shadow-[inset_0_0_0_2px_rgba(255,240,180,0.75),0_10px_24px_rgba(72,45,20,0.10)] outline outline-1 outline-[#3f2b1f] outline-offset-[4px]">
-                  <p className="text-sm sm:text-base lg:text-[1.05rem] leading-[1.58]">
-                    Сюжет игры сосредоточен вокруг автослесаря, подрабатывающего таксистом.
-                    Отправной точкой становится загадочное исчезновение его автомобиля: он
-                    самопроизвольно заводится и&nbsp;уезжает в&nbsp;неизвестном направлении.
-                    Герой начинает собственное расследование. Он постепенно выявляет, что
-                    в&nbsp;городе происходит серия аналогичных краж. В&nbsp;ходе развития
-                    сюжета становится известно, что группа бандитов-угонщиков собирает
-                    из&nbsp;похищенных автомобилей космический корабль с&nbsp;целью покинуть
-                    Землю и&nbsp;отправиться на&nbsp;Луну. Кульминацией становится проникновение
-                    героя в&nbsp;их убежище, возвращение любимого автомобиля и&nbsp;неудачный
-                    запуск ракеты.
-                  </p>
-                </div>
+              <Reveal delay={130}>
+                <article className={`chaika-info-card ${openChaikaInfoCard === 'genre' ? 'is-open' : ''}`}>
+                  <button
+                    type="button"
+                    className="chaika-info-card__summary"
+                    onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'genre' ? null : 'genre')}
+                    aria-expanded={openChaikaInfoCard === 'genre'}
+                  >
+                    <span className="chaika-info-card__title text-[#806600]">Жанр</span>
+                    <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
+                  </button>
+                  <div className="chaika-info-card__body">
+                    <div className="chaika-info-card__body-inner text-[#70551a]">
+                      приключение, point-and-click, детектив
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+
+              <Reveal delay={180}>
+                <article className={`chaika-info-card ${openChaikaInfoCard === 'audience' ? 'is-open' : ''}`}>
+                  <button
+                    type="button"
+                    className="chaika-info-card__summary"
+                    onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'audience' ? null : 'audience')}
+                    aria-expanded={openChaikaInfoCard === 'audience'}
+                  >
+                    <span className="chaika-info-card__title text-[#244f80]">ЦА</span>
+                    <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
+                  </button>
+                  <div className="chaika-info-card__body">
+                    <div className="chaika-info-card__body-inner text-[#244f80] space-y-2">
+                      <p>пользователи от&nbsp;14 лет</p>
+                      <p>любители инди-игр, приключенческих игр и&nbsp;point-and-click квестов</p>
+                      <p>игроки, интересующиеся ретрофутуризмом и&nbsp;атомикпанком</p>
+                      <p>поклонники игр вроде «Machinarium», «Papers, Please», «Atomic Heart», «Зайчик»</p>
+                      <p>люди, выросшие в&nbsp;странах СНГ и&nbsp;испытывающие интерес к&nbsp;советской культуре</p>
+                      <p>художники, дизайнеры и&nbsp;любители авторских визуальных проектов</p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+
+              <Reveal delay={230}>
+                <article className={`chaika-info-card ${openChaikaInfoCard === 'plot' ? 'is-open' : ''}`}>
+                  <button
+                    type="button"
+                    className="chaika-info-card__summary"
+                    onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'plot' ? null : 'plot')}
+                    aria-expanded={openChaikaInfoCard === 'plot'}
+                  >
+                    <span className="chaika-info-card__title text-[#8a431e]">Сюжет</span>
+                    <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
+                  </button>
+                  <div className="chaika-info-card__body">
+                    <div className="chaika-info-card__body-inner text-[#8a431e]">
+                      Сюжет игры сосредоточен вокруг автослесаря, подрабатывающего таксистом.
+                      Отправной точкой становится загадочное исчезновение его автомобиля: он
+                      самопроизвольно заводится и&nbsp;уезжает в&nbsp;неизвестном направлении.
+                      Герой начинает собственное расследование. Он постепенно выявляет, что
+                      в&nbsp;городе происходит серия аналогичных краж. В&nbsp;ходе развития
+                      сюжета становится известно, что группа бандитов-угонщиков собирает
+                      из&nbsp;похищенных автомобилей космический корабль с&nbsp;целью покинуть
+                      Землю и&nbsp;отправиться на&nbsp;Луну. Кульминацией становится проникновение
+                      героя в&nbsp;их убежище, возвращение любимого автомобиля и&nbsp;неудачный
+                      запуск ракеты.
+                    </div>
+                  </div>
+                </article>
               </Reveal>
             </div>
 
