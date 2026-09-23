@@ -2554,3 +2554,221 @@
     height: calc(100svh - 5rem);
   }
 }
+
+
+/* Omut comic reader */
+.omut-reader {
+  min-height: 100svh;
+  padding-top: 4rem;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.omut-reader__hero {
+  position: relative;
+  min-height: calc(100svh - 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: #000;
+}
+
+.omut-hover-page {
+  position: relative;
+  width: min(78vw, 720px);
+  aspect-ratio: 419.528 / 595.276;
+  overflow: hidden;
+  background: #000;
+}
+
+.omut-hover-page__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition:
+    opacity 520ms cubic-bezier(.22,.61,.36,1),
+    transform 700ms cubic-bezier(.22,.61,.36,1);
+}
+
+.omut-hover-page__image--base {
+  opacity: 1;
+}
+
+.omut-hover-page__image--hover {
+  opacity: 0;
+  transform: scale(1.015);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .omut-hover-page:hover .omut-hover-page__image--base {
+    opacity: 0;
+    transform: scale(0.992);
+  }
+
+  .omut-hover-page:hover .omut-hover-page__image--hover {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.omut-reader__hover-hint {
+  position: absolute;
+  left: calc(50% + min(39vw, 360px) + 1.1rem);
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,.42);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.omut-reader__seamless {
+  width: min(92vw, 780px);
+  margin: 0 auto;
+  background: #000;
+}
+
+.omut-reader__seamless-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.omut-reader__page-strip {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: 5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vh, 2.75rem);
+  background: #000;
+}
+
+.omut-reader__page-strip--continuation,
+.omut-reader__page-strip--ending {
+  padding-top: 2rem;
+}
+
+.omut-reader__screen-page {
+  min-height: calc(100svh - 4rem - 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.omut-reader__screen-page > img,
+.omut-reader__screen-page > .omut-hover-page {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100svh - 4rem - 3rem);
+}
+
+.omut-reader__screen-page > img {
+  object-fit: contain;
+}
+
+.omut-reader__screen-page > .omut-hover-page {
+  width: min(78vw, 720px);
+  aspect-ratio: 419.528 / 595.276;
+}
+
+.omut-reader__ending {
+  min-height: 52svh;
+  padding: 6rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  text-align: center;
+  background: #000;
+}
+
+.omut-reader__ending p {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: .02em;
+  text-transform: lowercase;
+}
+
+.omut-reader__back-link {
+  color: rgba(255,255,255,.58);
+  font-size: .9rem;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.omut-reader__back-link:hover,
+.omut-reader__back-link:focus-visible {
+  color: #fff;
+  transform: translateX(-3px);
+}
+
+@media (max-width: 767px) {
+  .omut-reader__hero {
+    padding-inline: .75rem;
+  }
+
+  .omut-hover-page,
+  .omut-reader__screen-page > .omut-hover-page {
+    width: min(88vw, 560px);
+  }
+
+  .omut-reader__hover-hint {
+    left: auto;
+    right: .6rem;
+    font-size: .58rem;
+  }
+
+  .omut-reader__seamless {
+    width: 100%;
+  }
+
+  .omut-reader__page-strip {
+    padding-inline: .75rem;
+    gap: 1.2rem;
+  }
+
+  .omut-reader__screen-page {
+    min-height: calc(100svh - 4rem - 2rem);
+  }
+
+  .omut-reader__screen-page > img,
+  .omut-reader__screen-page > .omut-hover-page {
+    max-height: calc(100svh - 4rem - 2rem);
+  }
+
+  .omut-reader__ending {
+    min-height: 44svh;
+    padding-block: 4rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .omut-reader {
+    padding-top: 5rem;
+  }
+
+  .omut-reader__hero {
+    min-height: calc(100svh - 5rem);
+  }
+
+  .omut-reader__screen-page {
+    min-height: calc(100svh - 5rem - 3rem);
+  }
+
+  .omut-reader__screen-page > img,
+  .omut-reader__screen-page > .omut-hover-page {
+    max-height: calc(100svh - 5rem - 3rem);
+  }
+}
