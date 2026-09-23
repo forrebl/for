@@ -104,8 +104,11 @@
 }
 
 /* About page portrait: reveal the homepage animation on hover. */
+.about-portrait__photo {
+  transform: translateY(11%) scale(2.3);
+}
+
 .about-portrait__motion {
-  background-color: #9acccb;
   opacity: 0;
   transition: opacity 400ms ease;
 }
