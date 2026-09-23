@@ -2540,6 +2540,7 @@
 /* Omut comic reader */
 .omut-reader {
   --omut-vertical-page-width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
+  --omut-page-gap: 2.5rem;
   min-height: 100svh;
   padding-top: 4rem;
   overflow-x: hidden;
@@ -2694,24 +2695,14 @@
 .omut-reader__page-strip {
   width: min(100%, 980px);
   margin: 0 auto;
-  padding: 5rem 1rem;
+  padding: var(--omut-page-gap) 1rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.5rem, 3vh, 2.75rem);
+  gap: var(--omut-page-gap);
   background: #2b2b2b;
 }
 
-.omut-reader__page-strip--continuation {
-  padding-top: 2rem;
-  padding-bottom: 0.75rem;
-}
-
-.omut-reader__page-strip--ending {
-  padding-top: 0.75rem;
-}
-
 .omut-reader__screen-page {
-  min-height: calc(100svh - 4rem - 3rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2783,6 +2774,7 @@
 @media (max-width: 767px) {
   .omut-reader {
     --omut-vertical-page-width: min(88vw, 560px, calc((100svh - 7rem) * 0.7048));
+    --omut-page-gap: 1.75rem;
   }
 
   .omut-reader__hero {
@@ -2807,11 +2799,6 @@
 
   .omut-reader__page-strip {
     padding-inline: .75rem;
-    gap: 1.2rem;
-  }
-
-  .omut-reader__screen-page {
-    min-height: calc(100svh - 4rem - 2rem);
   }
 
   .omut-reader__screen-page > img,
@@ -2838,10 +2825,6 @@
 
   .omut-reader__horizontal-stage {
     height: calc(100svh - 5rem);
-  }
-
-  .omut-reader__screen-page {
-    min-height: calc(100svh - 5rem - 3rem);
   }
 
   .omut-reader__screen-page > img,

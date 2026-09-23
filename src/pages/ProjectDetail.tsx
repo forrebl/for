@@ -291,7 +291,7 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        <section className="omut-reader__page-strip" aria-label="Омут — страницы 8–15">
+        <section className="omut-reader__page-strip" aria-label="Омут — страницы 8–23">
           {[8, 9, 10, 11, 12, 13, 14].map((page) => (
             <div key={page} className="omut-reader__screen-page">
               <img src={omutImage(page)} alt={`Омут — страница ${page}`} loading="lazy" />
@@ -303,9 +303,6 @@ export default function ProjectDetail() {
               <span className="omut-reader__hover-label" aria-hidden="true">наведи курсор</span>
             </div>
           </div>
-        </section>
-
-        <section className="omut-reader__page-strip omut-reader__page-strip--continuation" aria-label="Омут — страницы 17–19">
           <div className="omut-reader__screen-page">
             <img src={omutImage(17)} alt="Омут — страница 17" loading="lazy" />
           </div>
@@ -315,9 +312,6 @@ export default function ProjectDetail() {
               <span className="omut-reader__hover-label" aria-hidden="true">наведи курсор</span>
             </div>
           </div>
-        </section>
-
-        <section className="omut-reader__page-strip omut-reader__page-strip--ending" aria-label="Омут — страницы 20–23">
           {[20, 21, 22, 23].map((page) => (
             <div key={page} className="omut-reader__screen-page">
               <img src={omutImage(page)} alt={`Омут — страница ${page}`} loading="lazy" />
