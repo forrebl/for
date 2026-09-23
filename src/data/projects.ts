@@ -20,6 +20,7 @@ export const categories = [
   { slug: 'graphic-design', label: 'Графический дизайн', color: '#00bcd4' },
   { slug: 'cgi', label: 'CGI', color: '#ffeb3b' },
   { slug: 'illustrations', label: 'Иллюстрации', color: '#e91e63' },
+  { slug: 'comics', label: 'Комиксы', color: '#9c27b0' },
   { slug: 'fun-folder', label: 'Папка с приколами', color: '#f44336' },
 ];
 
