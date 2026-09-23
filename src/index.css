@@ -2558,7 +2558,7 @@
 
 /* Omut comic reader */
 .omut-reader {
-  --omut-vertical-page-width: var(--omut-vertical-page-width);
+  --omut-vertical-page-width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
   min-height: 100svh;
   padding-top: 4rem;
   overflow-x: hidden;
@@ -2600,7 +2600,7 @@
 
 .omut-hover-page {
   position: relative;
-  width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
+  width: var(--omut-vertical-page-width);
   aspect-ratio: 419.528 / 595.276;
   overflow: hidden;
   background: #000;
@@ -2640,7 +2640,7 @@
 
 .omut-reader__hover-wrap {
   position: relative;
-  width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
+  width: var(--omut-vertical-page-width);
 }
 
 .omut-reader__hover-wrap .omut-hover-page {
@@ -2653,7 +2653,7 @@
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255,255,255,.46);
-  font-size: .9rem;
+  font-size: 1rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -2814,7 +2814,7 @@
     top: auto;
     bottom: -1.35rem;
     transform: translateX(-50%);
-    font-size: .72rem;
+    font-size: .8rem;
   }
 
   .omut-reader__horizontal-stage {
@@ -2835,7 +2835,8 @@
   }
 
   .omut-reader__screen-page > img,
-  .omut-reader__screen-page > .omut-hover-page {
+  .omut-reader__screen-page > .omut-hover-page,
+  .omut-reader__screen-page > .omut-reader__hover-wrap {
     max-height: calc(100svh - 4rem - 2rem);
   }
 
@@ -2868,7 +2869,8 @@
   }
 
   .omut-reader__screen-page > img,
-  .omut-reader__screen-page > .omut-hover-page {
+  .omut-reader__screen-page > .omut-hover-page,
+  .omut-reader__screen-page > .omut-reader__hover-wrap {
     max-height: calc(100svh - 5rem - 3rem);
   }
 }
