@@ -142,11 +142,21 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 lg:mb-20 items-start min-w-0">
           <div className="lg:col-span-5 min-w-0">
             <Reveal>
-              <div className="w-full max-w-[360px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 aspect-[3/4] bg-card border border-border overflow-hidden rounded-2xl">
+              <div className="about-portrait relative w-full max-w-[360px] sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 aspect-square bg-card border border-border overflow-hidden rounded-2xl">
                 <img
                   src="/images/about.jpg"
                   alt="Фомина Анастасия"
-                  className="w-full h-full object-cover object-center scale-[1.24] -translate-y-3"
+                  className="w-full h-full object-cover object-center"
+                />
+                <video
+                  src="/media/about-loop.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden="true"
+                  className="about-portrait__motion absolute inset-0 w-full h-full object-cover pointer-events-none"
                 />
               </div>
             </Reveal>
