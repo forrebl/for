@@ -94,7 +94,7 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 max-w-4xl gap-2 sm:gap-3 lg:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
             {galleryItems.map((item, index) => (
               <Reveal key={item.id} delay={(index % 4) * 60}>
                 <button
