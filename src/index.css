@@ -2565,6 +2565,21 @@
   color: #fff;
 }
 
+.omut-reader,
+.omut-reader section,
+.omut-reader div,
+.omut-reader figure,
+.omut-reader img {
+  background-color: #000;
+}
+
+.omut-reader img {
+  display: block;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
 .omut-reader__hero {
   position: relative;
   min-height: calc(100svh - 4rem);
@@ -2661,9 +2676,9 @@
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  background: #000;
 }
 
 .omut-reader__horizontal-scroll::-webkit-scrollbar {
@@ -2689,16 +2704,15 @@
   width: auto;
   height: 100%;
   object-fit: contain;
-  margin: 0 -2px 0 0;
-  clip-path: inset(0 2px 0 0);
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
   background: #000;
 }
 
 .omut-reader__horizontal-image--spread {
-  clip-path: none;
-  margin-right: -1px;
+  margin: 0;
 }
 
 .omut-reader__page-strip {
@@ -2739,6 +2753,10 @@
 
 .omut-reader__screen-page > img {
   object-fit: contain;
+  background: #000;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
 }
 
 .omut-reader__screen-page > .omut-hover-page,
