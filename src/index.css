@@ -2405,3 +2405,15 @@
     height: 62px;
   }
 }
+
+
+/* Civilian faction bottom spacing */
+.chaika-character-select__group--civilians {
+  padding-bottom: 1.15rem;
+}
+
+@media (max-width: 639px) {
+  .chaika-character-select__group--civilians {
+    padding-bottom: 0.95rem;
+  }
+}
