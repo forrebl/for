@@ -75,8 +75,16 @@ export default function ProjectDetail() {
         const lastPage = pages[lastIndex];
         const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
         const lastCenter = lastPage.offsetLeft + lastPage.offsetWidth / 2;
+        const isCentered = Math.abs(lastCenter - viewportCenter) <= 4;
 
-        if (Math.abs(lastCenter - viewportCenter) <= 4) return;
+        if (isCentered) {
+          event.preventDefault();
+          window.scrollBy({
+            top: event.deltaY !== 0 ? event.deltaY : Math.abs(delta),
+            behavior: 'auto',
+          });
+          return;
+        }
 
         event.preventDefault();
         centerPage(lastPage);
@@ -87,8 +95,16 @@ export default function ProjectDetail() {
         const firstPage = pages[0];
         const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
         const firstCenter = firstPage.offsetLeft + firstPage.offsetWidth / 2;
+        const isCentered = Math.abs(firstCenter - viewportCenter) <= 4;
 
-        if (Math.abs(firstCenter - viewportCenter) <= 4) return;
+        if (isCentered) {
+          event.preventDefault();
+          window.scrollBy({
+            top: event.deltaY !== 0 ? event.deltaY : -Math.abs(delta),
+            behavior: 'auto',
+          });
+          return;
+        }
 
         event.preventDefault();
         centerPage(firstPage);
