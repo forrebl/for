@@ -113,8 +113,7 @@ export default function ProjectDetail() {
       if (
         movingForward &&
         currentIndex === pages.length - 1 &&
-        isPageCentered(lastPage) &&
-        stage.getBoundingClientRect().top <= headerHeight() + 8
+        isPageCentered(lastPage)
       ) {
         return;
       }
@@ -122,8 +121,7 @@ export default function ProjectDetail() {
       if (
         !movingForward &&
         currentIndex === 0 &&
-        isPageCentered(firstPage) &&
-        stage.getBoundingClientRect().top >= headerHeight() - 8
+        isPageCentered(firstPage)
       ) {
         return;
       }
