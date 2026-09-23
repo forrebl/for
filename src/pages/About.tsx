@@ -146,7 +146,7 @@ export default function About() {
                 <img
                   src="/images/about.jpg"
                   alt="Фомина Анастасия"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center scale-[1.1]"
                 />
                 <video
                   src="/media/about-loop.mp4"
@@ -156,7 +156,7 @@ export default function About() {
                   playsInline
                   preload="metadata"
                   aria-hidden="true"
-                  className="about-portrait__motion absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  className="about-portrait__motion absolute inset-0 w-full h-full object-contain pointer-events-none"
                 />
               </div>
             </Reveal>

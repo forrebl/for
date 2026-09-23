@@ -105,6 +105,7 @@
 
 /* About page portrait: reveal the homepage animation on hover. */
 .about-portrait__motion {
+  background-color: #9acccb;
   opacity: 0;
   transition: opacity 400ms ease;
 }
