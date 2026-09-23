@@ -1,27 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
-import { projects, categories } from '../data/projects';
+import { categories } from '../data/projects';
 
 const directions = categories.filter((c) => c.slug !== 'all');
 
-const galleryItems = projects.slice(0, 7).map((project) => ({
-  id: project.id,
-  image: project.id === 'project-1' ? '/images/chaika-promo-art.jpg' : project.cover,
-  title: project.id === 'project-1' ? 'Промо-арт игры «Чайка»' : project.title,
-  description: project.id === 'project-1'
-    ? '«Чайка» — приключенческая point-and-click игра с детективным сюжетом в мире альтернативного СССР 1970–1980-х. Ретрофутуризм и роботы соседствуют со знакомыми деталями эпохи.'
-    : project.description,
-}));
-
-if (projects[0]?.resultImages[0]) {
-  galleryItems.push({
-    id: `${projects[0].id}-detail`,
-    image: projects[0].resultImages[0],
-    title: `${projects[0].title} — деталь`,
-    description: projects[0].description,
-  });
-}
+const galleryItems = [
+  {
+    id: 'project-1',
+    image: '/images/chaika-promo-art.jpg',
+    title: 'Промо-арт игры «Чайка»',
+    description: '«Чайка» — приключенческая point-and-click игра с детективным сюжетом в мире альтернативного СССР 1970–1980-х. Ретрофутуризм и роботы соседствуют со знакомыми деталями эпохи.',
+  },
+  {
+    id: 'twenty-thirty',
+    image: '/images/twenty-thirty.jpg',
+    title: '20:30',
+    description: 'Иллюстрация с QR-кодом моего рабочего Telegram-канала. Название соединяет возраст аудитории — 20–30 лет — и время, когда целое поколение готовилось ко сну: водило пальцем по узорам ковра на стене и слушало колыбельную про серого волчка.',
+  },
+];
 
 type GalleryItem = (typeof galleryItems)[number];
 
@@ -97,7 +94,7 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
+          <div className="grid grid-cols-2 max-w-4xl gap-2 sm:gap-3 lg:gap-4">
             {galleryItems.map((item, index) => (
               <Reveal key={item.id} delay={(index % 4) * 60}>
                 <button
