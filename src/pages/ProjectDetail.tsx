@@ -340,7 +340,7 @@ export default function ProjectDetail() {
       <main
         className="pt-16 lg:pt-20 min-h-screen"
         style={{
-          backgroundColor: '#ddd5ba',
+          backgroundColor: '#f6df9d',
           backgroundImage: "url('/images/chaika-bg.jpg')",
           backgroundRepeat: 'repeat-y',
           backgroundSize: '100% auto',
@@ -392,11 +392,11 @@ export default function ProjectDetail() {
                     onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'setting' ? null : 'setting')}
                     aria-expanded={openChaikaInfoCard === 'setting'}
                   >
-                    <span className="chaika-info-card__title text-[#9a4317]">Сеттинг</span>
+                    <span className="chaika-info-card__title text-[#b63f32]">Сеттинг</span>
                     <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
                   </button>
                   <div className="chaika-info-card__body">
-                    <div className="chaika-info-card__body-inner text-[#6e321c]">
+                    <div className="chaika-info-card__body-inner text-[#8f260e]">
                       атомикпанк, ретрофутуризм, альтернативный СССР 1970–1980-х
                     </div>
                   </div>
@@ -411,11 +411,11 @@ export default function ProjectDetail() {
                     onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'genre' ? null : 'genre')}
                     aria-expanded={openChaikaInfoCard === 'genre'}
                   >
-                    <span className="chaika-info-card__title text-[#806600]">Жанр</span>
+                    <span className="chaika-info-card__title text-[#d99c26]">Жанр</span>
                     <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
                   </button>
                   <div className="chaika-info-card__body">
-                    <div className="chaika-info-card__body-inner text-[#70551a]">
+                    <div className="chaika-info-card__body-inner text-[#c8871f]">
                       приключение, point-and-click, детектив
                     </div>
                   </div>
@@ -454,11 +454,11 @@ export default function ProjectDetail() {
                     onClick={() => setOpenChaikaInfoCard(openChaikaInfoCard === 'plot' ? null : 'plot')}
                     aria-expanded={openChaikaInfoCard === 'plot'}
                   >
-                    <span className="chaika-info-card__title text-[#8a431e]">Сюжет</span>
+                    <span className="chaika-info-card__title text-[#b63f32]">Сюжет</span>
                     <span className="chaika-info-card__chevron" aria-hidden="true">⌄</span>
                   </button>
                   <div className="chaika-info-card__body">
-                    <div className="chaika-info-card__body-inner text-[#8a431e]">
+                    <div className="chaika-info-card__body-inner text-[#b63f32]">
                       Сюжет игры сосредоточен вокруг автослесаря, подрабатывающего таксистом.
                       Отправной точкой становится загадочное исчезновение его автомобиля: он
                       самопроизвольно заводится и&nbsp;уезжает в&nbsp;неизвестном направлении.
@@ -558,10 +558,10 @@ export default function ProjectDetail() {
             </Reveal>
 
             <Reveal delay={240}>
-              <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#5b4b31]/20">
+              <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#315f9d]/25">
                 <Link
                   to="/projects?filter=cgi"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#6e321c] hover:text-[#244f80] transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#8f260e] hover:text-[#244f80] transition-colors"
                 >
                   ← Вернуться к&nbsp;CGI-проектам
                 </Link>
