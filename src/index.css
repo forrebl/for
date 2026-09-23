@@ -2869,3 +2869,192 @@
     max-height: calc(100svh - 5rem - 3rem);
   }
 }
+
+
+/* Chaika characters: fit selector, artwork and description into one desktop viewport */
+@media (min-width: 900px) {
+  .chaika-characters-page {
+    --chaika-characters-header: 4rem;
+  }
+
+  .chaika-characters-page__section {
+    min-height: calc(100svh - var(--chaika-characters-header)) !important;
+  }
+
+  .chaika-characters-page__shell {
+    min-height: calc(100svh - var(--chaika-characters-header));
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chaika-characters-page__back {
+    margin-bottom: 0.65rem !important;
+    font-size: 0.8rem !important;
+    line-height: 1.2;
+  }
+
+  .chaika-characters-page__shell > *:last-child {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .chaika-character-select--right {
+    height: calc(100svh - var(--chaika-characters-header) - 4rem);
+    min-height: 0;
+    grid-template-columns: minmax(0, 1.55fr) minmax(250px, 286px);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .chaika-character-select--right .chaika-character-select__stage {
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-content: stretch;
+  }
+
+  .chaika-character-select__visuals,
+  .chaika-character-select__visuals.has-secondary {
+    height: 100%;
+    min-height: 0;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .chaika-character-select__visuals:not(.has-secondary) {
+    min-height: 0;
+  }
+
+  .chaika-character-select__portrait,
+  .chaika-character-select__portrait--secondary {
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    padding: 0;
+  }
+
+  .chaika-character-select__portrait img,
+  .chaika-character-select__portrait--secondary img {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .chaika-character-select__full-sprite {
+    width: auto;
+    height: min(100%, 54svh);
+    max-width: 100%;
+    aspect-ratio: 240 / 380;
+    margin: 0 auto;
+  }
+
+  .chaika-character-select__info {
+    max-width: 100%;
+    margin-top: 0.45rem;
+  }
+
+  .chaika-character-select__identity {
+    margin-bottom: 0.45rem;
+    padding: 0.5rem 0.8rem 0.45rem;
+    border-width: 2px;
+    border-radius: 14px;
+    box-shadow:
+      0 3px 0 #7b4d16,
+      inset 0 1px 0 rgba(255, 244, 196, 0.55),
+      inset 0 -1px 0 rgba(107, 58, 10, 0.28);
+  }
+
+  .chaika-character-select__identity h2,
+  .chaika-character-select__identity p {
+    font-size: clamp(0.78rem, 1.15vw, 0.92rem);
+    line-height: 1.3;
+  }
+
+  .chaika-character-select__info .chaika-character-select__description {
+    max-width: 100%;
+    padding: 0.62rem 0.75rem;
+    border-radius: 10px;
+  }
+
+  .chaika-character-select__info .chaika-character-select__description p {
+    font-size: clamp(0.74rem, 1.03vw, 0.86rem);
+    line-height: 1.42;
+  }
+
+  .chaika-character-select--right .chaika-character-select__sidebar {
+    position: static;
+    top: auto;
+    height: 100%;
+    min-height: 0;
+    gap: clamp(0.38rem, 0.8vh, 0.65rem);
+    overflow: hidden;
+  }
+
+  .chaika-character-select__sidebar-title {
+    margin: 0 0 0.15rem;
+  }
+
+  .chaika-character-select__sidebar-title h1 {
+    font-size: clamp(1.45rem, 2.6vh, 2rem) !important;
+    line-height: 0.95 !important;
+  }
+
+  .chaika-character-select__group,
+  .chaika-character-select__group--main,
+  .chaika-character-select__group--gang,
+  .chaika-character-select__group--civilians {
+    padding: clamp(0.38rem, 0.7vh, 0.55rem);
+    border-width: 2px;
+    border-radius: 8px;
+    box-shadow:
+      0 3px 0 #2e2619,
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .chaika-character-select__group-heading {
+    margin: 0 0 clamp(0.25rem, 0.55vh, 0.4rem);
+  }
+
+  .chaika-character-select__group-title,
+  .chaika-character-select__group--main .chaika-character-select__group-title {
+    font-size: clamp(0.65rem, 1.3vh, 0.76rem);
+    line-height: 1.05;
+  }
+
+  .chaika-character-select__icons,
+  .chaika-character-select__group--main .chaika-character-select__icons,
+  .chaika-character-select__group--gang .chaika-character-select__icons,
+  .chaika-character-select__group--civilians .chaika-character-select__icons {
+    grid-template-columns: repeat(3, clamp(44px, 7.1vh, 64px));
+    gap: clamp(0.28rem, 0.6vh, 0.45rem);
+  }
+
+  .chaika-character-icon,
+  .chaika-character-select__group--main .chaika-character-icon {
+    width: clamp(44px, 7.1vh, 64px);
+    height: clamp(44px, 7.1vh, 64px);
+    border-width: 2px;
+    border-radius: 7px;
+    box-shadow:
+      0 2px 0 #2e2619,
+      inset 0 0 0 1px rgba(255,255,255,0.25);
+  }
+
+  .chaika-character-icon::after {
+    inset: 3px;
+  }
+
+  .chaika-character-select__group.chaika-character-select__group--civilians:last-child {
+    padding-bottom: clamp(0.38rem, 0.7vh, 0.55rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .chaika-characters-page {
+    --chaika-characters-header: 5rem;
+  }
+}
