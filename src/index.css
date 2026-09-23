@@ -2558,6 +2558,7 @@
 
 /* Omut comic reader */
 .omut-reader {
+  --omut-vertical-page-width: var(--omut-vertical-page-width);
   min-height: 100svh;
   padding-top: 4rem;
   overflow-x: hidden;
@@ -2652,7 +2653,7 @@
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255,255,255,.46);
-  font-size: .68rem;
+  font-size: .9rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -2747,6 +2748,8 @@
 }
 
 .omut-reader__screen-page > img {
+  width: var(--omut-vertical-page-width);
+  height: auto;
   object-fit: contain;
   background: #000;
   border: 0;
@@ -2756,7 +2759,7 @@
 
 .omut-reader__screen-page > .omut-hover-page,
 .omut-reader__screen-page > .omut-reader__hover-wrap {
-  width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
+  width: var(--omut-vertical-page-width);
 }
 
 .omut-reader__screen-page > .omut-hover-page {
@@ -2798,14 +2801,12 @@
 }
 
 @media (max-width: 767px) {
-  .omut-reader__hero {
-    padding-inline: .75rem;
+  .omut-reader {
+    --omut-vertical-page-width: min(88vw, 560px, calc((100svh - 7rem) * 0.7048));
   }
 
-  .omut-hover-page,
-  .omut-reader__screen-page > .omut-hover-page,
-  .omut-reader__screen-page > .omut-reader__hover-wrap {
-    width: min(88vw, 560px, calc((100svh - 7rem) * 0.7048));
+  .omut-reader__hero {
+    padding-inline: .75rem;
   }
 
   .omut-reader__hover-label {
@@ -2813,7 +2814,7 @@
     top: auto;
     bottom: -1.35rem;
     transform: translateX(-50%);
-    font-size: .58rem;
+    font-size: .72rem;
   }
 
   .omut-reader__horizontal-stage {
@@ -2846,6 +2847,7 @@
 
 @media (min-width: 1024px) {
   .omut-reader {
+    --omut-vertical-page-width: min(78vw, 720px, calc((100svh - 9rem) * 0.7048));
     padding-top: 5rem;
   }
 
@@ -2859,13 +2861,6 @@
 
   .omut-reader__horizontal-track {
     --omut-horizontal-page-size: calc(100svh - 5rem);
-  }
-
-  .omut-hover-page,
-  .omut-reader__hover-wrap,
-  .omut-reader__screen-page > .omut-hover-page,
-  .omut-reader__screen-page > .omut-reader__hover-wrap {
-    width: min(78vw, 720px, calc((100svh - 9rem) * 0.7048));
   }
 
   .omut-reader__screen-page {
