@@ -1514,3 +1514,56 @@
     height: 390px;
   }
 }
+
+
+/* Chaika two-column hero visuals */
+.chaika-character-showcase--simple {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 0.8fr);
+  gap: 0.75rem;
+  justify-content: start;
+  align-items: center;
+  max-width: 760px;
+}
+
+.chaika-character-showcase--simple .chaika-character-art {
+  height: 500px;
+}
+
+.chaika-character-showcase--simple .chaika-character-art:last-child {
+  width: 88%;
+  justify-self: start;
+}
+
+@media (max-width: 899px) {
+  .chaika-character-showcase--simple {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    max-width: 680px;
+  }
+
+  .chaika-character-showcase--simple > :last-child {
+    grid-column: auto;
+    width: 88%;
+    justify-self: start;
+  }
+
+  .chaika-character-showcase--simple .chaika-character-art {
+    height: 420px;
+  }
+}
+
+@media (max-width: 639px) {
+  .chaika-character-showcase--simple {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    max-width: 100%;
+  }
+
+  .chaika-character-showcase--simple > :last-child {
+    width: 100%;
+  }
+
+  .chaika-character-showcase--simple .chaika-character-art {
+    height: 360px;
+  }
+}
