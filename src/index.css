@@ -9,8 +9,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Consolas', 'Monaco', monospace;
-  --font-display: 'Consolas', 'Monaco', monospace;
+  --font-sans: 'Inter', Arial, sans-serif;
+  --font-display: 'Inter', Arial, sans-serif;
   --font-mono: 'Consolas', 'Monaco', monospace;
   
   --color-background: #ffffff;
