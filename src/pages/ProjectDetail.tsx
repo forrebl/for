@@ -10,6 +10,7 @@ export default function ProjectDetail() {
   const [openChaikaInfoCard, setOpenChaikaInfoCard] = useState<string | null>(null);
   const [comicPageIndex, setComicPageIndex] = useState(0);
   const omutHorizontalRef = useRef<HTMLDivElement | null>(null);
+  const omutHorizontalStageRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,17 +20,20 @@ export default function ProjectDetail() {
     if (id !== 'project-9') return;
 
     const strip = omutHorizontalRef.current;
-    if (!strip) return;
+    const stage = omutHorizontalStageRef.current;
+    if (!strip || !stage) return;
 
-    let wheelLocked = false;
+    let locked = false;
 
     const getPages = () =>
       Array.from(
         strip.querySelectorAll<HTMLElement>('.omut-reader__horizontal-image'),
       );
 
+    const getViewportCenter = () => strip.scrollLeft + strip.clientWidth / 2;
+
     const getCenteredIndex = (pages: HTMLElement[]) => {
-      const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
+      const viewportCenter = getViewportCenter();
       let index = 0;
       let bestDistance = Number.POSITIVE_INFINITY;
 
@@ -45,6 +49,11 @@ export default function ProjectDetail() {
       return index;
     };
 
+    const isPageCentered = (page: HTMLElement) => {
+      const pageCenter = page.offsetLeft + page.offsetWidth / 2;
+      return Math.abs(pageCenter - getViewportCenter()) <= 6;
+    };
+
     const centerPage = (page: HTMLElement) => {
       const maxScroll = strip.scrollWidth - strip.clientWidth;
       const target =
@@ -54,6 +63,33 @@ export default function ProjectDetail() {
         left: Math.max(0, Math.min(maxScroll, target)),
         behavior: 'smooth',
       });
+    };
+
+    const headerHeight = () => (window.innerWidth >= 1024 ? 80 : 64);
+
+    const stageIsAligned = () => {
+      const rect = stage.getBoundingClientRect();
+      return Math.abs(rect.top - headerHeight()) <= 6;
+    };
+
+    const stageIsInWorkingView = () => {
+      const rect = stage.getBoundingClientRect();
+      const top = headerHeight();
+      return rect.bottom > top && rect.top < window.innerHeight - 24;
+    };
+
+    const alignStage = () => {
+      const rect = stage.getBoundingClientRect();
+      window.scrollTo({
+        top: window.scrollY + rect.top - headerHeight(),
+        behavior: 'smooth',
+      });
+    };
+
+    const unlockLater = (delay = 460) => {
+      window.setTimeout(() => {
+        locked = false;
+      }, delay);
     };
 
     const handleWheel = (event: WheelEvent) => {
@@ -67,67 +103,68 @@ export default function ProjectDetail() {
 
       if (Math.abs(delta) < 2) return;
 
-      const currentIndex = getCenteredIndex(pages);
       const movingForward = delta > 0;
-      const lastIndex = pages.length - 1;
+      const currentIndex = getCenteredIndex(pages);
+      const firstPage = pages[0];
+      const lastPage = pages[pages.length - 1];
 
-      if (movingForward && currentIndex >= lastIndex) {
-        const lastPage = pages[lastIndex];
-        const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
-        const lastCenter = lastPage.offsetLeft + lastPage.offsetWidth / 2;
-        const isCentered = Math.abs(lastCenter - viewportCenter) <= 4;
-
-        if (isCentered) {
-          event.preventDefault();
-          window.scrollBy({
-            top: event.deltaY !== 0 ? event.deltaY : Math.abs(delta),
-            behavior: 'auto',
-          });
-          return;
-        }
-
-        event.preventDefault();
-        centerPage(lastPage);
+      // Once the last page is centered, scrolling down is released to the
+      // normal vertical document flow. The same applies in reverse at 3–4.
+      if (
+        movingForward &&
+        currentIndex === pages.length - 1 &&
+        isPageCentered(lastPage) &&
+        stage.getBoundingClientRect().top <= headerHeight() + 8
+      ) {
         return;
       }
 
-      if (!movingForward && currentIndex <= 0) {
-        const firstPage = pages[0];
-        const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
-        const firstCenter = firstPage.offsetLeft + firstPage.offsetWidth / 2;
-        const isCentered = Math.abs(firstCenter - viewportCenter) <= 4;
-
-        if (isCentered) {
-          event.preventDefault();
-          window.scrollBy({
-            top: event.deltaY !== 0 ? event.deltaY : -Math.abs(delta),
-            behavior: 'auto',
-          });
-          return;
-        }
-
-        event.preventDefault();
-        centerPage(firstPage);
+      if (
+        !movingForward &&
+        currentIndex === 0 &&
+        isPageCentered(firstPage) &&
+        stage.getBoundingClientRect().top >= headerHeight() - 8
+      ) {
         return;
       }
+
+      if (!stageIsInWorkingView()) return;
 
       event.preventDefault();
-      if (wheelLocked) return;
+      if (locked) return;
 
-      wheelLocked = true;
+      // First wheel step: place the whole horizontal scene exactly into the
+      // working viewport. Horizontal page switching starts only afterwards.
+      if (!stageIsAligned()) {
+        locked = true;
+        alignStage();
+        centerPage(pages[currentIndex]);
+        unlockLater(560);
+        return;
+      }
+
+      // If the nearest page is between positions, settle it in the centre
+      // before allowing movement to the next/previous page.
+      if (!isPageCentered(pages[currentIndex])) {
+        locked = true;
+        centerPage(pages[currentIndex]);
+        unlockLater();
+        return;
+      }
+
       const nextIndex = movingForward
-        ? Math.min(lastIndex, currentIndex + 1)
+        ? Math.min(pages.length - 1, currentIndex + 1)
         : Math.max(0, currentIndex - 1);
 
-      centerPage(pages[nextIndex]);
+      if (nextIndex === currentIndex) return;
 
-      window.setTimeout(() => {
-        wheelLocked = false;
-      }, 420);
+      locked = true;
+      centerPage(pages[nextIndex]);
+      unlockLater();
     };
 
-    strip.addEventListener('wheel', handleWheel, { passive: false });
-    return () => strip.removeEventListener('wheel', handleWheel);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
   }, [id]);
 
   if (!project) {
@@ -227,7 +264,11 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        <section className="omut-reader__horizontal-stage" aria-label="Омут — страницы 3–7">
+        <section
+          ref={omutHorizontalStageRef}
+          className="omut-reader__horizontal-stage"
+          aria-label="Омут — страницы 3–7"
+        >
           <div
             ref={omutHorizontalRef}
             className="omut-reader__horizontal-scroll"
