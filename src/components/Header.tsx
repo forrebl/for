@@ -16,7 +16,9 @@ export default function Header() {
   const isGamesSection = location.pathname.startsWith('/games');
   const isGamesLanding = location.pathname === '/games';
   const isProjectDetail = location.pathname.startsWith('/project/');
-  const isComicReader = location.pathname === '/project/project-8';
+  const isComicReader =
+    location.pathname === '/project/project-8' ||
+    location.pathname === '/project/project-9';
   const isDarkPage = location.pathname === '/projects' || isGamesLanding || isComicReader;
 
   useEffect(() => {
