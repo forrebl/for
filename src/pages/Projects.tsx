@@ -81,7 +81,7 @@ export default function Projects() {
                   <img
                     src={project.thumbnail}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                     style={{ objectPosition: project.id === 'project-8' ? 'center 82%' : 'center' }}
                     loading="lazy"
                   />
