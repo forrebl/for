@@ -2461,7 +2461,7 @@
 .comic-reader__progress {
   position: fixed;
   z-index: 40;
-  left: clamp(1rem, 3vw, 2.75rem);
+  left: calc(50% - min(42vw, 36svh) - 2.4rem);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -2518,9 +2518,9 @@
 
 @media (max-width: 639px) {
   .comic-reader__progress {
-    left: 0.75rem;
+    left: 1rem;
     top: auto;
-    bottom: 1rem;
+    bottom: 1.25rem;
     transform: none;
     flex-direction: row;
     gap: 0.5rem;
