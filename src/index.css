@@ -2408,12 +2408,12 @@
 
 
 /* Civilian faction bottom spacing */
-.chaika-character-select__group--civilians {
-  padding-bottom: 1.15rem;
+.chaika-character-select__group.chaika-character-select__group--civilians:last-child {
+  padding-bottom: 1.55rem;
 }
 
 @media (max-width: 639px) {
-  .chaika-character-select__group--civilians {
-    padding-bottom: 0.95rem;
+  .chaika-character-select__group.chaika-character-select__group--civilians:last-child {
+    padding-bottom: 1.2rem;
   }
 }
