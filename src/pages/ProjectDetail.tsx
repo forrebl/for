@@ -205,9 +205,9 @@ export default function ProjectDetail() {
     return (
       <main className="omut-reader">
         <section className="omut-reader__hero">
-          <HoverPage base={1} hover={2} label="Обложка комикса «Омут»: при наведении открывается второй вариант" />
-          <div className="omut-reader__hover-hint" aria-hidden="true">
-            Наведи курсор
+          <div className="omut-reader__hover-wrap">
+            <HoverPage base={1} hover={2} label="Обложка комикса «Омут»: при наведении открывается второй вариант" />
+            <span className="omut-reader__hover-label" aria-hidden="true">наведи курсор</span>
           </div>
         </section>
 
