@@ -83,6 +83,84 @@ export default function ProjectDetail() {
     );
   }
 
+  if (project.id === 'project-9') {
+    const omutImage = (page: number) => `/images/comics/omut/${page}.webp`;
+
+    const HoverPage = ({ base, hover, label }: { base: number; hover: number; label: string }) => (
+      <div className="omut-hover-page" aria-label={label}>
+        <img
+          src={omutImage(base)}
+          alt={`Омут — страница ${base}`}
+          className="omut-hover-page__image omut-hover-page__image--base"
+        />
+        <img
+          src={omutImage(hover)}
+          alt={`Омут — страница ${hover}`}
+          className="omut-hover-page__image omut-hover-page__image--hover"
+          loading="lazy"
+        />
+      </div>
+    );
+
+    return (
+      <main className="omut-reader">
+        <section className="omut-reader__hero">
+          <HoverPage base={1} hover={2} label="Обложка комикса «Омут»: при наведении открывается второй вариант" />
+          <div className="omut-reader__hover-hint" aria-hidden="true">
+            Наведи курсор
+          </div>
+        </section>
+
+        <section className="omut-reader__seamless" aria-label="Омут — страницы 3–7">
+          {[3, 4, 5, 6, 7].map((page) => (
+            <img
+              key={page}
+              src={omutImage(page)}
+              alt={`Омут — страница ${page}`}
+              className="omut-reader__seamless-image"
+              loading="lazy"
+            />
+          ))}
+        </section>
+
+        <section className="omut-reader__page-strip" aria-label="Омут — страницы 8–15">
+          {[8, 9, 10, 11, 12, 13, 14].map((page) => (
+            <div key={page} className="omut-reader__screen-page">
+              <img src={omutImage(page)} alt={`Омут — страница ${page}`} loading="lazy" />
+            </div>
+          ))}
+          <div className="omut-reader__screen-page">
+            <HoverPage base={15} hover={16} label="Омут — страница 15; при наведении открывается страница 16" />
+          </div>
+        </section>
+
+        <section className="omut-reader__page-strip omut-reader__page-strip--continuation" aria-label="Омут — страницы 17–19">
+          <div className="omut-reader__screen-page">
+            <img src={omutImage(17)} alt="Омут — страница 17" loading="lazy" />
+          </div>
+          <div className="omut-reader__screen-page">
+            <HoverPage base={18} hover={19} label="Омут — страница 18; при наведении открывается страница 19" />
+          </div>
+        </section>
+
+        <section className="omut-reader__page-strip omut-reader__page-strip--ending" aria-label="Омут — страницы 20–23">
+          {[20, 21, 22, 23].map((page) => (
+            <div key={page} className="omut-reader__screen-page">
+              <img src={omutImage(page)} alt={`Омут — страница ${page}`} loading="lazy" />
+            </div>
+          ))}
+        </section>
+
+        <footer className="omut-reader__ending">
+          <p>продолжение следует...</p>
+          <Link to="/projects?filter=comics" className="omut-reader__back-link">
+            ← Вернуться к&nbsp;проектам
+          </Link>
+        </footer>
+      </main>
+    );
+  }
+
   if (project.id === 'project-1') {
     return (
       <main
