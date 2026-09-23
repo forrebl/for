@@ -49,7 +49,7 @@ export default function ProjectDetail() {
               aria-label={index === 0 ? 'Обложка комикса «К себе»' : `Страница ${page} комикса «К себе»`}
             >
               <img
-                src={`/images/comics/k-sebe/${page}.jpg`}
+                src={`/images/comics/k-sebe/${page}.JPG`}
                 alt={index === 0 ? 'Обложка комикса «К себе»' : `К себе — страница ${page}`}
                 className="comic-reader__image"
                 loading={index <= 1 ? 'eager' : 'lazy'}
