@@ -21,6 +21,37 @@ export default function ProjectDetail() {
     const strip = omutHorizontalRef.current;
     if (!strip) return;
 
+    let snapTimer: number | undefined;
+
+    const snapToNearestPage = () => {
+      const pages = Array.from(
+        strip.querySelectorAll<HTMLElement>('.omut-reader__horizontal-image'),
+      );
+      if (!pages.length) return;
+
+      const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
+      let nearest = pages[0];
+      let nearestDistance = Number.POSITIVE_INFINITY;
+
+      pages.forEach((page) => {
+        const pageCenter = page.offsetLeft + page.offsetWidth / 2;
+        const distance = Math.abs(pageCenter - viewportCenter);
+        if (distance < nearestDistance) {
+          nearest = page;
+          nearestDistance = distance;
+        }
+      });
+
+      const maxScroll = strip.scrollWidth - strip.clientWidth;
+      const target =
+        nearest.offsetLeft + nearest.offsetWidth / 2 - strip.clientWidth / 2;
+
+      strip.scrollTo({
+        left: Math.max(0, Math.min(maxScroll, target)),
+        behavior: 'smooth',
+      });
+    };
+
     const handleWheel = (event: WheelEvent) => {
       const maxScroll = strip.scrollWidth - strip.clientWidth;
       if (maxScroll <= 1) return;
@@ -46,10 +77,16 @@ export default function ProjectDetail() {
         0,
         Math.min(maxScroll, strip.scrollLeft + delta),
       );
+
+      window.clearTimeout(snapTimer);
+      snapTimer = window.setTimeout(snapToNearestPage, 120);
     };
 
     strip.addEventListener('wheel', handleWheel, { passive: false });
-    return () => strip.removeEventListener('wheel', handleWheel);
+    return () => {
+      window.clearTimeout(snapTimer);
+      strip.removeEventListener('wheel', handleWheel);
+    };
   }, [id]);
 
   if (!project) {
@@ -155,7 +192,13 @@ export default function ProjectDetail() {
             className="omut-reader__horizontal-scroll"
           >
             <div className="omut-reader__horizontal-track">
-              {[3, 4, 5, 6, 7].map((page) => (
+              <img
+                src="/images/comics/omut/3-4.JPG"
+                alt="Омут — страницы 3 и 4"
+                className="omut-reader__horizontal-image omut-reader__horizontal-image--spread"
+                loading="lazy"
+              />
+              {[5, 6, 7].map((page) => (
                 <img
                   key={page}
                   src={omutImage(page)}
@@ -175,7 +218,10 @@ export default function ProjectDetail() {
             </div>
           ))}
           <div className="omut-reader__screen-page">
-            <HoverPage base={15} hover={16} label="Омут — страница 15; при наведении открывается страница 16" />
+            <div className="omut-reader__hover-wrap">
+              <HoverPage base={15} hover={16} label="Омут — страница 15; при наведении открывается страница 16" />
+              <span className="omut-reader__hover-label" aria-hidden="true">наведи курсор</span>
+            </div>
           </div>
         </section>
 
@@ -184,7 +230,10 @@ export default function ProjectDetail() {
             <img src={omutImage(17)} alt="Омут — страница 17" loading="lazy" />
           </div>
           <div className="omut-reader__screen-page">
-            <HoverPage base={18} hover={19} label="Омут — страница 18; при наведении открывается страница 19" />
+            <div className="omut-reader__hover-wrap">
+              <HoverPage base={18} hover={19} label="Омут — страница 18; при наведении открывается страница 19" />
+              <span className="omut-reader__hover-label" aria-hidden="true">наведи курсор</span>
+            </div>
           </div>
         </section>
 
