@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 
-type CharacterGroup = 'main' | 'civilians' | 'gang';
+type CharacterGroup = 'main' | 'gang' | 'civilians';
 
 type Character = {
   id: string;
@@ -10,6 +10,7 @@ type Character = {
   name: string;
   role: string;
   image: string;
+  secondaryImage?: string;
   icon: string;
   description: string;
 };
@@ -21,6 +22,7 @@ const characters: Character[] = [
     name: 'Автомеханик «ГАЗ»',
     role: 'Главный герой',
     image: '/images/chaika/characters/main-hero/hero.gif',
+    secondaryImage: '/images/chaika/characters/main-hero/hero-emotions.png',
     icon: '/images/chaika/characters/main-hero/hero-emotions.png',
     description:
       'Главный герой – миролюбивый автомеханик «ГАЗ», подрабатывающий таксистом на своей Волге 2110, которую по сюжету угоняет банда. Ему 30 лет, средний рост, непримечательная внешность и обычное телосложение. Лицо вытянутое, волосы пострижены в модный маллет, под носом красуются роскошные усы. Одежда простого работяги: клетчатая рубашка, комбинезон с карманами, кеды «два мяча». Его облик сделан удобным для анимации и активной мимики.',
@@ -29,8 +31,8 @@ const characters: Character[] = [
 
 const groups: { id: CharacterGroup; title: string }[] = [
   { id: 'main', title: 'Главный герой' },
-  { id: 'civilians', title: 'Мирные жители' },
   { id: 'gang', title: 'ОПГ' },
+  { id: 'civilians', title: 'Мирные жители' },
 ];
 
 export default function ChaikaCharacters() {
@@ -74,14 +76,50 @@ export default function ChaikaCharacters() {
           </Reveal>
 
           <Reveal delay={140}>
-            <div className="chaika-character-select">
+            <div className="chaika-character-select chaika-character-select--right">
+              <section className="chaika-character-select__stage" aria-live="polite">
+                <div className="chaika-character-select__meta">
+                  <h2>{selectedCharacter.name}</h2>
+                  <p>{selectedCharacter.role}</p>
+                </div>
+
+                <div className={`chaika-character-select__visuals ${selectedCharacter.secondaryImage ? 'has-secondary' : ''}`}>
+                  <div className="chaika-character-select__portrait">
+                    <img
+                      key={`${selectedCharacter.id}-main`}
+                      src={selectedCharacter.image}
+                      alt={selectedCharacter.name}
+                    />
+                  </div>
+
+                  {selectedCharacter.secondaryImage && (
+                    <div className="chaika-character-select__portrait chaika-character-select__portrait--secondary">
+                      <img
+                        key={`${selectedCharacter.id}-secondary`}
+                        src={selectedCharacter.secondaryImage}
+                        alt={`Эмоции персонажа ${selectedCharacter.name}`}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="chaika-character-select__description">
+                  <p>{selectedCharacter.description}</p>
+                </div>
+              </section>
+
               <aside className="chaika-character-select__sidebar" aria-label="Выбор персонажа">
                 {groups.map((group) => {
                   const groupCharacters = characters.filter((character) => character.group === group.id);
 
                   return (
-                    <section key={group.id} className="chaika-character-select__group">
-                      <h2 className="chaika-character-select__group-title">{group.title}</h2>
+                    <section
+                      key={group.id}
+                      className={`chaika-character-select__group chaika-character-select__group--${group.id}`}
+                    >
+                      <div className="chaika-character-select__group-heading">
+                        <h2 className="chaika-character-select__group-title">{group.title}</h2>
+                      </div>
 
                       <div className="chaika-character-select__icons">
                         {groupCharacters.map((character) => {
@@ -91,7 +129,7 @@ export default function ChaikaCharacters() {
                             <button
                               key={character.id}
                               type="button"
-                              className={`chaika-character-icon ${active ? 'is-active' : ''}`}
+                              className={`chaika-character-icon chaika-character-icon--${group.id} ${active ? 'is-active' : ''}`}
                               onClick={() => setSelectedId(character.id)}
                               aria-pressed={active}
                               aria-label={`Выбрать персонажа: ${character.name}`}
@@ -105,25 +143,6 @@ export default function ChaikaCharacters() {
                   );
                 })}
               </aside>
-
-              <section className="chaika-character-select__stage" aria-live="polite">
-                <div className="chaika-character-select__meta">
-                  <p>{selectedCharacter.role}</p>
-                  <h2>{selectedCharacter.name}</h2>
-                </div>
-
-                <div className="chaika-character-select__portrait">
-                  <img
-                    key={selectedCharacter.id}
-                    src={selectedCharacter.image}
-                    alt={selectedCharacter.name}
-                  />
-                </div>
-
-                <div className="chaika-character-select__description">
-                  <p>{selectedCharacter.description}</p>
-                </div>
-              </section>
             </div>
           </Reveal>
         </div>
