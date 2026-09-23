@@ -2242,3 +2242,166 @@
     width: min(100%, 225px);
   }
 }
+
+
+/* Unified Chaika faction selector */
+.chaika-character-select--right {
+  grid-template-columns: minmax(0, 1.55fr) 304px;
+  gap: 2rem;
+}
+
+.chaika-character-select--right .chaika-character-select__sidebar {
+  gap: 0.9rem;
+}
+
+.chaika-character-select__group,
+.chaika-character-select__group--main,
+.chaika-character-select__group--gang,
+.chaika-character-select__group--civilians {
+  display: block;
+  padding: 0.85rem;
+  border: 2px solid #2e2619;
+  border-radius: 10px;
+  box-shadow:
+    0 5px 0 #2e2619,
+    inset 0 1px 0 rgba(255,255,255,0.22);
+}
+
+.chaika-character-select__group-heading {
+  display: block;
+  margin: 0 0 0.7rem;
+}
+
+.chaika-character-select__group-title,
+.chaika-character-select__group--main .chaika-character-select__group-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.chaika-character-select__group--main .chaika-character-select__group-title {
+  color: #2e2619;
+}
+
+.chaika-character-select__group--gang .chaika-character-select__group-title,
+.chaika-character-select__group--civilians .chaika-character-select__group-title {
+  color: #fff4d6;
+}
+
+.chaika-character-select__icons,
+.chaika-character-select__group--main .chaika-character-select__icons,
+.chaika-character-select__group--gang .chaika-character-select__icons,
+.chaika-character-select__group--civilians .chaika-character-select__icons {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  gap: 0.55rem;
+  justify-content: start;
+  align-items: start;
+  min-height: 0;
+}
+
+.chaika-character-icon,
+.chaika-character-select__group--main .chaika-character-icon {
+  width: 72px;
+  height: 72px;
+  aspect-ratio: 1 / 1;
+  border: 2px solid #2e2619;
+  border-radius: 8px;
+  box-shadow:
+    0 3px 0 #2e2619,
+    inset 0 0 0 1px rgba(255,255,255,0.28);
+}
+
+.chaika-character-icon::after {
+  inset: 4px;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.chaika-character-icon__sprite {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/chaika/characters/character-icons.webp');
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+  background-color: transparent;
+}
+
+.chaika-character-icon:hover,
+.chaika-character-icon:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 5px 0 #2e2619,
+    0 8px 16px rgba(53, 38, 18, 0.16),
+    inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+.chaika-character-icon--main.is-active,
+.chaika-character-icon--gang.is-active,
+.chaika-character-icon--civilians.is-active {
+  box-shadow:
+    0 3px 0 #2e2619,
+    0 0 0 3px #f0b82e,
+    inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+@media (max-width: 899px) {
+  .chaika-character-select--right {
+    grid-template-columns: 1fr;
+  }
+
+  .chaika-character-select--right .chaika-character-select__sidebar {
+    width: 100%;
+  }
+
+  .chaika-character-select__icons,
+  .chaika-character-select__group--main .chaika-character-select__icons,
+  .chaika-character-select__group--gang .chaika-character-select__icons,
+  .chaika-character-select__group--civilians .chaika-character-select__icons {
+    grid-template-columns: repeat(4, 68px);
+    gap: 0.5rem;
+  }
+
+  .chaika-character-icon,
+  .chaika-character-select__group--main .chaika-character-icon {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+@media (max-width: 639px) {
+  .chaika-character-select__group,
+  .chaika-character-select__group--main,
+  .chaika-character-select__group--gang,
+  .chaika-character-select__group--civilians {
+    padding: 0.72rem;
+  }
+
+  .chaika-character-select__group-heading {
+    margin-bottom: 0.6rem;
+  }
+
+  .chaika-character-select__group-title,
+  .chaika-character-select__group--main .chaika-character-select__group-title {
+    font-size: 0.76rem;
+  }
+
+  .chaika-character-select__icons,
+  .chaika-character-select__group--main .chaika-character-select__icons,
+  .chaika-character-select__group--gang .chaika-character-select__icons,
+  .chaika-character-select__group--civilians .chaika-character-select__icons {
+    grid-template-columns: repeat(3, 62px);
+    gap: 0.45rem;
+  }
+
+  .chaika-character-icon,
+  .chaika-character-select__group--main .chaika-character-icon {
+    width: 62px;
+    height: 62px;
+  }
+}
