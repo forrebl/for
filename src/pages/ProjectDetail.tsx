@@ -26,6 +26,41 @@ export default function ProjectDetail() {
     );
   }
 
+  if (project.id === 'project-8') {
+    const comicPages = [
+      'cover',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+    ];
+
+    return (
+      <main className="comic-reader comic-reader--k-sebe">
+        <div className="comic-reader__viewport">
+          {comicPages.map((page, index) => (
+            <section
+              key={page}
+              className="comic-reader__page"
+              aria-label={index === 0 ? 'Обложка комикса «К себе»' : `Страница ${page} комикса «К себе»`}
+            >
+              <img
+                src={`/images/comics/k-sebe/${page}.jpg`}
+                alt={index === 0 ? 'Обложка комикса «К себе»' : `К себе — страница ${page}`}
+                className="comic-reader__image"
+                loading={index <= 1 ? 'eager' : 'lazy'}
+              />
+            </section>
+          ))}
+        </div>
+      </main>
+    );
+  }
+
   if (project.id === 'project-1') {
     return (
       <main
