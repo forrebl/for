@@ -515,18 +515,19 @@ export default function ProjectDetail() {
                     />
                   </Link>
 
-                  <button
-                    type="button"
+                  <Link
+                    to="/project/project-1/tech"
                     className="chaika-category-card chaika-category-card--props"
+                    aria-label="Открыть раздел «Техника»"
                   >
-                    <span className="chaika-category-card__label">Пропсы</span>
+                    <span className="chaika-category-card__label">Техника</span>
                     <img
                       src="/images/chaika-nav-props.png"
                       alt=""
                       className="chaika-category-card__art chaika-category-card__art--props"
                       aria-hidden="true"
                     />
-                  </button>
+                  </Link>
 
                   <button
                     type="button"
