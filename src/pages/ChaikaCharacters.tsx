@@ -78,11 +78,6 @@ export default function ChaikaCharacters() {
           <Reveal delay={140}>
             <div className="chaika-character-select chaika-character-select--right">
               <section className="chaika-character-select__stage" aria-live="polite">
-                <div className="chaika-character-select__meta">
-                  <h2>{selectedCharacter.name}</h2>
-                  <p>{selectedCharacter.role}</p>
-                </div>
-
                 <div className={`chaika-character-select__visuals ${selectedCharacter.secondaryImage ? 'has-secondary' : ''}`}>
                   <div className="chaika-character-select__portrait">
                     <img
@@ -103,8 +98,10 @@ export default function ChaikaCharacters() {
                   )}
                 </div>
 
-                <div className="chaika-character-select__description">
-                  <p>{selectedCharacter.description}</p>
+                <div className="chaika-character-select__info-card">
+                  <h2>{selectedCharacter.name}</h2>
+                  <p className="chaika-character-select__role">{selectedCharacter.role}</p>
+                  <p className="chaika-character-select__text">{selectedCharacter.description}</p>
                 </div>
               </section>
 
