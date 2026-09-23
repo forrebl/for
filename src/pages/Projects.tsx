@@ -29,7 +29,7 @@ export default function Projects() {
       if (slug === 'all') {
         return { backgroundColor: '#2a3fc7', borderColor: '#2a3fc7', color: '#ffffff' };
       }
-      return { backgroundColor: color, borderColor: color, color: slug === 'cgi' ? '#0a0a0a' : '#ffffff' };
+      return { backgroundColor: color, borderColor: color, color: slug === 'cgi' ? '#2b2b2b' : '#ffffff' };
     }
     return { borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)' };
   };
@@ -39,7 +39,7 @@ export default function Projects() {
     : projects.filter((p) => p.categorySlug === activeFilter);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white pt-24 lg:pt-32 pb-20 lg:pb-32">
+    <main className="min-h-screen bg-[#2b2b2b] text-white pt-24 lg:pt-32 pb-20 lg:pb-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <Reveal>
@@ -85,7 +85,7 @@ export default function Projects() {
                     style={{ objectPosition: project.id === 'project-8' ? 'center 82%' : 'center' }}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-[#2b2b2b]/0 group-hover:bg-[#2b2b2b]/20 transition-colors duration-300" />
                 </div>
                 <span
                   className="text-xs uppercase tracking-[0.15em] block mb-1 font-medium"

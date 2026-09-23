@@ -289,7 +289,7 @@ export default function CatchGame() {
 
             <div className="absolute inset-x-0 bottom-0 h-[18%] bg-[#e8e3db] border-t border-[#d6d0c7]">
               <div className="absolute inset-x-0 top-2 h-px bg-white/50" />
-              <div className="absolute inset-x-0 top-[46%] h-px bg-black/[0.035]" />
+              <div className="absolute inset-x-0 top-[46%] h-px bg-[#2b2b2b]/[0.035]" />
             </div>
 
             {items.map((item) => (
@@ -297,9 +297,9 @@ export default function CatchGame() {
                 key={item.id}
                 className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 max-w-[calc(100%-1rem)] px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium shadow-sm border whitespace-nowrap ${
                   item.type === 'idea'
-                    ? 'bg-[#00b8d9] text-white border-black/5'
+                    ? 'bg-[#00b8d9] text-white border-[#2b2b2b]/5'
                     : item.type === 'revision'
-                      ? 'bg-[#e6007e] text-white border-black/5'
+                      ? 'bg-[#e6007e] text-white border-[#2b2b2b]/5'
                       : 'bg-background text-foreground/55 border-border'
                 }`}
                 style={{
@@ -317,11 +317,11 @@ export default function CatchGame() {
               style={{ left: `${laptopX}%`, transform: 'translateX(-50%)' }}
               aria-label="Ноутбук"
             >
-              <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[92%] h-2 rounded-full bg-black/10 blur-[2px]" />
+              <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[92%] h-2 rounded-full bg-[#2b2b2b]/10 blur-[2px]" />
 
               <div className="absolute left-1/2 bottom-[14px] sm:bottom-4 -translate-x-1/2 w-[72%] h-[70%] rounded-t-[9px] rounded-b-[5px] border-[3px] border-[#2f3033] bg-[#252629] shadow-md overflow-hidden">
                 <div className="absolute inset-[5px] rounded-[4px] bg-[#eef7f8] overflow-hidden">
-                  <div className="absolute inset-x-0 top-0 h-[18%] bg-[#00b8d9]/15 border-b border-black/10" />
+                  <div className="absolute inset-x-0 top-0 h-[18%] bg-[#00b8d9]/15 border-b border-[#2b2b2b]/10" />
                   <div className="absolute left-[9%] top-[31%] w-[45%] h-[9%] rounded-full bg-[#e6007e]/18" />
                   <div className="absolute left-[9%] top-[49%] w-[64%] h-[9%] rounded-full bg-[#00b8d9]/18" />
                   <div className="absolute left-[9%] top-[67%] w-[52%] h-[9%] rounded-full bg-[#f2d500]/40" />
@@ -329,13 +329,13 @@ export default function CatchGame() {
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00b8d9]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-[#e6007e]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-[#f2d500]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#171717]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#2b2b2b]" />
                   </div>
                 </div>
               </div>
 
               <div className="absolute left-1/2 bottom-[3px] -translate-x-1/2 w-full h-[15px] rounded-[3px_3px_10px_10px] border-[2px] border-[#2f3033] bg-[#d8d9db] shadow-sm">
-                <div className="absolute left-1/2 top-[3px] -translate-x-1/2 w-[22%] h-[4px] rounded-full border border-black/10 bg-white/35" />
+                <div className="absolute left-1/2 top-[3px] -translate-x-1/2 w-[22%] h-[4px] rounded-full border border-[#2b2b2b]/10 bg-white/35" />
               </div>
             </div>
 

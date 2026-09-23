@@ -207,8 +207,8 @@ export default function Game() {
                       <div className="flex items-center justify-between gap-3 sm:gap-4 mb-0.5 sm:mb-2">
                         <div className="flex items-center gap-1.5 sm:gap-2.5">
                           <span
-                            className="w-5 h-5 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-medium border border-black/10"
-                            style={{ backgroundColor: channel.color, color: channel.key === 'y' ? '#171717' : '#ffffff' }}
+                            className="w-5 h-5 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-medium border border-[#2b2b2b]/10"
+                            style={{ backgroundColor: channel.color, color: channel.key === 'y' ? '#2b2b2b' : '#ffffff' }}
                           >
                             {channel.label}
                           </span>

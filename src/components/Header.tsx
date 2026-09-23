@@ -43,10 +43,10 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? isDarkPage
-            ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/10'
+            ? 'bg-[#2b2b2b]/90 backdrop-blur-md border-b border-white/10'
             : 'bg-background/90 backdrop-blur-md border-b border-border'
           : isComicReader
-            ? 'bg-[#0a0a0a]/92 backdrop-blur-md border-b border-white/10'
+            ? 'bg-[#2b2b2b]/92 backdrop-blur-md border-b border-white/10'
             : 'bg-transparent'
       }`}
     >
@@ -54,7 +54,7 @@ export default function Header() {
         <Link
           to="/"
           className={`text-sm lg:text-base font-medium tracking-wide uppercase font-[family-name:var(--font-display)] transition-colors duration-200 ${
-            isDarkPage ? 'text-white' : isProjectDetail ? 'text-[#0a0a0a]' : 'text-foreground'
+            isDarkPage ? 'text-white' : isProjectDetail ? 'text-[#2b2b2b]' : 'text-foreground'
           }`}
         >
           Фомина Анастасия
@@ -80,7 +80,7 @@ export default function Header() {
                             : isDarkPage
                               ? 'text-white/60 hover:text-white'
                               : isProjectDetail
-                                ? 'text-[#0a0a0a]/45 hover:text-accent'
+                                ? 'text-[#2b2b2b]/45 hover:text-accent'
                                 : 'text-foreground/40'
                         }`
                   }`}
@@ -99,12 +99,12 @@ export default function Header() {
         >
           <span
             className={`block w-5 h-px transition-all duration-300 ${
-              isDarkPage ? 'bg-white' : isProjectDetail ? 'bg-[#0a0a0a]' : 'bg-foreground'
+              isDarkPage ? 'bg-white' : isProjectDetail ? 'bg-[#2b2b2b]' : 'bg-foreground'
             } ${isOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`}
           />
           <span
             className={`block w-5 h-px transition-all duration-300 ${
-              isDarkPage ? 'bg-white' : isProjectDetail ? 'bg-[#0a0a0a]' : 'bg-foreground'
+              isDarkPage ? 'bg-white' : isProjectDetail ? 'bg-[#2b2b2b]' : 'bg-foreground'
             } ${isOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`}
           />
         </button>
@@ -112,7 +112,7 @@ export default function Header() {
 
       <div
         className={`md:hidden fixed inset-0 top-16 transition-all duration-500 ease-out ${
-          isDarkPage ? 'bg-[#0a0a0a]' : 'bg-background'
+          isDarkPage ? 'bg-[#2b2b2b]' : 'bg-background'
         } ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
       >
         <ul className="flex flex-col items-center justify-center h-full gap-8 sm:gap-10">
@@ -140,7 +140,7 @@ export default function Header() {
                         : isDarkPage
                           ? 'text-white/55'
                           : isProjectDetail
-                            ? 'text-[#0a0a0a]/45'
+                            ? 'text-[#2b2b2b]/45'
                             : 'text-foreground/30'
                   }`}
                 >

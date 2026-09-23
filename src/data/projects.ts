@@ -16,7 +16,7 @@ export interface Project {
 }
 
 export const categories = [
-  { slug: 'all', label: 'Все работы', color: '#0a0a0a' },
+  { slug: 'all', label: 'Все работы', color: '#2b2b2b' },
   { slug: 'graphic-design', label: 'Графический дизайн', color: '#00bcd4' },
   { slug: 'cgi', label: 'CGI', color: '#ffeb3b' },
   { slug: 'illustrations', label: 'Иллюстрации', color: '#e91e63' },
@@ -26,7 +26,7 @@ export const categories = [
 
 export function getCategoryColor(slug: string): string {
   const cat = categories.find((c) => c.slug === slug);
-  return cat?.color ?? '#0a0a0a';
+  return cat?.color ?? '#2b2b2b';
 }
 
 export const projects: Project[] = [

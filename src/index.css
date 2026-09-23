@@ -14,9 +14,9 @@
   --font-mono: 'Consolas', 'Monaco', monospace;
   
   --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
+  --color-foreground: #2b2b2b;
   --color-card: #f8f8f8;
-  --color-card-foreground: #0a0a0a;
+  --color-card-foreground: #2b2b2b;
   --color-muted: #f0f0f0;
   --color-muted-foreground: #666666;
   --color-accent: #2a3fc7;
@@ -26,7 +26,7 @@
   --color-primary: #2a3fc7;
   --color-primary-foreground: #ffffff;
   --color-secondary: #f5f5f5;
-  --color-secondary-foreground: #0a0a0a;
+  --color-secondary-foreground: #2b2b2b;
   
   --radius: 9999px;
 }
@@ -749,7 +749,7 @@
 
 .chaika-video-frame__viewport {
   aspect-ratio: 16 / 9;
-  background: #111;
+  background: #2b2b2b;
 }
 
 .chaika-category-card {
@@ -2403,7 +2403,7 @@
 /* Fullscreen comic reader */
 .comic-reader {
   min-height: 100svh;
-  background: #000;
+  background: #2b2b2b;
   color: #fff;
   padding-top: 4rem;
 }
@@ -2415,7 +2415,7 @@
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
   overscroll-behavior-y: auto;
-  background: #000;
+  background: #2b2b2b;
   scrollbar-color: rgba(255,255,255,0.28) transparent;
   scrollbar-width: thin;
 }
@@ -2427,7 +2427,7 @@
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .comic-reader__image {
@@ -2480,7 +2480,7 @@
   align-items: center;
   justify-content: center;
   padding: 3rem 1.5rem 4rem;
-  background: #000;
+  background: #2b2b2b;
   border-top: 1px solid rgba(255,255,255,0.12);
 }
 
@@ -2507,7 +2507,7 @@
     gap: 0.5rem;
     padding: 0.45rem 0.6rem;
     border-radius: 999px;
-    background: rgba(0,0,0,0.58);
+    background: rgba(43,43,43,0.72);
     backdrop-filter: blur(6px);
   }
 
@@ -2543,7 +2543,7 @@
   min-height: 100svh;
   padding-top: 4rem;
   overflow-x: hidden;
-  background: #000;
+  background: #2b2b2b;
   color: #fff;
 }
 
@@ -2552,7 +2552,7 @@
 .omut-reader div,
 .omut-reader figure,
 .omut-reader img {
-  background-color: #000;
+  background-color: #2b2b2b;
 }
 
 .omut-reader img {
@@ -2576,7 +2576,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-hover-page {
@@ -2584,7 +2584,7 @@
   width: var(--omut-vertical-page-width);
   aspect-ratio: 419.528 / 595.276;
   overflow: hidden;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-hover-page__image {
@@ -2643,7 +2643,7 @@
 .omut-reader__horizontal-stage {
   width: 100%;
   height: calc(100svh - 4rem);
-  background: #000;
+  background: #2b2b2b;
   overflow: hidden;
 }
 
@@ -2656,7 +2656,7 @@
   overscroll-behavior-y: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-reader__horizontal-scroll::-webkit-scrollbar {
@@ -2671,7 +2671,7 @@
   padding-left: 50vw;
   padding-right: 50vw;
   box-sizing: content-box;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-reader__horizontal-image {
@@ -2684,7 +2684,7 @@
   border: 0;
   outline: 0;
   box-shadow: none;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-reader__horizontal-image--spread {
@@ -2698,7 +2698,7 @@
   display: flex;
   flex-direction: column;
   gap: clamp(1.5rem, 3vh, 2.75rem);
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-reader__page-strip--continuation {
@@ -2731,7 +2731,7 @@
   width: var(--omut-vertical-page-width);
   height: auto;
   object-fit: contain;
-  background: #000;
+  background: #2b2b2b;
   border: 0;
   outline: 0;
   box-shadow: none;
@@ -2755,7 +2755,7 @@
   justify-content: center;
   gap: 3rem;
   text-align: center;
-  background: #000;
+  background: #2b2b2b;
 }
 
 .omut-reader__ending p {

@@ -654,7 +654,7 @@ export default function ProjectDetail() {
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                  <div className="absolute inset-0 bg-[#2b2b2b]/30 group-hover:bg-[#2b2b2b]/20 transition-colors" />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
