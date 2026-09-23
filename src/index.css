@@ -3392,7 +3392,7 @@
 
 .chaika-tech-page__heading {
   max-width: 760px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .chaika-tech-page__eyebrow {
@@ -3416,24 +3416,12 @@
   letter-spacing: 0.02em;
 }
 
-.chaika-tech-page__heading p {
-  max-width: 640px;
-  margin: 0.9rem 0 0;
-  color: #244f80;
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
 .chaika-robots {
   min-width: 0;
 }
 
 .chaika-robots__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  padding: 1.2rem clamp(1rem, 3vw, 2rem) 0;
+  padding: 0;
 }
 
 .chaika-robots__header h2 {
@@ -3447,7 +3435,7 @@
 }
 
 .chaika-robots__header p {
-  margin: 0;
+  margin: 0.6rem 0 0;
   color: #244f80;
   font-size: 0.85rem;
 }
@@ -3691,18 +3679,6 @@
 
   .chaika-tech-page__heading {
     margin-bottom: 1.4rem;
-  }
-
-  .chaika-tech-page__heading p {
-    font-size: 0.92rem;
-  }
-
-  .chaika-robots__header {
-    display: block;
-  }
-
-  .chaika-robots__header p {
-    margin-top: 0.5rem;
   }
 
   .chaika-robots__viewport {

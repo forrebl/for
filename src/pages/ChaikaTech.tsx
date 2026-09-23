@@ -118,7 +118,6 @@ export default function ChaikaTech() {
           <Reveal delay={90}>
             <div className="chaika-tech-page__heading">
               <h1>Техника</h1>
-              <p>Концепты транспорта и роботов внутриигрового мира</p>
             </div>
           </Reveal>
 
