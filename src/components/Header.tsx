@@ -16,7 +16,8 @@ export default function Header() {
   const isGamesSection = location.pathname.startsWith('/games');
   const isGamesLanding = location.pathname === '/games';
   const isProjectDetail = location.pathname.startsWith('/project/');
-  const isDarkPage = location.pathname === '/projects' || isGamesLanding;
+  const isComicReader = location.pathname === '/project/project-8';
+  const isDarkPage = location.pathname === '/projects' || isGamesLanding || isComicReader;
 
   useEffect(() => {
     setIsOpen(false);
@@ -42,7 +43,9 @@ export default function Header() {
           ? isDarkPage
             ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/10'
             : 'bg-background/90 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
+          : isComicReader
+            ? 'bg-[#0a0a0a]/92 backdrop-blur-md border-b border-white/10'
+            : 'bg-transparent'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 h-16 lg:h-20 flex items-center justify-between">
