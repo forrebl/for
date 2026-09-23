@@ -3359,3 +3359,162 @@
 .chaika-characters-page__back:hover {
   color: var(--chaika-blue-dark) !important;
 }
+
+
+/* Chaika tech page */
+.chaika-tech-page__back {
+  margin-bottom: 1.5rem;
+  color: #8f260e;
+}
+
+.chaika-tech-page__back:hover {
+  color: #244f80;
+}
+
+.chaika-tech-page__heading {
+  max-width: 760px;
+  margin-bottom: 2rem;
+}
+
+.chaika-tech-page__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  color: #315f9d;
+  font-size: 0.76rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.chaika-tech-page__heading h1 {
+  margin: 0;
+  color: #8f260e;
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 5.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chaika-tech-page__heading p {
+  max-width: 640px;
+  margin: 0.9rem 0 0;
+  color: #244f80;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.chaika-tech-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.7fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.chaika-tech-showcase__art,
+.chaika-tech-showcase__info {
+  border: 3px solid #244f80;
+  border-radius: 14px;
+  box-shadow:
+    0 6px 0 #244f80,
+    0 14px 28px rgba(49, 95, 157, 0.18);
+}
+
+.chaika-tech-showcase__art {
+  min-height: min(58svh, 620px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background: #f0b82e;
+}
+
+.chaika-tech-showcase__art img {
+  display: block;
+  width: min(100%, 680px);
+  max-height: min(50svh, 540px);
+  object-fit: contain;
+}
+
+.chaika-tech-showcase__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.1rem, 2.4vw, 1.7rem);
+  background: #b63f32;
+}
+
+.chaika-tech-showcase__label {
+  align-self: flex-start;
+  margin-bottom: 0.65rem;
+  padding: 0.35rem 0.55rem 0.28rem;
+  border: 2px solid #244f80;
+  border-radius: 999px;
+  background: #f6df9d;
+  color: #244f80;
+  font-size: 0.68rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.chaika-tech-showcase__info h2 {
+  margin: 0;
+  color: #f6df9d;
+  font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.chaika-tech-showcase__info p {
+  margin: 0.8rem 0 0;
+  color: #f6df9d;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 899px) {
+  .chaika-tech-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .chaika-tech-showcase__art {
+    min-height: 420px;
+  }
+
+  .chaika-tech-showcase__info {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 639px) {
+  .chaika-tech-page__back {
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .chaika-tech-page__heading {
+    margin-bottom: 1.4rem;
+  }
+
+  .chaika-tech-page__heading p {
+    font-size: 0.92rem;
+  }
+
+  .chaika-tech-showcase__art {
+    min-height: 320px;
+    padding: 1rem;
+  }
+
+  .chaika-tech-showcase__art img {
+    max-height: 300px;
+  }
+
+  .chaika-tech-showcase__info {
+    min-height: 0;
+  }
+}
