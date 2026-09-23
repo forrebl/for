@@ -1411,3 +1411,106 @@
     margin-top: 1.35rem;
   }
 }
+
+
+/* Chaika hero sizing and simple labels */
+.chaika-character-feature__heading {
+  display: inline-block;
+  margin-bottom: 1.4rem;
+  padding: 0.8rem 1rem;
+  background: rgba(246, 223, 157, 0.5);
+}
+
+.chaika-character-feature__heading-line {
+  margin: 0;
+  color: #5a4127;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.chaika-character-feature__heading-line + .chaika-character-feature__heading-line {
+  margin-top: 0;
+}
+
+.chaika-character-showcase--simple {
+  align-items: center;
+}
+
+.chaika-hero-turnaround--simple {
+  width: min(100%, 280px);
+  height: 520px;
+  justify-self: center;
+  overflow: hidden;
+}
+
+.chaika-hero-turnaround__sprite {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 320ms ease, transform 360ms ease;
+}
+
+.chaika-hero-turnaround__sprite--front {
+  opacity: 1;
+  transform: translateX(-25%) scale(1);
+}
+
+.chaika-hero-turnaround__sprite--back {
+  opacity: 0;
+  transform: translateX(-75%) scale(0.985);
+}
+
+.chaika-hero-turnaround.is-back .chaika-hero-turnaround__sprite--front {
+  opacity: 0;
+  transform: translateX(-25%) scale(0.985);
+}
+
+.chaika-hero-turnaround.is-back .chaika-hero-turnaround__sprite--back {
+  opacity: 1;
+  transform: translateX(-75%) scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chaika-hero-turnaround--simple:hover .chaika-hero-turnaround__sprite--front {
+    opacity: 0;
+    transform: translateX(-25%) scale(0.985);
+  }
+
+  .chaika-hero-turnaround--simple:hover .chaika-hero-turnaround__sprite--back {
+    opacity: 1;
+    transform: translateX(-75%) scale(1);
+  }
+}
+
+@media (max-width: 899px) {
+  .chaika-hero-turnaround--simple {
+    width: min(100%, 250px);
+    height: 430px;
+  }
+}
+
+@media (max-width: 639px) {
+  .chaika-character-feature__heading {
+    margin-bottom: 1.1rem;
+    padding: 0.7rem 0.8rem;
+  }
+
+  .chaika-character-feature__heading-line {
+    font-size: 0.95rem;
+  }
+
+  .chaika-hero-turnaround--simple {
+    width: min(100%, 220px);
+    height: 390px;
+  }
+}
