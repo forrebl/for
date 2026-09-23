@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
+import ChaikaSectionNav from '../components/ChaikaSectionNav';
 
 type CharacterGroup = 'main' | 'gang' | 'civilians';
 
@@ -176,12 +176,7 @@ export default function ChaikaCharacters() {
       <section className="chaika-project-section chaika-characters-page__section relative overflow-hidden min-h-[calc(100vh-4rem)]">
         <div className="chaika-content-shell chaika-characters-page__shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-10 sm:py-14 lg:py-16">
           <Reveal>
-            <Link
-              to="/project/project-1"
-              className="chaika-characters-page__back inline-flex items-center gap-2 text-sm font-medium text-[#8f260e] hover:text-[#244f80] transition-colors mb-8 sm:mb-10"
-            >
-              ← Вернуться к&nbsp;проекту «Чайка»
-            </Link>
+            <ChaikaSectionNav current="Персонажи" />
           </Reveal>
 
           <Reveal delay={140}>

@@ -2870,8 +2870,8 @@
     flex-direction: column;
   }
 
-  .chaika-characters-page__back {
-    margin-bottom: 0.65rem !important;
+  .chaika-section-nav {
+    margin-bottom: 0.65rem;
     font-size: 0.8rem !important;
     line-height: 1.2;
   }
@@ -3352,24 +3352,48 @@
   background: rgba(246, 223, 157, 0.46);
 }
 
-.chaika-characters-page__back {
-  color: var(--chaika-red-dark) !important;
-}
-
-.chaika-characters-page__back:hover {
-  color: var(--chaika-blue-dark) !important;
-}
-
-
-/* Chaika tech page */
-.chaika-tech-page__back {
+/* Navigation between the published Chaika sections */
+.chaika-section-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
   margin-bottom: 1.5rem;
-  color: #8f260e;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-.chaika-tech-page__back:hover {
+.chaika-section-nav__sections {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-left: auto;
+  text-align: right;
+}
+
+.chaika-section-nav a {
+  color: #8f260e;
+  transition: color 180ms ease;
+}
+
+.chaika-section-nav a:hover,
+.chaika-section-nav a:focus-visible {
   color: #244f80;
 }
+
+.chaika-characters-page .chaika-section-nav {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 900px) {
+  .chaika-characters-page .chaika-section-nav {
+    margin-bottom: 0.65rem;
+  }
+}
+
+/* Chaika tech page */
 
 .chaika-tech-page__heading {
   max-width: 760px;
@@ -3492,9 +3516,15 @@
 }
 
 @media (max-width: 639px) {
-  .chaika-tech-page__back {
+  .chaika-section-nav {
+    flex-direction: column;
+    align-items: stretch;
     margin-bottom: 1rem;
     font-size: 0.8rem;
+  }
+
+  .chaika-characters-page .chaika-section-nav {
+    margin-bottom: 1.5rem;
   }
 
   .chaika-tech-page__heading {

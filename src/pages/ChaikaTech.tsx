@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
+import ChaikaSectionNav from '../components/ChaikaSectionNav';
 
 export default function ChaikaTech() {
   return (
@@ -16,12 +16,7 @@ export default function ChaikaTech() {
       <section className="chaika-project-section relative overflow-hidden min-h-[calc(100vh-4rem)]">
         <div className="chaika-content-shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-12">
           <Reveal>
-            <Link
-              to="/project/project-1"
-              className="chaika-tech-page__back inline-flex items-center gap-2 text-sm font-medium transition-colors"
-            >
-              ← Вернуться к&nbsp;проекту «Чайка»
-            </Link>
+            <ChaikaSectionNav current="Техника" />
           </Reveal>
 
           <Reveal delay={90}>
