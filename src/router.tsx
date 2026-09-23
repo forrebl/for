@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import ChaikaCharacters from './pages/ChaikaCharacters';
+import ChaikaTech from './pages/ChaikaTech';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Game from './pages/Game';
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: 'projects', element: <Projects /> },
       { path: 'project/:id', element: <ProjectDetail /> },
       { path: 'project/project-1/characters', element: <ChaikaCharacters /> },
+      { path: 'project/project-1/tech', element: <ChaikaTech /> },
       { path: 'about', element: <About /> },
       { path: 'games', element: <Games /> },
       { path: 'games/cmyk', element: <Game /> },
