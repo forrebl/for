@@ -61,20 +61,6 @@ export default function ChaikaCharacters() {
             </Link>
           </Reveal>
 
-          <Reveal delay={80}>
-            <div className="chaika-project-heading">
-              <h1
-                className="chaika-project-heading__title font-bold uppercase"
-                style={{
-                  fontFamily: "'Natasha', Impact, 'Arial Narrow', sans-serif",
-                  letterSpacing: '0.025em',
-                }}
-              >
-                Персонажи
-              </h1>
-            </div>
-          </Reveal>
-
           <Reveal delay={140}>
             <div className="chaika-character-select chaika-character-select--right">
               <section className="chaika-character-select__stage" aria-live="polite">
@@ -98,14 +84,23 @@ export default function ChaikaCharacters() {
                   )}
                 </div>
 
-                <div className="chaika-character-select__info-card">
-                  <h2>{selectedCharacter.name}</h2>
-                  <p className="chaika-character-select__role">{selectedCharacter.role}</p>
-                  <p className="chaika-character-select__text">{selectedCharacter.description}</p>
+                <div className="chaika-character-select__info">
+                  <div className="chaika-character-select__identity">
+                    <h2>{selectedCharacter.name}</h2>
+                    <p>{selectedCharacter.role}</p>
+                  </div>
+
+                  <div className="chaika-character-select__description">
+                    <p>{selectedCharacter.description}</p>
+                  </div>
                 </div>
               </section>
 
               <aside className="chaika-character-select__sidebar" aria-label="Выбор персонажа">
+                <div className="chaika-character-select__sidebar-title">
+                  <h1>Персонажи</h1>
+                </div>
+
                 {groups.map((group) => {
                   const groupCharacters = characters.filter((character) => character.group === group.id);
 
