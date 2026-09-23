@@ -7,9 +7,11 @@ const directions = categories.filter((c) => c.slug !== 'all');
 
 const galleryItems = projects.slice(0, 7).map((project) => ({
   id: project.id,
-  image: project.cover,
-  title: project.title,
-  description: project.description,
+  image: project.id === 'project-1' ? '/images/chaika-promo-art.jpg' : project.cover,
+  title: project.id === 'project-1' ? 'Промо-арт игры «Чайка»' : project.title,
+  description: project.id === 'project-1'
+    ? '«Чайка» — приключенческая point-and-click игра с детективным сюжетом в мире альтернативного СССР 1970–1980-х. Ретрофутуризм и роботы соседствуют со знакомыми деталями эпохи.'
+    : project.description,
 }));
 
 if (projects[0]?.resultImages[0]) {
@@ -101,13 +103,13 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setSelectedItem(item)}
-                  className="group block w-full aspect-[4/3] overflow-hidden bg-card border border-border rounded-xl lg:rounded-2xl text-left cursor-zoom-in"
+                  className={`group block w-full aspect-[4/3] overflow-hidden border border-border rounded-xl lg:rounded-2xl text-left cursor-zoom-in ${item.id === 'project-1' ? 'bg-[#7ba8cb]' : 'bg-card'}`}
                   aria-label={`Открыть: ${item.title}`}
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    className={`w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03] ${item.id === 'project-1' ? 'object-contain' : 'object-cover'}`}
                   />
                 </button>
               </Reveal>
