@@ -82,6 +82,7 @@ export default function Projects() {
                     src={project.thumbnail}
                     alt={project.title}
                     className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    style={{ objectPosition: project.id === 'project-8' ? 'center 82%' : 'center' }}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
