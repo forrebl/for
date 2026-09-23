@@ -2577,7 +2577,7 @@
 
 .omut-hover-page {
   position: relative;
-  width: min(78vw, 720px);
+  width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
   aspect-ratio: 419.528 / 595.276;
   overflow: hidden;
   background: #000;
@@ -2627,6 +2627,27 @@
   writing-mode: vertical-rl;
 }
 
+.omut-reader__hover-wrap {
+  position: relative;
+  width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
+}
+
+.omut-reader__hover-wrap .omut-hover-page {
+  width: 100%;
+}
+
+.omut-reader__hover-label {
+  position: absolute;
+  left: calc(100% + 0.9rem);
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,.46);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .omut-reader__horizontal-stage {
   width: 100%;
   height: calc(100svh - 4rem);
@@ -2640,6 +2661,8 @@
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   scrollbar-width: none;
 }
 
@@ -2649,10 +2672,12 @@
 
 .omut-reader__horizontal-track {
   --omut-horizontal-page-size: calc(100svh - 4rem);
+  --omut-spread-size: calc(var(--omut-horizontal-page-size) * 1.333333);
   display: flex;
   width: max-content;
   height: 100%;
   gap: 0;
+  padding-left: max(0px, calc((100vw - var(--omut-spread-size)) / 2));
   padding-right: max(0px, calc((100vw - var(--omut-horizontal-page-size)) / 2));
   box-sizing: content-box;
   background: #000;
@@ -2664,7 +2689,16 @@
   width: auto;
   height: 100%;
   object-fit: contain;
-  margin: 0;
+  margin: 0 -2px 0 0;
+  clip-path: inset(0 2px 0 0);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  background: #000;
+}
+
+.omut-reader__horizontal-image--spread {
+  clip-path: none;
+  margin-right: -1px;
 }
 
 .omut-reader__page-strip {
@@ -2694,7 +2728,8 @@
 }
 
 .omut-reader__screen-page > img,
-.omut-reader__screen-page > .omut-hover-page {
+.omut-reader__screen-page > .omut-hover-page,
+.omut-reader__screen-page > .omut-reader__hover-wrap {
   display: block;
   width: auto;
   height: auto;
@@ -2706,8 +2741,12 @@
   object-fit: contain;
 }
 
+.omut-reader__screen-page > .omut-hover-page,
+.omut-reader__screen-page > .omut-reader__hover-wrap {
+  width: min(78vw, 720px, calc((100svh - 8rem) * 0.7048));
+}
+
 .omut-reader__screen-page > .omut-hover-page {
-  width: min(78vw, 720px);
   aspect-ratio: 419.528 / 595.276;
 }
 
@@ -2751,13 +2790,22 @@
   }
 
   .omut-hover-page,
-  .omut-reader__screen-page > .omut-hover-page {
-    width: min(88vw, 560px);
+  .omut-reader__screen-page > .omut-hover-page,
+  .omut-reader__screen-page > .omut-reader__hover-wrap {
+    width: min(88vw, 560px, calc((100svh - 7rem) * 0.7048));
   }
 
   .omut-reader__hover-hint {
     left: auto;
     right: .6rem;
+    font-size: .58rem;
+  }
+
+  .omut-reader__hover-label {
+    left: 50%;
+    top: auto;
+    bottom: -1.35rem;
+    transform: translateX(-50%);
     font-size: .58rem;
   }
 
@@ -2804,6 +2852,13 @@
 
   .omut-reader__horizontal-track {
     --omut-horizontal-page-size: calc(100svh - 5rem);
+  }
+
+  .omut-hover-page,
+  .omut-reader__hover-wrap,
+  .omut-reader__screen-page > .omut-hover-page,
+  .omut-reader__screen-page > .omut-reader__hover-wrap {
+    width: min(78vw, 720px, calc((100svh - 9rem) * 0.7048));
   }
 
   .omut-reader__screen-page {
