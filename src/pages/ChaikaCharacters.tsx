@@ -166,7 +166,7 @@ export default function ChaikaCharacters() {
     <main
       className="chaika-characters-page pt-16 lg:pt-20 min-h-screen"
       style={{
-        backgroundColor: '#ddd5ba',
+        backgroundColor: '#f6df9d',
         backgroundImage: "url('/images/chaika-bg.jpg')",
         backgroundRepeat: 'repeat-y',
         backgroundSize: '100% auto',
@@ -178,7 +178,7 @@ export default function ChaikaCharacters() {
           <Reveal>
             <Link
               to="/project/project-1"
-              className="chaika-characters-page__back inline-flex items-center gap-2 text-sm font-medium text-[#6e321c] hover:text-[#244f80] transition-colors mb-8 sm:mb-10"
+              className="chaika-characters-page__back inline-flex items-center gap-2 text-sm font-medium text-[#8f260e] hover:text-[#244f80] transition-colors mb-8 sm:mb-10"
             >
               ← Вернуться к&nbsp;проекту «Чайка»
             </Link>
