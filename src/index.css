@@ -2627,16 +2627,40 @@
   writing-mode: vertical-rl;
 }
 
-.omut-reader__seamless {
-  width: min(92vw, 780px);
-  margin: 0 auto;
+.omut-reader__horizontal-stage {
+  width: 100%;
+  height: calc(100svh - 4rem);
+  background: #000;
+  overflow: hidden;
+}
+
+.omut-reader__horizontal-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.omut-reader__horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.omut-reader__horizontal-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  gap: 0;
   background: #000;
 }
 
-.omut-reader__seamless-image {
+.omut-reader__horizontal-image {
   display: block;
-  width: 100%;
-  height: auto;
+  flex: 0 0 auto;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
   margin: 0;
 }
 
@@ -2650,9 +2674,13 @@
   background: #000;
 }
 
-.omut-reader__page-strip--continuation,
-.omut-reader__page-strip--ending {
+.omut-reader__page-strip--continuation {
   padding-top: 2rem;
+  padding-bottom: 0.75rem;
+}
+
+.omut-reader__page-strip--ending {
+  padding-top: 0.75rem;
 }
 
 .omut-reader__screen-page {
@@ -2730,8 +2758,12 @@
     font-size: .58rem;
   }
 
-  .omut-reader__seamless {
-    width: 100%;
+  .omut-reader__horizontal-stage {
+    height: calc(100svh - 4rem);
+  }
+
+  .omut-reader__horizontal-image {
+    height: 100%;
   }
 
   .omut-reader__page-strip {
@@ -2761,6 +2793,10 @@
 
   .omut-reader__hero {
     min-height: calc(100svh - 5rem);
+  }
+
+  .omut-reader__horizontal-stage {
+    height: calc(100svh - 5rem);
   }
 
   .omut-reader__screen-page {
