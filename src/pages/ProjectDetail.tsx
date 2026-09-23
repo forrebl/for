@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { projects } from '../data/projects';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -9,9 +9,47 @@ export default function ProjectDetail() {
   const nextProject = project ? projects.find((p) => p.id === project.nextProjectId) : null;
   const [openChaikaInfoCard, setOpenChaikaInfoCard] = useState<string | null>(null);
   const [comicPageIndex, setComicPageIndex] = useState(0);
+  const omutHorizontalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [id]);
+
+  useEffect(() => {
+    if (id !== 'project-9') return;
+
+    const strip = omutHorizontalRef.current;
+    if (!strip) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      const maxScroll = strip.scrollWidth - strip.clientWidth;
+      if (maxScroll <= 1) return;
+
+      const delta =
+        Math.abs(event.deltaY) >= Math.abs(event.deltaX)
+          ? event.deltaY
+          : event.deltaX;
+
+      if (delta === 0) return;
+
+      const atStart = strip.scrollLeft <= 1;
+      const atEnd = strip.scrollLeft >= maxScroll - 1;
+      const movingForward = delta > 0;
+      const shouldConsume =
+        (movingForward && !atEnd) ||
+        (!movingForward && !atStart);
+
+      if (!shouldConsume) return;
+
+      event.preventDefault();
+      strip.scrollLeft = Math.max(
+        0,
+        Math.min(maxScroll, strip.scrollLeft + delta),
+      );
+    };
+
+    strip.addEventListener('wheel', handleWheel, { passive: false });
+    return () => strip.removeEventListener('wheel', handleWheel);
   }, [id]);
 
   if (!project) {
@@ -111,16 +149,23 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        <section className="omut-reader__seamless" aria-label="Омут — страницы 3–7">
-          {[3, 4, 5, 6, 7].map((page) => (
-            <img
-              key={page}
-              src={omutImage(page)}
-              alt={`Омут — страница ${page}`}
-              className="omut-reader__seamless-image"
-              loading="lazy"
-            />
-          ))}
+        <section className="omut-reader__horizontal-stage" aria-label="Омут — страницы 3–7">
+          <div
+            ref={omutHorizontalRef}
+            className="omut-reader__horizontal-scroll"
+          >
+            <div className="omut-reader__horizontal-track">
+              {[3, 4, 5, 6, 7].map((page) => (
+                <img
+                  key={page}
+                  src={omutImage(page)}
+                  alt={`Омут — страница ${page}`}
+                  className="omut-reader__horizontal-image"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="omut-reader__page-strip" aria-label="Омут — страницы 8–15">
