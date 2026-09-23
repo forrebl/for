@@ -3446,6 +3446,7 @@
 
 .chaika-robots__viewport {
   position: relative;
+  --garage-width: clamp(175px, 42vw, 480px);
   height: clamp(330px, 42vw, 440px);
   display: flex;
   align-items: center;
@@ -3453,11 +3454,41 @@
   isolation: isolate;
 }
 
+.chaika-robots__belt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+}
+
 .chaika-robots__track {
   display: flex;
   width: max-content;
   animation: chaika-robots-scroll 42s linear infinite;
   will-change: transform;
+}
+
+.chaika-robots__garage {
+  position: absolute;
+  z-index: 3;
+  bottom: 60px;
+  width: var(--garage-width);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.chaika-robots__garage--left {
+  left: calc(var(--garage-width) * -0.158);
+}
+
+.chaika-robots__garage--right {
+  right: calc(var(--garage-width) * -0.158);
+  transform: scaleX(-1);
 }
 
 .chaika-robots__track.is-paused {
@@ -3686,6 +3717,7 @@
   }
 
   .chaika-robots__viewport {
+    --garage-width: clamp(150px, 38vw, 200px);
     height: 330px;
   }
 
@@ -3719,8 +3751,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .chaika-robots__viewport {
+  .chaika-robots__belt {
     overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .chaika-robots__track {

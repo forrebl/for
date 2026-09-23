@@ -129,34 +129,38 @@ export default function ChaikaTech() {
               </div>
 
               <div className="chaika-robots__viewport" ref={viewportRef}>
-                <div className={`chaika-robots__track${selected ? ' is-paused' : ''}`}>
-                  {[0, 1].map((copy) => (
-                    <div className="chaika-robots__group" key={copy}>
-                      {robots.map((robot) => {
-                        const isActive = selected?.id === robot.id && selected.copy === copy;
+                <div className="chaika-robots__belt">
+                  <div className={`chaika-robots__track${selected ? ' is-paused' : ''}`}>
+                    {[0, 1].map((copy) => (
+                      <div className="chaika-robots__group" key={copy}>
+                        {robots.map((robot) => {
+                          const isActive = selected?.id === robot.id && selected.copy === copy;
 
-                        return (
-                          <button
-                            key={robot.id}
-                            type="button"
-                            className={`chaika-robot${isActive && !closing ? ' is-active' : ''}`}
-                            style={isActive ? { '--focus-shift': `${selected.shift}px` } as CSSProperties : undefined}
-                            aria-label={`Рассмотреть ${robot.name.toLowerCase()}`}
-                            aria-pressed={isActive && !closing}
-                            aria-expanded={isActive && !closing}
-                            aria-controls="chaika-robot-details"
-                            aria-hidden={copy === 1 ? true : undefined}
-                            tabIndex={copy === 1 ? -1 : 0}
-                            disabled={!!selected && !isActive}
-                            onClick={(event) => selectRobot(robot.id, copy, event.currentTarget)}
-                          >
-                            <RobotImage id={robot.id} image={robot.image} />
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ))}
+                          return (
+                            <button
+                              key={robot.id}
+                              type="button"
+                              className={`chaika-robot${isActive && !closing ? ' is-active' : ''}`}
+                              style={isActive ? { '--focus-shift': `${selected.shift}px` } as CSSProperties : undefined}
+                              aria-label={`Рассмотреть ${robot.name.toLowerCase()}`}
+                              aria-pressed={isActive && !closing}
+                              aria-expanded={isActive && !closing}
+                              aria-controls="chaika-robot-details"
+                              aria-hidden={copy === 1 ? true : undefined}
+                              tabIndex={copy === 1 ? -1 : 0}
+                              disabled={!!selected && !isActive}
+                              onClick={(event) => selectRobot(robot.id, copy, event.currentTarget)}
+                            >
+                              <RobotImage id={robot.id} image={robot.image} />
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
                 </div>
+                <img className="chaika-robots__garage chaika-robots__garage--left" src="/images/chaika/robot-garage.png" alt="" aria-hidden="true" draggable="false" />
+                <img className="chaika-robots__garage chaika-robots__garage--right" src="/images/chaika/robot-garage.png" alt="" aria-hidden="true" draggable="false" />
               </div>
 
               <div id="chaika-robot-details" className={`chaika-robots__details${activeRobot && !closing ? ' is-open' : ''}`} aria-live="polite">
