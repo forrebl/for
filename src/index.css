@@ -2648,10 +2648,13 @@
 }
 
 .omut-reader__horizontal-track {
+  --omut-horizontal-page-size: calc(100svh - 4rem);
   display: flex;
   width: max-content;
   height: 100%;
   gap: 0;
+  padding-right: max(0px, calc((100vw - var(--omut-horizontal-page-size)) / 2));
+  box-sizing: content-box;
   background: #000;
 }
 
@@ -2797,6 +2800,10 @@
 
   .omut-reader__horizontal-stage {
     height: calc(100svh - 5rem);
+  }
+
+  .omut-reader__horizontal-track {
+    --omut-horizontal-page-size: calc(100svh - 5rem);
   }
 
   .omut-reader__screen-page {
