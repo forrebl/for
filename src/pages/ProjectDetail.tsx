@@ -8,6 +8,7 @@ export default function ProjectDetail() {
   const project = projects.find((p) => p.id === id);
   const nextProject = project ? projects.find((p) => p.id === project.nextProjectId) : null;
   const [openChaikaInfoCard, setOpenChaikaInfoCard] = useState<string | null>(null);
+  const [comicPageIndex, setComicPageIndex] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,7 +42,22 @@ export default function ProjectDetail() {
 
     return (
       <main className="comic-reader comic-reader--k-sebe">
-        <div className="comic-reader__viewport">
+        <aside className="comic-reader__progress" aria-label={`Страница ${comicPageIndex} из 8`}>
+          <span className="comic-reader__scroll-arrow" aria-hidden="true">↓</span>
+          <span className="comic-reader__counter">{comicPageIndex}/8</span>
+        </aside>
+
+        <div
+          className="comic-reader__viewport"
+          onScroll={(event) => {
+            const viewport = event.currentTarget;
+            const index = Math.max(
+              0,
+              Math.min(8, Math.round(viewport.scrollTop / viewport.clientHeight)),
+            );
+            setComicPageIndex(index);
+          }}
+        >
           {comicPages.map((page, index) => (
             <section
               key={page}
@@ -56,6 +72,12 @@ export default function ProjectDetail() {
               />
             </section>
           ))}
+
+          <footer className="comic-reader__footer">
+            <Link to="/projects?filter=comics" className="comic-reader__back-link">
+              ← Вернуться к&nbsp;проектам
+            </Link>
+          </footer>
         </div>
       </main>
     );
