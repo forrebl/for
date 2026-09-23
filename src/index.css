@@ -2431,9 +2431,12 @@
   height: calc(100svh - 4rem);
   overflow-y: auto;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: auto;
   background: #000;
+  scrollbar-color: rgba(255,255,255,0.28) transparent;
+  scrollbar-width: thin;
 }
 
 .comic-reader__page {
@@ -2443,7 +2446,6 @@
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
   background: #000;
 }
 
@@ -2454,6 +2456,92 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.comic-reader__progress {
+  position: fixed;
+  z-index: 40;
+  left: clamp(1rem, 3vw, 2.75rem);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(255,255,255,0.78);
+  pointer-events: none;
+  mix-blend-mode: normal;
+}
+
+.comic-reader__scroll-arrow {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1;
+  animation: comic-reader-arrow 1.8s ease-in-out infinite;
+}
+
+.comic-reader__counter {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+@keyframes comic-reader-arrow {
+  0%, 100% { transform: translateY(0); opacity: 0.62; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+
+.comic-reader__footer {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem 4rem;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.comic-reader__back-link {
+  color: rgba(255,255,255,0.68);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.comic-reader__back-link:hover,
+.comic-reader__back-link:focus-visible {
+  color: #fff;
+  transform: translateX(-3px);
+}
+
+@media (max-width: 639px) {
+  .comic-reader__progress {
+    left: 0.75rem;
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.58);
+    backdrop-filter: blur(6px);
+  }
+
+  .comic-reader__scroll-arrow {
+    font-size: 1.25rem;
+  }
+
+  .comic-reader__counter {
+    font-size: 0.68rem;
+  }
+
+  .comic-reader__footer {
+    min-height: 140px;
+    padding: 2.5rem 1rem 3rem;
+  }
 }
 
 @media (min-width: 1024px) {
