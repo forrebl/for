@@ -21,30 +21,34 @@ export default function ProjectDetail() {
     const strip = omutHorizontalRef.current;
     if (!strip) return;
 
-    let snapTimer: number | undefined;
+    let wheelLocked = false;
 
-    const snapToNearestPage = () => {
-      const pages = Array.from(
+    const getPages = () =>
+      Array.from(
         strip.querySelectorAll<HTMLElement>('.omut-reader__horizontal-image'),
       );
-      if (!pages.length) return;
 
+    const getCenteredIndex = (pages: HTMLElement[]) => {
       const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
-      let nearest = pages[0];
-      let nearestDistance = Number.POSITIVE_INFINITY;
+      let index = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
 
-      pages.forEach((page) => {
+      pages.forEach((page, pageIndex) => {
         const pageCenter = page.offsetLeft + page.offsetWidth / 2;
         const distance = Math.abs(pageCenter - viewportCenter);
-        if (distance < nearestDistance) {
-          nearest = page;
-          nearestDistance = distance;
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          index = pageIndex;
         }
       });
 
+      return index;
+    };
+
+    const centerPage = (page: HTMLElement) => {
       const maxScroll = strip.scrollWidth - strip.clientWidth;
       const target =
-        nearest.offsetLeft + nearest.offsetWidth / 2 - strip.clientWidth / 2;
+        page.offsetLeft + page.offsetWidth / 2 - strip.clientWidth / 2;
 
       strip.scrollTo({
         left: Math.max(0, Math.min(maxScroll, target)),
@@ -53,40 +57,61 @@ export default function ProjectDetail() {
     };
 
     const handleWheel = (event: WheelEvent) => {
-      const maxScroll = strip.scrollWidth - strip.clientWidth;
-      if (maxScroll <= 1) return;
+      const pages = getPages();
+      if (!pages.length) return;
 
       const delta =
         Math.abs(event.deltaY) >= Math.abs(event.deltaX)
           ? event.deltaY
           : event.deltaX;
 
-      if (delta === 0) return;
+      if (Math.abs(delta) < 2) return;
 
-      const atStart = strip.scrollLeft <= 1;
-      const atEnd = strip.scrollLeft >= maxScroll - 1;
+      const currentIndex = getCenteredIndex(pages);
       const movingForward = delta > 0;
-      const shouldConsume =
-        (movingForward && !atEnd) ||
-        (!movingForward && !atStart);
+      const lastIndex = pages.length - 1;
 
-      if (!shouldConsume) return;
+      if (movingForward && currentIndex >= lastIndex) {
+        const lastPage = pages[lastIndex];
+        const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
+        const lastCenter = lastPage.offsetLeft + lastPage.offsetWidth / 2;
+
+        if (Math.abs(lastCenter - viewportCenter) <= 4) return;
+
+        event.preventDefault();
+        centerPage(lastPage);
+        return;
+      }
+
+      if (!movingForward && currentIndex <= 0) {
+        const firstPage = pages[0];
+        const viewportCenter = strip.scrollLeft + strip.clientWidth / 2;
+        const firstCenter = firstPage.offsetLeft + firstPage.offsetWidth / 2;
+
+        if (Math.abs(firstCenter - viewportCenter) <= 4) return;
+
+        event.preventDefault();
+        centerPage(firstPage);
+        return;
+      }
 
       event.preventDefault();
-      strip.scrollLeft = Math.max(
-        0,
-        Math.min(maxScroll, strip.scrollLeft + delta),
-      );
+      if (wheelLocked) return;
 
-      window.clearTimeout(snapTimer);
-      snapTimer = window.setTimeout(snapToNearestPage, 120);
+      wheelLocked = true;
+      const nextIndex = movingForward
+        ? Math.min(lastIndex, currentIndex + 1)
+        : Math.max(0, currentIndex - 1);
+
+      centerPage(pages[nextIndex]);
+
+      window.setTimeout(() => {
+        wheelLocked = false;
+      }, 420);
     };
 
     strip.addEventListener('wheel', handleWheel, { passive: false });
-    return () => {
-      window.clearTimeout(snapTimer);
-      strip.removeEventListener('wheel', handleWheel);
-    };
+    return () => strip.removeEventListener('wheel', handleWheel);
   }, [id]);
 
   if (!project) {
