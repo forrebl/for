@@ -1,7 +1,42 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 
+type CharacterGroup = 'main' | 'civilians' | 'gang';
+
+type Character = {
+  id: string;
+  group: CharacterGroup;
+  name: string;
+  role: string;
+  image: string;
+  icon: string;
+  description: string;
+};
+
+const characters: Character[] = [
+  {
+    id: 'main-hero',
+    group: 'main',
+    name: 'Автомеханик «ГАЗ»',
+    role: 'Главный герой',
+    image: '/images/chaika/characters/main-hero/hero.gif',
+    icon: '/images/chaika/characters/main-hero/hero-emotions.png',
+    description:
+      'Главный герой – миролюбивый автомеханик «ГАЗ», подрабатывающий таксистом на своей Волге 2110, которую по сюжету угоняет банда. Ему 30 лет, средний рост, непримечательная внешность и обычное телосложение. Лицо вытянутое, волосы пострижены в модный маллет, под носом красуются роскошные усы. Одежда простого работяги: клетчатая рубашка, комбинезон с карманами, кеды «два мяча». Его облик сделан удобным для анимации и активной мимики.',
+  },
+];
+
+const groups: { id: CharacterGroup; title: string }[] = [
+  { id: 'main', title: 'Главный герой' },
+  { id: 'civilians', title: 'Мирные жители' },
+  { id: 'gang', title: 'ОПГ' },
+];
+
 export default function ChaikaCharacters() {
+  const [selectedId, setSelectedId] = useState('main-hero');
+  const selectedCharacter = characters.find((character) => character.id === selectedId) ?? characters[0];
+
   return (
     <main
       className="pt-16 lg:pt-20 min-h-screen"
@@ -39,42 +74,57 @@ export default function ChaikaCharacters() {
           </Reveal>
 
           <Reveal delay={140}>
-            <section className="chaika-character-feature">
-              <div className="chaika-character-feature__heading">
-                <p className="chaika-character-feature__heading-line">Главный герой</p>
-                <h2 className="chaika-character-feature__heading-line">Автомеханик «ГАЗ»</h2>
-              </div>
+            <div className="chaika-character-select">
+              <aside className="chaika-character-select__sidebar" aria-label="Выбор персонажа">
+                {groups.map((group) => {
+                  const groupCharacters = characters.filter((character) => character.group === group.id);
 
-              <div className="chaika-character-showcase chaika-character-showcase--simple">
-                <div className="chaika-character-art">
+                  return (
+                    <section key={group.id} className="chaika-character-select__group">
+                      <h2 className="chaika-character-select__group-title">{group.title}</h2>
+
+                      <div className="chaika-character-select__icons">
+                        {groupCharacters.map((character) => {
+                          const active = character.id === selectedCharacter.id;
+
+                          return (
+                            <button
+                              key={character.id}
+                              type="button"
+                              className={`chaika-character-icon ${active ? 'is-active' : ''}`}
+                              onClick={() => setSelectedId(character.id)}
+                              aria-pressed={active}
+                              aria-label={`Выбрать персонажа: ${character.name}`}
+                            >
+                              <img src={character.icon} alt="" aria-hidden="true" />
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  );
+                })}
+              </aside>
+
+              <section className="chaika-character-select__stage" aria-live="polite">
+                <div className="chaika-character-select__meta">
+                  <p>{selectedCharacter.role}</p>
+                  <h2>{selectedCharacter.name}</h2>
+                </div>
+
+                <div className="chaika-character-select__portrait">
                   <img
-                    src="/images/chaika/characters/main-hero/hero.gif"
-                    alt="Анимация главного героя"
-                    className="chaika-character-art__image"
+                    key={selectedCharacter.id}
+                    src={selectedCharacter.image}
+                    alt={selectedCharacter.name}
                   />
                 </div>
 
-                <div className="chaika-character-art">
-                  <img
-                    src="/images/chaika/characters/main-hero/hero-emotions.png"
-                    alt="Эмоции главного героя"
-                    className="chaika-character-art__image"
-                  />
+                <div className="chaika-character-select__description">
+                  <p>{selectedCharacter.description}</p>
                 </div>
-              </div>
-
-              <div className="chaika-character-description chaika-character-description--simple">
-                <p>
-                  Главный герой – миролюбивый автомеханик «ГАЗ», подрабатывающий таксистом
-                  на&nbsp;своей Волге 2110, которую по&nbsp;сюжету угоняет банда. Ему 30 лет,
-                  средний рост, непримечательная внешность и&nbsp;обычное телосложение. Лицо
-                  вытянутое, волосы пострижены в&nbsp;модный маллет, под носом красуются
-                  роскошные усы. Одежда простого работяги: клетчатая рубашка, комбинезон
-                  с&nbsp;карманами, кеды «два мяча». Его облик сделан удобным
-                  для&nbsp;анимации и&nbsp;активной мимики.
-                </p>
-              </div>
-            </section>
+              </section>
+            </div>
           </Reveal>
         </div>
       </section>
