@@ -29,14 +29,6 @@ export default function ChaikaCharacters() {
 
           <Reveal delay={80}>
             <div className="chaika-project-heading">
-              <div className="chaika-project-heading__top">
-                <span className="chaika-project-heading__kicker">Чайка</span>
-                <span className="chaika-project-heading__status" aria-hidden="true">
-                  <i />
-                  <i />
-                  <i />
-                </span>
-              </div>
               <h1
                 className="chaika-project-heading__title font-bold uppercase"
                 style={{
@@ -72,8 +64,18 @@ export default function ChaikaCharacters() {
                   aria-label={showHeroBack ? 'Показать героя спереди' : 'Показать героя сзади'}
                   aria-pressed={showHeroBack}
                 >
-                  <span className="chaika-hero-turnaround__view chaika-hero-turnaround__view--front" aria-hidden="true" />
-                  <span className="chaika-hero-turnaround__view chaika-hero-turnaround__view--back" aria-hidden="true" />
+                  <img
+                    src="/images/chaika/characters/main-hero/hero-turnaround.png"
+                    alt=""
+                    className="chaika-hero-turnaround__sprite chaika-hero-turnaround__sprite--front"
+                    aria-hidden="true"
+                  />
+                  <img
+                    src="/images/chaika/characters/main-hero/hero-turnaround.png"
+                    alt=""
+                    className="chaika-hero-turnaround__sprite chaika-hero-turnaround__sprite--back"
+                    aria-hidden="true"
+                  />
                 </button>
 
                 <div className="chaika-character-art">
