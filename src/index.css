@@ -2153,3 +2153,92 @@
     line-height: 1.62;
   }
 }
+
+
+/* Chaika character sprites and faction palette */
+.chaika-character-select__group--main {
+  background: rgba(232, 174, 45, 0.78);
+}
+
+.chaika-character-select__group--gang {
+  background: rgba(49, 95, 157, 0.78);
+}
+
+.chaika-character-select__group--civilians {
+  background: rgba(182, 63, 50, 0.76);
+}
+
+.chaika-character-icon--main {
+  background: #e8ae2d;
+}
+
+.chaika-character-icon--gang {
+  background: #315f9d;
+}
+
+.chaika-character-icon--civilians {
+  background: #b63f32;
+}
+
+.chaika-character-icon__sprite {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-image: url('/images/chaika/characters/character-icons.webp');
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+}
+
+.chaika-character-icon::after {
+  z-index: 2;
+}
+
+.chaika-character-select__full-sprite {
+  width: min(100%, 315px);
+  aspect-ratio: 240 / 380;
+  margin: 0 auto;
+  background-image: url('/images/chaika/characters/character-full.webp');
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+  animation: chaika-character-enter 260ms ease-out both;
+}
+
+.chaika-character-select__visuals:not(.has-secondary) {
+  min-height: 500px;
+  align-items: center;
+  justify-items: center;
+}
+
+.chaika-character-icon--gang.is-active {
+  box-shadow:
+    0 4px 0 #2e2619,
+    0 0 0 3px #f0b82e,
+    inset 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+.chaika-character-icon--civilians.is-active {
+  box-shadow:
+    0 4px 0 #2e2619,
+    0 0 0 3px #f0b82e,
+    inset 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+@media (max-width: 899px) {
+  .chaika-character-select__visuals:not(.has-secondary) {
+    min-height: 430px;
+  }
+
+  .chaika-character-select__full-sprite {
+    width: min(100%, 270px);
+  }
+}
+
+@media (max-width: 639px) {
+  .chaika-character-select__visuals:not(.has-secondary) {
+    min-height: 360px;
+  }
+
+  .chaika-character-select__full-sprite {
+    width: min(100%, 225px);
+  }
+}
