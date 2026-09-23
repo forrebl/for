@@ -2,12 +2,48 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Reveal from '../components/Reveal';
 import ChaikaSectionNav from '../components/ChaikaSectionNav';
 
-const robots = Array.from({ length: 8 }, (_, index) => ({
-  id: index + 1,
-  name: `Робот №${index + 1}`,
-  image: `/images/chaika/robots/${index + 1}.png`,
-  description: 'Описание этого робота появится здесь.',
-}));
+const robots = [
+  {
+    id: 1,
+    name: 'Почтовый ящик «Крокодил»',
+    description: 'Его прообразом стал даже не крокодил Гена, а статуя с фотографии Дмитрия Маркова из альбома «Россия в квадрате». Он сообщает, есть ли для вас письмо и от кого.',
+  },
+  {
+    id: 2,
+    name: 'Доставщик молока',
+    description: 'Быстрый робот на моноколесе, который перемещается между локациями. Референсом для его облика послужила упаковка молока «треугольник».',
+  },
+  {
+    id: 3,
+    name: 'Мобильный наливщик кваса',
+    description: 'Работает как автомат с газировкой: нужно бросить монетку и нажать кнопку, тогда в гранёный стакан нальётся квас. Робот будет ездить за вами до тех пор, пока игрок не вернёт стакан на место. Прототипами послужили бочки с квасом, которые и сегодня стоят на улицах, и робот-доставщик от «Яндекс».',
+  },
+  {
+    id: 4,
+    name: '«Козлик»',
+    description: 'Выглядит как спортивный снаряд «козёл». Если с ним подружиться, будет ходить за игроком и делать фотографии на встроенную камеру. Эти снимки затем можно использовать как улики. Вдохновением стал «экран» из мультфильма «Тайна третьей планеты».',
+  },
+  {
+    id: 5,
+    name: 'Магнитофон',
+    description: 'Стоит в разных локациях и играет музыку. Можно дать ему кассету, тогда он включит вашу песню. На его создание повлияли игра «Machinarium» и облик переносных колонок.',
+  },
+  {
+    id: 6,
+    name: 'Уборщик с метлой',
+    description: 'Похож на роботов с «Планеты Железяка». Работает на жидкости в резервуаре его тела, которую нужно подливать. Знакомый образ переработан, чтобы вызвать приятные ассоциации без копирования прототипа.',
+  },
+  {
+    id: 7,
+    name: 'Уборщик со щётками',
+    description: 'На его конечностях расположены щётки. Образ вдохновлён зайцем из «Ну, погоди!»: он узнаваем по настроению, но изменён, чтобы не копировать прототип.',
+  },
+  {
+    id: 8,
+    name: 'Робот-пылесос «Сатурн»',
+    description: 'Имеет круглую форму, колёсики, щётку и все присущие пылесосу атрибуты. Встречается только в одной локации и может раскладываться в более устрашающее существо.',
+  },
+].map((robot) => ({ ...robot, image: `/images/chaika/robots/${robot.id}.png` }));
 
 function RobotImage({ id, image }: { id: number; image: string }) {
   const [loaded, setLoaded] = useState(false);
@@ -64,7 +100,7 @@ export default function ChaikaTech() {
 
   return (
     <main
-      className="chaika-tech-page pt-16 lg:pt-20 min-h-screen"
+      className={`chaika-tech-page pt-16 lg:pt-20 min-h-screen${selected ? ' is-robot-selected' : ''}`}
       style={{
         backgroundColor: '#f6df9d',
         backgroundImage: "url('/images/chaika-bg.jpg')",
@@ -74,7 +110,7 @@ export default function ChaikaTech() {
       }}
     >
       <section className="chaika-project-section relative overflow-hidden min-h-[calc(100vh-4rem)]">
-        <div className="chaika-content-shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-12">
+        <div className="chaika-content-shell chaika-tech-page__shell max-w-6xl mx-auto px-5 sm:px-6 lg:px-12 py-8 sm:py-10 lg:py-12">
           <Reveal>
             <ChaikaSectionNav current="Техника" />
           </Reveal>

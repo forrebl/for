@@ -3430,13 +3430,7 @@
 }
 
 .chaika-robots {
-  overflow: hidden;
-  border: 3px solid #244f80;
-  border-radius: 14px;
-  background: #f0b82e;
-  box-shadow:
-    0 6px 0 #244f80,
-    0 14px 28px rgba(49, 95, 157, 0.18);
+  min-width: 0;
 }
 
 .chaika-robots__header {
@@ -3550,10 +3544,8 @@
   position: absolute;
   display: grid;
   place-items: center;
-  width: 78%;
-  height: 78%;
-  border: 2px dashed rgba(36, 79, 128, 0.55);
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   color: #244f80;
   font-family: 'Natasha', Impact, 'Arial Narrow', sans-serif;
   font-size: 3.5rem;
@@ -3563,14 +3555,16 @@
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
+  border-radius: 14px;
   background: #b63f32;
+  box-shadow: 0 6px 0 #244f80, 0 14px 28px rgba(49, 95, 157, 0.18);
   transition: grid-template-rows 420ms ease, opacity 420ms ease;
 }
 
 .chaika-robots__details.is-open {
   grid-template-rows: 1fr;
   opacity: 1;
-  border-top: 3px solid #244f80;
+  outline: 3px solid #244f80;
 }
 
 .chaika-robots__details-inner {
@@ -3626,6 +3620,68 @@
   color: #8f260e;
 }
 
+/* Keep the selected robot and its full description within the viewport. */
+.chaika-tech-page.is-robot-selected .chaika-tech-page__shell {
+  position: fixed;
+  inset: 4rem 0 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100svh - 4rem);
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  background: #f6df9d url('/images/chaika-bg.jpg') repeat-y top center / 100% auto;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-tech-page__shell > .reveal:nth-child(-n+2) {
+  display: none;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-tech-page__shell > .reveal:last-child,
+.chaika-tech-page.is-robot-selected .chaika-robots {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-robots__header {
+  display: none;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-robots__viewport {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-robot {
+  height: min(200px, 27svh);
+}
+
+.chaika-tech-page.is-robot-selected .chaika-robots__details {
+  flex: none;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-robots__details-content {
+  padding-top: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.chaika-tech-page.is-robot-selected .chaika-robots__details p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 1024px) {
+  .chaika-tech-page.is-robot-selected .chaika-tech-page__shell {
+    inset-block-start: 5rem;
+    height: calc(100svh - 5rem);
+  }
+}
+
 @media (max-width: 639px) {
   .chaika-section-nav {
     flex-direction: column;
@@ -3666,6 +3722,24 @@
   .chaika-robot {
     width: 120px;
     height: 150px;
+  }
+
+  .chaika-tech-page.is-robot-selected .chaika-robot {
+    height: min(150px, 22svh);
+  }
+
+  .chaika-tech-page.is-robot-selected .chaika-robots__details-content {
+    gap: 0.75rem;
+    padding: 0.7rem 0.8rem 0.8rem;
+  }
+
+  .chaika-tech-page.is-robot-selected .chaika-robots__details p {
+    font-size: clamp(0.74rem, 2.9vw, 0.86rem);
+    line-height: 1.32;
+  }
+
+  .chaika-tech-page.is-robot-selected .chaika-robots__details h3 {
+    font-size: 1.35rem;
   }
 }
 
