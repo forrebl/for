@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import Reveal from '../components/Reveal';
 
 export default function ChaikaCharacters() {
-  const [showHeroBack, setShowHeroBack] = useState(false);
-
   return (
     <main
       className="pt-16 lg:pt-20 min-h-screen"
@@ -56,27 +53,6 @@ export default function ChaikaCharacters() {
                     className="chaika-character-art__image"
                   />
                 </div>
-
-                <button
-                  type="button"
-                  className={`chaika-hero-turnaround chaika-hero-turnaround--simple ${showHeroBack ? 'is-back' : ''}`}
-                  onClick={() => setShowHeroBack((value) => !value)}
-                  aria-label={showHeroBack ? 'Показать героя спереди' : 'Показать героя сзади'}
-                  aria-pressed={showHeroBack}
-                >
-                  <img
-                    src="/images/chaika/characters/main-hero/hero-turnaround.png"
-                    alt=""
-                    className="chaika-hero-turnaround__sprite chaika-hero-turnaround__sprite--front"
-                    aria-hidden="true"
-                  />
-                  <img
-                    src="/images/chaika/characters/main-hero/hero-turnaround.png"
-                    alt=""
-                    className="chaika-hero-turnaround__sprite chaika-hero-turnaround__sprite--back"
-                    aria-hidden="true"
-                  />
-                </button>
 
                 <div className="chaika-character-art">
                   <img
