@@ -1,11 +1,20 @@
 import { useState } from 'react';
-import Reveal from '../components/Reveal';
 import { Link } from 'react-router-dom';
+import Reveal from '../components/Reveal';
 
 const skills = [
-  { category: 'Бренд-дизайн', items: ['Айдентика', 'Фирменный стиль', 'Дизайн-концепции', 'Рекламные кампании'] },
-  { category: 'Графический дизайн', items: ['Дизайн презентаций', 'Упаковка', 'Полиграфия', 'Digital-материалы'] },
-  { category: 'Art & Motion', items: ['Иллюстрация и концепт-арт', '2D-анимация', 'Коллаж и композитинг', 'Визуализация продукта'] },
+  {
+    category: 'ART',
+    items: ['Иллюстрация', 'Графика', 'Комиксы', 'Визуальные эксперименты'],
+  },
+  {
+    category: 'DESIGN',
+    items: ['Айдентика', 'Графический дизайн', 'Key visual', 'Print & digital'],
+  },
+  {
+    category: 'GAME DEVELOPMENT',
+    items: ['2D Art', 'Visual Development', 'Персонажи', 'Окружение и игровые ассеты'],
+  },
 ];
 
 const tools = [
@@ -124,7 +133,6 @@ function getCapabilityPositions(count: number) {
   });
 }
 
-/* разрозненные углы наклона для эффекта «гаек в куче» */
 const toolRotations = [
   -2.5, 1.8, -0.7, 3.1, -1.4, 0.9, -3.0, 2.2, -0.3, 1.5,
 ];
@@ -138,7 +146,6 @@ export default function About() {
       onClick={() => setActiveTool(null)}
     >
       <div className="max-w-7xl w-full mx-auto px-6 lg:px-12">
-        {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 lg:mb-20 items-start min-w-0">
           <div className="lg:col-span-5 min-w-0">
             <Reveal>
@@ -161,52 +168,57 @@ export default function About() {
               </div>
             </Reveal>
           </div>
+
           <div className="lg:col-span-7 flex flex-col justify-start min-w-0">
             <Reveal>
-              <p className="text-xs uppercase tracking-[0.2em] text-accent mb-4 font-medium">
-                Обо мне
-              </p>
-            </Reveal>
-            <Reveal delay={100}>
-              <h1 className="!text-2xl lg:!text-3xl font-[family-name:var(--font-display)] font-medium mb-6 !leading-snug">
-                Графический и бренд-дизайнер
-                <br />
-                <span className="text-foreground/30">Художник компьютерной графики, автор креативных проектов</span>
+              <h1 className="!text-3xl lg:!text-5xl font-[family-name:var(--font-display)] font-medium mb-7 !leading-tight tracking-[-0.035em]">
+                Художник и визуальный дизайнер
               </h1>
             </Reveal>
-            <Reveal delay={200}>
-              <p className="text-foreground/50 leading-relaxed mb-6">
-                Веду проекты от брифа и поиска визуального направления до презентации концепции,
-                подготовки макетов и передачи материалов в производство. Работала с коммерческими
-                брендами, образовательными проектами, командами игровой разработки и галереями современного искусства.
+            <Reveal delay={90}>
+              <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed mb-5">
+                Работаю на стыке искусства, дизайна и геймдева.
               </p>
             </Reveal>
-            <Reveal delay={300}>
-              <p className="text-foreground/50 leading-relaxed">
-                Имею профильное высшее образование в области графики компьютерных игр, а также
-                опыт преподавания.
+            <Reveal delay={160}>
+              <p className="text-foreground/50 leading-relaxed mb-5 max-w-2xl">
+                Создаю визуальные концепции и системы: разрабатываю персонажей и окружение для игр,
+                иллюстрации, айдентику, графические и digital-проекты.
+              </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <p className="text-foreground/50 leading-relaxed mb-5 max-w-2xl">
+                Мне интересно не ограничиваться одним направлением, а подбирать визуальный язык под
+                конкретную задачу — от идеи и поиска стилистики до цельного визуального решения.
+                В работе для меня важны атмосфера, композиция, характер проекта и то, как разные
+                визуальные элементы складываются в единую систему.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
+              <p className="text-foreground/40 leading-relaxed max-w-2xl">
+                Имею профильное высшее образование в области графики компьютерных игр и опыт работы
+                с коммерческими, образовательными и игровыми проектами.
               </p>
             </Reveal>
           </div>
         </div>
 
-        {/* Skills */}
         <section className="mb-14 lg:mb-20 min-w-0">
           <Reveal>
             <h2 className="text-2xl lg:text-3xl font-[family-name:var(--font-display)] font-medium mb-8 lg:mb-10">
-              Специализация и навыки
+              Специализация и навыки
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {skills.map((group, gi) => (
-              <Reveal key={group.category} delay={gi * 100}>
-                <div className="border border-border p-6 lg:p-8 bg-card rounded-2xl">
-                  <h3 className="text-xs uppercase tracking-[0.15em] text-accent mb-4 font-medium">
+            {skills.map((group, groupIndex) => (
+              <Reveal key={group.category} delay={groupIndex * 100}>
+                <div className="border border-border p-6 lg:p-8 bg-card rounded-2xl h-full">
+                  <h3 className="text-lg font-[family-name:var(--font-display)] font-medium mb-5">
                     {group.category}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {group.items.map((item) => (
-                      <li key={item} className="text-foreground/70">
+                      <li key={item} className="text-foreground/60">
                         {item}
                       </li>
                     ))}
@@ -217,7 +229,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Tools — «разрозненные плашки» */}
         <section className="mb-14 lg:mb-20 min-w-0">
           <Reveal>
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-5 lg:mb-6">
@@ -232,7 +243,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={100}>
             <div className="flex flex-wrap gap-3 items-center pt-1 pb-4 md:pt-5 md:pb-14 min-w-0 max-w-full">
-              {tools.map((tool, i) => {
+              {tools.map((tool, index) => {
                 const capabilities = toolCapabilities[tool];
                 const hasCapabilities = Boolean(capabilities?.length);
                 const positions = capabilities ? getCapabilityPositions(capabilities.length) : [];
@@ -252,7 +263,7 @@ export default function About() {
                       }}
                       aria-expanded={hasCapabilities ? activeTool === tool : undefined}
                       style={{
-                        transform: `rotate(${toolRotations[i % toolRotations.length]}deg)`,
+                        transform: `rotate(${toolRotations[index % toolRotations.length]}deg)`,
                       }}
                       className={`max-w-full px-4 py-2 text-sm border border-border bg-card text-foreground/60 rounded-lg select-none shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 transition-all duration-300 ${hasCapabilities ? 'cursor-pointer' : 'cursor-default'}`}
                     >
@@ -309,20 +320,13 @@ export default function About() {
           </Reveal>
         </section>
 
-        {/* CTA */}
         <section className="py-14 lg:py-20 bg-accent text-background text-center rounded-3xl min-w-0">
           <Reveal>
-            <p className="text-sm uppercase tracking-[0.2em] text-background/60 mb-4">
-              Хороший проект?
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
             <h2 className="text-2xl lg:text-4xl font-[family-name:var(--font-display)] font-medium mb-6">
-              Всегда открыта для новых идей
-              <br />и сотрудничества
+              Открыта для новых идей и сотрудничества
             </h2>
           </Reveal>
-          <Reveal delay={200}>
+          <Reveal delay={100}>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-background text-foreground text-sm font-medium hover:bg-background/90 transition-colors rounded-full"
