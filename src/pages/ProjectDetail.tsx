@@ -555,10 +555,10 @@ export default function ProjectDetail() {
             <Reveal delay={240}>
               <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-[#315f9d]/25">
                 <Link
-                  to="/projects?filter=cgi"
+                  to="/projects?filter=game"
                   className="inline-flex items-center gap-2 text-sm font-medium text-[#8f260e] hover:text-[#244f80] transition-colors"
                 >
-                  ← Вернуться к&nbsp;CGI-проектам
+                  ← Вернуться к&nbsp;игровым проектам
                 </Link>
               </div>
             </Reveal>
