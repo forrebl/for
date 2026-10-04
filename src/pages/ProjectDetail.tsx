@@ -482,7 +482,7 @@ export default function ProjectDetail() {
                 <div className="chaika-video-frame__viewport">
                   <video
                     src="/media/chaika-video.mp4"
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full ${project.id === 'project-10' ? 'object-contain bg-muted' : 'object-cover'}`}
                     preload="metadata"
                     playsInline
                     controls
