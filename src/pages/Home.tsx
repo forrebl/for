@@ -121,10 +121,10 @@ export default function Home() {
                   : 'lg:col-span-6';
 
               return (
-                <Reveal key={project.id} delay={Math.min(index * 80, 240)}>
+                <Reveal key={project.id} delay={Math.min(index * 80, 240)} className={gridClass}>
                   <Link
                     to={`/project/${project.id}`}
-                    className={`group relative block overflow-hidden rounded-2xl border border-border bg-card min-h-[360px] ${gridClass}`}
+                    className="group relative block h-full overflow-hidden rounded-2xl border border-border bg-card min-h-[360px]"
                   >
                     <img
                       src={project.thumbnail}
