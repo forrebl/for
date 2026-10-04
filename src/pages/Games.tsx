@@ -30,12 +30,11 @@ export default function Games() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <Reveal>
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#00b8d9] font-medium">игры</p>
           <h1 className="font-[family-name:var(--font-display)] font-medium mb-4 text-white">
-            Сделай паузу
+            Игровая площадка
           </h1>
           <p className="text-white/50 max-w-2xl leading-relaxed mb-10 lg:mb-14">
-            Небольшие дизайнерские игры между проектами. Можно проверить глазомер, реакцию и терпимость к правкам.
+            Мини-игры, странные механики и маленькие эксперименты. Здесь не обязательно быть серьёзной — можно просто играть.
           </p>
         </Reveal>
 
